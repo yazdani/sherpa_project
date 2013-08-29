@@ -1,0 +1,8 @@
+#goal definion
+int32[] start
+---
+#result definition
+string  end
+---
+#feedback
+string[] sequence
