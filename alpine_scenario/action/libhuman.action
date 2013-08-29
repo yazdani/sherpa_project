@@ -1,0 +1,11 @@
+#goal definition
+Point position
+Quaternion orientation
+--
+#result definition
+Point position
+Quaternion orientation
+--
+#feedback
+Point position
+Quaternion orientation

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>  
+<!--
+<include file="$(find gazebo_worlds )/launch/empty_world.launch"/> 
+-->
+<!-- world:alpine environment -->
+
+<param name="tree1" textfile="$(find alpine_scenario)/robots/tree1.urdf"/> 
+  <node name="tree1" pkg="gazebo" type="spawn_model" args="-urdf -param tree1 -x 4 -y -4 -z 0 -model tree1" respawn="false" output="screen"/> 
+<!--
+<node name="tree1-2" pkg="gazebo" type="spawn_model" args="-urdf -param tree1 -x 3 -y 6 -z 0 -model tree1-2" respawn="false" output="screen"/> 
+
+<node name="tree1-3" pkg="gazebo" type="spawn_model" args="-urdf -param tree1 -x 6 -y 2 -z 0 -model tree1-3" respawn="false" output="screen"/> 
+
+<node name="tree1-4" pkg="gazebo" type="spawn_model" args="-urdf -param tree1 -x 2 -y 2 -z 0 -model tree1-4" respawn="false" output="screen"/> 
+
+<node name="tree1-5" pkg="gazebo" type="spawn_model" args="-urdf -param tree1 -x 6 -y 6 -z 0 -model tree1-5" respawn="false" output="screen"/> 
+-->
+ <arg name="use_ground_truth_for_tf" default="true" />
+<!--
+  <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch" >
+     <arg name="model" value="$(find hector_quadrotor_urdf)/urdf/quadrotor_hokuyo_utm30lx.urdf.xacro"/>
+     <arg name="use_ground_truth_for_tf" value="$(arg use_ground_truth_for_tf)" />
+   </include>
+-->
+
+<include file="$(find alpine_scenario)/launch/spawn_quadrotor.launch"/>
+
+<!--
+<include file="$(find pr2_gazebo)/launch/pr2.launch"/>
+-->
+<!--pr2_no_arms.launch"/>-->
+<node type="laser_scan_assembler" pkg="laser_assembler" name="my_assembler">
+    <remap from="scan" to="tilt_scan"/>
+    <param name="max_scans" type="int" value="400" />
+    <param name="fixed_frame" type="string" value="nav" />
+<!--  <param name="fixed_frame" type="string" value="base_link" /> -->
+</node>
+
+<node name="periodic_snapshotter" pkg="laser_assembler" type="periodic_snapshotter" respawn="false" output="screen" />
+
+<node name="pTp2" pkg="alpine_scenario" type="pTp2" respawn="false" output="screen" />
+
+<node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
+    <param name="resolution" value="0.05" />
+
+    <param name="frame_id" type="string" value="odom_combined" />
+
+      <param name="max_sensor_range" value="5.0" />
+
+    <param name="latch" value="false" />
+      <remap from="cloud_in" to="/cloud1_assembled" />
+
+</node>
+
+<include file="$(find alpine_scenario)/launch/launch_files/mesh_world.launch"/>
+
+<!-- world:alpine environment in rviz -->
+
+<node name="alp_nav_mesh_marker" ns="/alpine_scenario" type="alp_nav_mesh_marker" pkg="alpine_scenario" output="screen" />
+
+<!-- models:add 2 quadrotors ... add 1 quadrotor-->
+
+
+<!--
+<include file="$(find alpine_scenario)/launch/multi_quadrotor.launch" /> 
+
+<include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch" />
+ -->
+</launch>

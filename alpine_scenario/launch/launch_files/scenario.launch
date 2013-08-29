@@ -1,0 +1,29 @@
+<launch>
+
+  <include file="$(find alpine_scenario)/launch/alpino_mesh.launch"/>  
+<!--
+  <param name="human" textfile="$(find alpine_scenario)/robots/human.urdf"/> 
+  <node name="human" pkg="gazebo" type="spawn_model" args="-urdf -param human -x 0 -y 0 -z 0 -model human" respawn="false" output="screen"/> 
+-->
+<!--
+ <param name="gRover" textfile="$(find alpine_scenario)/robots/rover.urdf"/>
+ <node name="gRover" pkg="gazebo" type="spawn_model" args="-urdf -param gRover -x 0 -y 0 -z 0 -model gRover" respawn="false" output="screen"/>
+-->
+ <param name="quadrotor" textfile="$(find alpine_scenario)/robots/quadrotor.sdf"/>
+ <node name="quadrotor" pkg="gazebo" type="spawn_model" args="-gazebo -param quadrotor -x 3 -y -1.5 -z 2 -R 0.0 -P 0.0 -Y 0.0 -model quadrotor" respawn="false" output="screen"/>
+
+
+ <!-- Load collision map and semantic map -->
+  <node name="json_prolog_1" pkg="json_prolog" type="json_prolog">
+    <param name="initial_package" value="lesson01" />
+  </node>
+  
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find lesson01)/map/map.yaml" />
+  <include file="$(find lesson01)/launch/json.launch" />
+  
+  <include file="$(find lesson01)/launch/fake_localization.launch" />
+
+
+  <!-- Environment representation for reasoning etc. -->
+  <include file="$(find lesson01)/launch/environment_representation.launch" />
+</launch>
