@@ -1,0 +1,21 @@
+<launch>
+
+ <!-- human Node-->
+ 
+
+ <!-- joy node -->
+ <node pkg="joy" type="joy_node" name="sherpa_joy" output="screen" />
+
+ <!-- teleop node -->
+ <node pkg="sherpa_actionlib" type="sherpa_teleop" name="sherpa_teleop" output="screen">
+ <remap from="cmd_vel" to="sherpa_move_command" />
+ </node>
+ 
+
+
+
+
+<!--<rosparam file="$(find pr2_teleop)/config/teleop.yaml" command="load" />
+</node>-->
+
+</launch>
