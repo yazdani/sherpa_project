@@ -7,6 +7,7 @@
  <!-- teleop node -->
  <node pkg="sherpa_actionlib" type="sherpa_teleop" name="sherpa_teleop" output="screen">
  <remap from="cmd_vel" to="sherpa_move_command" />
+ <remap from="cmd_pose" to="sherpa_pose_command" />
  </node>
  
 
