@@ -1,8 +1,12 @@
 #goal definion
-int32[] start
+geometry_msgs/Twist setTwistGoalBusyGenius
+geometry_msgs/Pose setPoseGoalBusyGenius
 ---
 #result definition
-string  end
+string end
+geometry_msgs/Twist getTwist
+geometry_msgs/Pose getPose
 ---
 #feedback
-string[] sequence
+geometry_msgs/Pose getPoseOfBusyGenius
+geometry_msgs/Twist getTwistOfBusyGenius
