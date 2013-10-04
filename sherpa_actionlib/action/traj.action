@@ -1,10 +1,10 @@
 #goal definion
-geometry_msgs/Twist setTwistGoalBusyGenius
 geometry_msgs/Pose setPoseGoalBusyGenius
+geometry_msgs/Twist setTwistGoalBusyGenius
 ---
 #result definition
 string end
-geometry_msgs/Twist getTwist
+geometry_msgs/Pose getTwist
 geometry_msgs/Pose getPose
 ---
 #feedback
