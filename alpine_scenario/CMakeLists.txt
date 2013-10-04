@@ -4,8 +4,8 @@ project(alpine_scenario)
 find_package(catkin REQUIRED COMPONENTS pcl pcl_ros roscpp rospy std_msgs genmsg actionlib_msgs actionlib control_msgs)
 #include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 
-add_action_files(DIRECTORY action FILES libhuman.action)
-generate_messages(DEPENDENCIES actionlib_msgs)
+#add_action_files(DIRECTORY action FILES libhuman.action)
+#generate_messages(DEPENDENCIES actionlib_msgs)
 find_package(Eigen REQUIRED)
 include_directories(${EIGEN_INCLUDE_DIRS})
 add_definitions(${EIGEN_DEFINITIONS})
@@ -150,8 +150,8 @@ include_directories(include
 
 ## Declare a cpp executable
 # add_executable(beginner_tutorials_node src/beginner_tutorials_node.cpp)
-add_executable(simple_trajectory src/simple_trajectory.cpp)
-target_link_libraries(simple_trajectory ${catkin_LIBRARIES})
+#add_executable(simple_trajectory src/simple_trajectory.cpp)
+#target_link_libraries(simple_trajectory ${catkin_LIBRARIES})
 add_executable(pTp2 src/pTp2.cpp)
 target_link_libraries(pTp2 ${catkin_LIBRARIES})
 add_executable(alp_nav_mesh_marker src/alp_nav_mesh_marker.cpp)

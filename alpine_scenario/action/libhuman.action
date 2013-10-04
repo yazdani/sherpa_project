@@ -1,11 +1,8 @@
 #goal definition
-Point position
-Quaternion orientation
+int32 goal
 --
 #result definition
-Point position
-Quaternion orientation
+int32 goal
 --
 #feedback
-Point position
-Quaternion orientation
+int32 goal

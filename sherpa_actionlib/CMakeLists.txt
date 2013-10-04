@@ -154,9 +154,16 @@ target_link_libraries(
   ${catkin_LIBRARIES}
 )
 
-add_executable(sherpa_move src/sherpa_move.cpp)
+#add_executable(sherpa_move src/sherpa_move.cpp)
+
+#target_link_libraries(
+ # sherpa_move
+  #${catkin_LIBRARIES}
+#)
+
+add_executable(sherpa_teleop src/sherpa_teleop.cpp)
 
 target_link_libraries(
-  sherpa_move
+  sherpa_teleop
   ${catkin_LIBRARIES}
 )
