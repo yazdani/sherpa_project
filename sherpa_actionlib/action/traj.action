@@ -4,7 +4,7 @@ geometry_msgs/Twist setTwistGoalBusyGenius
 ---
 #result definition
 string end
-geometry_msgs/Pose getTwist
+geometry_msgs/Twist getTwist
 geometry_msgs/Pose getPose
 ---
 #feedback
