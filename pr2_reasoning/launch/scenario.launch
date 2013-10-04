@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-
-<launch>
-
-<include file="$(find gazebo_worlds)/launch/empty_world.launch"/>
-
-</launch>

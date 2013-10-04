@@ -1,8 +1,0 @@
-#goal definion
-geometry_msgs/PoseStamped start
----
-#result definition
-geometry_msgs/PoseStamped end
----
-#feedback
-string word
