@@ -1,0 +1,14 @@
+<package>
+  <description brief="world_model_description">
+
+     world_model_description
+
+  </description>
+  <author>yazdani</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/world_model_description</url>
+
+</package>
+
+

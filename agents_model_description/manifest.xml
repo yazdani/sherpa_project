@@ -1,0 +1,14 @@
+<package>
+  <description brief="agents_model_description">
+
+     agents_model_description
+
+  </description>
+  <author>yazdani</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/agents_model_description</url>
+
+</package>
+
+
