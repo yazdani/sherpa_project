@@ -8,7 +8,13 @@
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/cognitive_reasoning</url>
-
+ <depend package="actionlib"/>
+  <depend package="bullet_reasoning_designators" />
+  <depend package="bullet_reasoning"/>
+  <depend package="cl_bullet" />
+  <depend package="cl_bullet_vis" />
+  <depend package="cram_designators"/>
+  <depend package="cram_json_prolog" />
 </package>
 
 

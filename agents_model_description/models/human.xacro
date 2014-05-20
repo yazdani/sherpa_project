@@ -1,0 +1,248 @@
+<?xml version="1.0"?>
+
+<robot name="busy_genius" xmlns:xacro="http://ros.org/wiki/xacro">
+    
+    
+    <xacro:macro name="busy_genius_macro">
+        <!-- ground position-->
+    <link name="world">
+    </link>
+    
+    
+    <xacro:create_spine/>
+    <xacro:create_arms/>
+    <xacro:create_legs/>
+    
+    
+    
+   </xacro:macro>
+       
+       
+    <xacro:macro name="busy_genius_gazebo_macro">
+        <gazebo>
+            <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"><!--FIXME I will need my own ROSCONTROL driver here -->
+            <robotSimType>sherpa_rover_control/SherpaRoverHWSim</robotSimType>
+                <!--robotSimType>sherpa_human_control/SherpaHumanHWSim</robotSimType-->
+                <robotNamespace>/</robotNamespace> 
+            </plugin>
+        </gazebo>
+    </xacro:macro>
+    
+    
+    <xacro:macro name="create_3dof_link" params="name filename">        
+        <link name="${name}_x">
+            <inertial>
+            <mass value="1"/>
+                <origin xyz="0 0 0" />
+            <inertia 
+                ixx="1.0" ixy="0.0" ixz="0.0" 
+                iyy="1.0" iyz="0.0" 
+                izz="1.0"/>
+            </inertial>
+        </link>
+        
+        <link name="${name}_y">
+            <inertial>
+            <mass value="1"/>
+                <origin xyz="0 0 0" />
+            <inertia 
+                ixx="1.0" ixy="0.0" ixz="0.0" 
+                iyy="1.0" iyz="0.0" 
+                izz="1.0"/>
+            </inertial>
+        </link>
+        
+        <link name="${name}_z">
+            <inertial>
+            <mass value="1"/>
+                <origin xyz="0 0 0" />
+            <inertia 
+                ixx="1.0" ixy="0.0" ixz="0.0" 
+                iyy="1.0" iyz="0.0" 
+                izz="1.0"/>
+            </inertial>
+            
+            <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+            <mesh filename="${filename}"/>
+            </geometry>
+        </visual>
+            <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+            <mesh filename="${filename}.stl"/>
+            </geometry>
+        </collision>
+        </link>
+    </xacro:macro>
+    
+       
+    <xacro:macro name="create_3dof_joint" params="name parent_name *origin">
+        <joint name="${name}_joint_x" type="revolute">
+            <parent link="${parent_name}"/>
+            <child link="${name}_x"/>
+            <xacro:insert_block name="origin" />
+            <axis xyz="1 0 0"/>
+            <dynamics damping="0.7"/>
+            <limit effort="100" velocity="10.0" lower="-2" upper="2" />                  
+        </joint>  
+        
+        <transmission name="trans_${name}_x">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${name}_joint_x"/>
+            <actuator name="${name}_motor_x">
+                <hardwareInterface>PositionJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+        
+        
+        <joint name="${name}_joint_z" type="revolute">
+            <parent link="${name}_x"/>
+            <child link="${name}_z"/>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <axis xyz="0 0 1"/>
+            <dynamics damping="0.7"/>
+            <limit effort="100" velocity="10.0" lower="-2" upper="2" />                  
+        </joint>  
+        
+        <transmission name="trans_{name}_z">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${name}_joint_z"/>
+            <actuator name="${name}_motor_z">
+                <hardwareInterface>PositionJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+        
+        <joint name="${name}_joint_y" type="revolute">
+            <parent link="${name}_z"/>
+            <child link="${name}_y"/>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <axis xyz="0 1 0"/>
+            <dynamics damping="0.7"/>
+            <limit effort="100" velocity="10.0" lower="-2" upper="2" />                  
+        </joint>  
+        
+        <transmission name="trans_${name}_y">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${name}_joint_y"/>
+            <actuator name="${name}_motor_y">
+                <hardwareInterface>PositionJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+    </xacro:macro>
+
+    <xacro:macro name="create_spine">
+        <xacro:create_3dof_link name="pelvis" filename="package://sherpa_genius_description/meshes/Hips.dae"/>
+        <xacro:create_3dof_link name="l5" filename="package://sherpa_genius_description/meshes/Body1.dae"/>
+        <xacro:create_3dof_link name="l3" filename="package://sherpa_genius_description/meshes/Body2.dae"/>
+        <xacro:create_3dof_link name="t12" filename="package://sherpa_genius_description/meshes/Body3.dae"/>
+        <xacro:create_3dof_link name="t8" filename="package://sherpa_genius_description/meshes/Body4.dae"/>
+        <xacro:create_3dof_link name="neck" filename="package://sherpa_genius_description/meshes/Neck.dae"/>
+        <xacro:create_3dof_link name="head" filename="package://sherpa_genius_description/meshes/Head.dae"/>
+        
+        <xacro:create_3dof_joint name="pelvis" parent_name="world">
+            <origin xyz="0 0 0.91" rpy="1.5707 0 0" />
+        </xacro:create_3dof_joint>  
+            
+        <xacro:create_3dof_joint name="l5" parent_name="pelvis_y">
+            <origin xyz="0 0.1 0 " rpy="0 0 0" />
+        </xacro:create_3dof_joint>  
+        <xacro:create_3dof_joint name="l3" parent_name="l5_y">
+            <origin xyz="0 0.107 0" rpy="0 0 0" />
+        </xacro:create_3dof_joint>  
+        <xacro:create_3dof_joint name="t12" parent_name="l3_y">
+            <origin xyz="0 0.097 0" rpy="0 0 0" />
+        </xacro:create_3dof_joint>  
+        <xacro:create_3dof_joint name="t8" parent_name="t12_y">
+            <origin xyz="0 0.096 0" rpy="0 0 0" />
+        </xacro:create_3dof_joint>  
+        <xacro:create_3dof_joint name="neck" parent_name="t8_y">
+            <origin xyz="0 0.14 0" rpy="0 0 0" />
+        </xacro:create_3dof_joint>  
+        <xacro:create_3dof_joint name="head" parent_name="neck_y">
+            <origin xyz="0 0.06 0" rpy="0 0 0" />
+        </xacro:create_3dof_joint>
+    </xacro:macro>
+    
+    
+    <xacro:macro name="create_arms">
+        <xacro:create_arm suffix="right" file_suffix="Right">
+            <origin xyz="-0.03 -0.09 0" rpy="0 0 1.57" />
+        </xacro:create_arm>
+        <xacro:create_arm suffix="left" file_suffix="Left">
+            <origin xyz="0.03 -0.09 0" rpy="0 0 -1.57" />
+        </xacro:create_arm>
+        
+    </xacro:macro>
+    
+     <xacro:macro name="create_arm" params="suffix file_suffix *origin">
+         <!-- right arm -->
+         
+        <xacro:create_3dof_link name="${suffix}_shoulder" filename="package://sherpa_genius_description/meshes/Shoulder${file_suffix}.dae"/>
+    
+        <xacro:create_3dof_link name="${suffix}_upper_arm" filename="package://sherpa_genius_description/meshes/UpperArm${file_suffix}.dae"/>
+    
+        <xacro:create_3dof_link name="${suffix}_lower_arm" filename="package://sherpa_genius_description/meshes/LowerArm${file_suffix}.dae"/>
+    
+        <xacro:create_3dof_link name="${suffix}_hand" filename="package://sherpa_genius_description/meshes/Hand${file_suffix}.dae"/>
+    
+            
+            
+        <xacro:create_3dof_joint name="${suffix}_shoulder" parent_name="neck_y">
+            <xacro:insert_block name="origin" />
+        </xacro:create_3dof_joint>  
+        <xacro:create_3dof_joint name="${suffix}_upper_arm" parent_name="${suffix}_shoulder_y">
+            <origin xyz="0 0.14 0" rpy="0 0 0" />
+        </xacro:create_3dof_joint>  
+        <xacro:create_3dof_joint name="${suffix}_lower_arm" parent_name="${suffix}_upper_arm_y">
+            <origin xyz="0 0.3 0" rpy="0 0 0" />
+        </xacro:create_3dof_joint>  
+        <xacro:create_3dof_joint name="${suffix}_hand" parent_name="${suffix}_lower_arm_y">
+            <origin xyz="0 0.24 0" rpy="0 0 0" />
+        </xacro:create_3dof_joint>  
+    </xacro:macro>   
+      
+    
+    <xacro:macro name="create_legs">
+        <xacro:create_leg suffix="right" file_suffix="Right">
+            <origin xyz="-0.079 0 0" rpy="3.14 0 0" />
+        </xacro:create_leg>
+        <xacro:create_leg suffix="left" file_suffix="Left">
+            <origin xyz="0.079 0 0" rpy="3.14 0 0" />
+        </xacro:create_leg>
+        
+    </xacro:macro>
+    
+    <xacro:macro name="create_leg" params="suffix file_suffix *origin">
+         
+         
+        <xacro:create_3dof_link name="${suffix}_upper_leg" filename="package://sherpa_genius_description/meshes/UpperLeg${file_suffix}.dae"/>
+        <xacro:create_3dof_link name="${suffix}_lower_leg" filename="package://sherpa_genius_description/meshes/LowerLeg${file_suffix}.dae"/>
+        <xacro:create_3dof_link name="${suffix}_foot" filename="package://sherpa_genius_description/meshes/Foot${file_suffix}.dae"/>
+        <xacro:create_3dof_link name="${suffix}_toe" filename="package://sherpa_genius_description/meshes/Toe${file_suffix}.dae"/>
+    
+    
+                    
+        <xacro:create_3dof_joint name="${suffix}_upper_leg" parent_name="pelvis_y">
+            <xacro:insert_block name="origin" />
+        </xacro:create_3dof_joint>  
+        <xacro:create_3dof_joint name="${suffix}_lower_leg" parent_name="${suffix}_upper_leg_y">
+            <origin xyz="0 0.41 0" rpy="0 0 0" />
+        </xacro:create_3dof_joint>  
+        <xacro:create_3dof_joint name="${suffix}_foot" parent_name="${suffix}_lower_leg_y">
+            <origin xyz="0. 0.4 0" rpy="-1.15 0 0" />
+        </xacro:create_3dof_joint>  
+        <xacro:create_3dof_joint name="${suffix}_toe" parent_name="${suffix}_foot_y">
+            <origin xyz="0 0.18 0" rpy="0 0 0" />
+        </xacro:create_3dof_joint>  
+    </xacro:macro>   
+        
+    
+    <xacro:busy_genius_macro />
+    <xacro:busy_genius_gazebo_macro />
+    
+</robot>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<sdf version="1.4">
+  <model name="default">
+
+ <static>true</static>
+    <pose>-20 -20 0 0 0 0</pose>
+    <link name="walls">
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://(find $world_model_description)/meshes/mountain_gen.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://(find $world_model_description)/meshes/mountain_gen.dae</uri>
+          </mesh>
+        </geometry>
+        <cast_shadows>false</cast_shadows>
+      </visual>
+    </link>
+  </model>
+</sdf>
+
+
+  <!--   <include> -->
+<!--       <uri>model://sun</uri> -->
+<!--     </include> -->
+<!--     <include> -->
+<!--       <uri>model://../meshes/mountain_gen.dae</uri> -->
+<!--     </include> -->
+<!--   </world> -->
+<!-- </sdf> -->

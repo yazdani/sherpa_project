@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.66.1 r55057</authoring_tool>
+    </contributor>
+    <created>2014-02-17T14:41:34</created>
+    <modified>2014-02-17T14:41:34</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="Skin-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.4651696 0.3744045 0.3070424 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.1049383 0.1049383 0.1049383 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">50</float>
+            </shininess>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Skin-material" name="Skin">
+      <instance_effect url="#Skin-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Icosphere_001-mesh" name="Icosphere.001">
+      <mesh>
+        <source id="Icosphere_001-mesh-positions">
+          <float_array id="Icosphere_001-mesh-positions-array" count="126">0 -0.009553611 -0.002908825 0.02481877 0.0212323 0.01961743 -0.009479761 0.02179819 0.03169578 -0.03067767 0.02031689 7.47386e-5 -0.009479761 0.01883512 -0.03154641 0.02481877 0.01940107 -0.019468 0.00592482 0.06725919 0.02283996 -0.01551175 0.06739377 0.01409953 -0.01551175 0.06782919 -0.01418453 0.00592482 0.06796371 -0.02292501 0.01917356 0.06761127 -4.25e-5 0 0.09695053 4.09191e-4 0.01458799 -9.45322e-4 0.009384036 0.009016036 0.01748287 0.02972424 -0.005572021 -6.12691e-4 0.01648348 0.01458799 -0.00202167 -0.01358962 0.02917611 0.01607394 -3.49071e-4 -0.02360403 0.01694476 0.01823723 -0.01803189 -0.00148338 -0.002102732 -0.02360403 0.01520311 -0.01893538 -0.005572021 -0.002354264 -0.02068907 0.009016036 0.01466482 -0.03042238 0.02602189 0.04397535 -0.008852362 0.02602189 0.04435211 0.01078754 0.01604044 0.04451197 0.02598607 0 0.04465121 0.03216403 -0.01613998 0.04464155 0.02660363 -0.02592319 0.04430693 0.01057225 -0.02592325 0.04397743 -0.008842527 -0.01613998 0.04367798 -0.02470636 0 0.04362249 -0.03048497 0.01604044 0.04374057 -0.02440804 0.0147525 0.0715717 0.0134716 -0.005635023 0.07144379 0.02178406 -0.01823508 0.07177877 2.16644e-5 -0.005635023 0.07211387 -0.02174079 0.0147525 0.07198578 -0.01342827 0.01126986 0.08902376 2.87151e-4 0.00348246 0.08881688 0.01373702 -0.009117484 0.08889591 0.008599579 -0.009117484 0.08915185 -0.008025228 0.00348246 0.08923095 -0.01316273</float_array>
+          <technique_common>
+            <accessor source="#Icosphere_001-mesh-positions-array" count="42" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Icosphere_001-mesh-normals">
+          <float_array id="Icosphere_001-mesh-normals-array" count="126">6.1037e-5 -0.9997864 0.01968443 0.5246132 -0.7625049 0.3785821 -0.1990112 -0.7762688 0.5981017 0.8044984 -0.2089907 0.5559252 0.957152 -0.2892544 0.0132755 -0.6615498 -0.7496872 0.01620531 -0.2147892 -0.7565538 -0.6176031 0.5509812 -0.7497177 -0.3664662 0.9404278 0.207831 0.2689901 -0.313242 -0.2488174 0.9164708 0.3035981 -0.3571276 0.8833277 0.02990812 0.1749931 0.9840999 -0.9846187 -0.1742607 0.01055938 -0.777337 -0.3252052 0.5384686 -0.9369793 0.2036805 0.2837611 -0.3266396 -0.175756 -0.9286477 -0.8010193 -0.2801599 -0.5289773 -0.6268502 0.1856135 -0.7566759 0.821894 -0.1659596 -0.5448775 0.3187963 -0.2855922 -0.9037446 0.6114689 0.184759 -0.7693716 0.6026185 0.1848201 0.7762993 -0.6232185 0.1897336 0.7586596 -0.9378643 0.2049928 -0.2798547 0.01617479 0.173101 -0.9847407 0.9434492 0.2040773 -0.2611469 0.3333536 0.3761711 0.8644979 0.7864315 0.3800165 0.4868618 0.2480544 0.6725669 0.6971954 -0.7983032 0.3604236 0.4824061 -0.3218482 0.4095584 0.8536027 -0.6397901 0.6415601 0.4230781 -0.8018434 0.3394879 -0.4916837 -0.9316385 0.3633229 0.002105772 -0.6397901 0.6542863 -0.403119 0.3326823 0.3438826 -0.8780786 -0.3267922 0.3933225 -0.8593402 0.2480544 0.6937162 -0.6761681 0.9394513 0.3426313 -0.001800537 0.7918943 0.3711966 -0.484817 0.7803583 0.6252022 0.009613275 -6.40889e-4 0.9998779 0.01538127</float_array>
+          <technique_common>
+            <accessor source="#Icosphere_001-mesh-normals-array" count="42" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Icosphere_001-mesh-vertices">
+          <input semantic="POSITION" source="#Icosphere_001-mesh-positions"/>
+        </vertices>
+        <polylist material="Skin-material" count="80">
+          <input semantic="VERTEX" source="#Icosphere_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Icosphere_001-mesh-normals" offset="1"/>
+          <vcount>3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 </vcount>
+          <p>0 0 12 1 14 2 1 3 12 1 16 4 0 0 14 2 18 5 0 0 18 5 20 6 0 0 20 6 15 7 1 3 16 4 23 8 2 9 13 10 25 11 3 12 17 13 27 14 4 15 19 16 29 17 5 18 21 19 31 20 1 3 23 8 24 21 2 9 25 11 26 22 3 12 27 14 28 23 4 15 29 17 30 24 5 18 31 20 22 25 6 26 32 27 38 28 7 29 33 30 39 31 8 32 34 33 40 34 9 35 35 36 41 37 10 38 36 39 37 40 14 2 13 10 2 9 14 2 12 1 13 10 12 1 1 3 13 10 16 4 15 7 5 18 16 4 12 1 15 7 12 1 0 0 15 7 18 5 17 13 3 12 18 5 14 2 17 13 14 2 2 9 17 13 20 6 19 16 4 15 20 6 18 5 19 16 18 5 3 12 19 16 15 7 21 19 5 18 15 7 20 6 21 19 20 6 4 15 21 19 23 8 22 25 10 38 23 8 16 4 22 25 16 4 5 18 22 25 25 11 24 21 6 26 25 11 13 10 24 21 13 10 1 3 24 21 27 14 26 22 7 29 27 14 17 13 26 22 17 13 2 9 26 22 29 17 28 23 8 32 29 17 19 16 28 23 19 16 3 12 28 23 31 20 30 24 9 35 31 20 21 19 30 24 21 19 4 15 30 24 24 21 32 27 6 26 24 21 23 8 32 27 23 8 10 38 32 27 26 22 33 30 7 29 26 22 25 11 33 30 25 11 6 26 33 30 28 23 34 33 8 32 28 23 27 14 34 33 27 14 7 29 34 33 30 24 35 36 9 35 30 24 29 17 35 36 29 17 8 32 35 36 22 25 36 39 10 38 22 25 31 20 36 39 31 20 9 35 36 39 38 28 37 40 11 41 38 28 32 27 37 40 32 27 10 38 37 40 39 31 38 28 11 41 39 31 33 30 38 28 33 30 6 26 38 28 40 34 39 31 11 41 40 34 34 33 39 31 34 33 7 29 39 31 41 37 40 34 11 41 41 37 35 36 40 34 35 36 8 32 40 34 37 40 41 37 11 41 37 40 36 39 41 37 36 39 9 35 41 37</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Neck" name="Neck" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Icosphere_001-mesh">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Skin-material" target="#Skin-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

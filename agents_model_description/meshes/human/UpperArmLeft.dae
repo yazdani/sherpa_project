@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.66.1 r55057</authoring_tool>
+    </contributor>
+    <created>2014-02-17T15:43:03</created>
+    <modified>2014-02-17T15:43:03</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="Shirt-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.3287502 0.03168271 0 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+        <extra>
+          <technique profile="GOOGLEEARTH">
+            <double_sided>1</double_sided>
+          </technique>
+        </extra>
+      </profile_COMMON>
+      <extra><technique profile="MAX3D"><double_sided>1</double_sided></technique></extra>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Shirt-material" name="Shirt">
+      <instance_effect url="#Shirt-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Cube_011-mesh" name="Cube.011">
+      <mesh>
+        <source id="Cube_011-mesh-positions">
+          <float_array id="Cube_011-mesh-positions-array" count="126">0.03245574 -0.04699647 -0.03269529 -0.03293389 -0.04666268 -0.03269529 -0.02098864 0.2903278 -0.02247047 0.02395176 0.2900984 -0.02247047 0.0324558 -0.04699653 0.03269523 -0.03293389 -0.04666268 0.03269529 -0.02098864 0.2903278 0.02247053 0.02395176 0.2900984 0.02247053 -2.68094e-4 -0.05251717 0.03786587 -0.0381335 -0.05232387 0 -2.68109e-4 -0.05251717 -0.03786587 0.03759729 -0.05271047 0 -0.03798413 -0.002471387 0.03797101 -0.02425777 0.2979211 0 -0.03798413 -0.002471387 -0.03797101 0.001520276 0.2977895 0.02577841 0.02729827 0.2976579 0 0.001520216 0.2977895 -0.02577835 0.03795695 -0.002859055 0.03797101 0.03795695 -0.002859055 -0.03797101 -3.35313e-4 -0.06568282 0 -0.05032992 -0.003161847 0 0.001613736 0.316102 0 0.05029505 -0.00367552 0 -1.74551e-5 -0.003418684 -0.05031311 -1.74372e-5 -0.003418684 0.05031311 -0.03335845 0.09538859 0.033845 -0.02702462 0.2014401 0.02805262 0.03433066 0.095043 -0.033845 0.02907991 0.2011537 -0.02805262 -0.03335845 0.09538859 -0.03384494 -0.02702462 0.2014401 -0.02805262 0.03433066 0.095043 0.033845 0.02907991 0.2011537 0.02805262 -0.03554314 0.2032503 0 -0.04430359 0.09632784 0 0.0452848 0.09587049 0 0.03761649 0.2028768 0 4.90598e-4 0.09609919 -0.04479473 0.001036643 0.2030636 -0.03658026 4.90613e-4 0.09609913 0.04479473 0.001036643 0.2030636 0.03658026</float_array>
+          <technique_common>
+            <accessor source="#Cube_011-mesh-positions-array" count="42" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_011-mesh-normals">
+          <float_array id="Cube_011-mesh-normals-array" count="126">-0.005096554 -0.9999695 0 -0.7333903 -0.6797693 0 -0.5996582 -0.5329753 -0.5969116 -0.003479063 -0.6834926 -0.7299112 -0.9958495 0.09070098 0 -0.8120365 0.5836055 0 -0.657796 0.363506 -0.6596271 -0.7035432 0.09659105 -0.7040315 0.005096554 0.9999695 0 0.8179266 0.5752739 0 0.6614582 0.3567613 -0.6596271 0.002929747 0.5794245 -0.8149968 0.5941649 -0.5390484 -0.5969116 0.7045809 -0.08069092 -0.7049776 0.9968871 -0.07855463 0 0.7264016 -0.6872158 0 4.27259e-4 0.08563494 -0.9963073 -3.66222e-4 -0.07345801 0.9972839 -0.7053743 -0.07348853 0.7049776 -0.5996582 -0.5329753 0.5969116 -0.003479063 -0.6834926 0.7299112 0.5941649 -0.5390484 0.5969116 -0.9976501 -0.06836146 0 -0.7053743 -0.07348853 -0.7049776 -0.7035432 0.09659105 0.7040315 -0.657796 0.363506 0.6596271 0.002929747 0.5794245 0.8149968 0.6614582 0.3567613 0.6596271 0.9981994 0.05978572 0 0.7057405 0.06546217 -0.7054048 0.7057405 0.06546217 0.7054048 0.7045809 -0.08069092 0.7049776 0.7044893 0.08941918 -0.7040315 -3.66222e-4 -0.07345801 -0.9972839 3.05185e-4 0.06488233 0.9978637 -0.7050386 0.07266455 0.7054048 -0.997528 0.06997895 0 -0.7050386 0.07266455 -0.7054048 3.05185e-4 0.06488233 -0.9978637 0.9967345 0.08053833 0 0.7044893 0.08941918 0.7040315 4.27259e-4 0.08563494 0.9963073</float_array>
+          <technique_common>
+            <accessor source="#Cube_011-mesh-normals-array" count="42" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_011-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_011-mesh-positions"/>
+        </vertices>
+        <polylist material="Shirt-material" count="40">
+          <input semantic="VERTEX" source="#Cube_011-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_011-mesh-normals" offset="1"/>
+          <vcount>4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 </vcount>
+          <p>20 0 9 1 1 2 10 3 34 4 13 5 2 6 31 7 22 8 16 9 3 10 17 11 0 12 19 13 23 14 11 15 39 16 31 7 2 6 17 11 25 17 12 18 5 19 8 20 10 3 0 12 11 15 20 0 4 21 8 20 20 0 11 15 8 20 5 19 9 1 20 0 9 1 21 22 14 23 1 2 5 19 12 18 21 22 9 1 27 24 6 25 13 5 34 4 13 5 22 8 17 11 2 6 6 25 15 26 22 8 13 5 15 26 7 27 16 9 22 8 36 28 23 14 19 13 28 29 32 30 18 31 23 14 36 28 18 31 4 21 11 15 23 14 29 32 39 16 17 11 3 10 0 12 10 3 24 33 19 13 10 3 1 2 14 23 24 33 18 31 25 17 8 20 4 21 32 30 40 34 25 17 18 31 40 34 26 35 12 18 25 17 21 22 35 36 30 37 14 23 35 36 34 4 31 7 30 37 24 33 14 23 30 37 38 38 38 38 30 37 31 7 39 16 12 18 26 35 35 36 21 22 26 35 27 24 34 4 35 36 16 9 37 39 29 32 3 10 37 39 36 28 28 29 29 32 7 27 33 40 37 39 16 9 33 40 32 30 36 28 37 39 19 13 24 33 38 38 28 29 28 29 38 38 39 16 29 32 7 27 15 26 41 41 33 40 33 40 41 41 40 34 32 30 15 26 6 25 27 24 41 41 41 41 27 24 26 35 40 34</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="UpperArm_L" name="UpperArm_L" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Cube_011-mesh">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Shirt-material" target="#Shirt-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

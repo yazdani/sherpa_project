@@ -1,0 +1,14 @@
+<package>
+  <description brief="startup_scenario">
+
+     startup_scenario
+
+  </description>
+  <author>yazdani</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/startup_scenario</url>
+
+</package>
+
+
