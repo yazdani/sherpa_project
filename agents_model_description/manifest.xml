@@ -8,7 +8,10 @@
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/agents_model_description</url>
-
+  <depend package="cram_reasoning" />
+  <depend package="cram_manipulation_knowledge" />
+  <depend package="bullet_reasoning" />
+  <depend package="cram_designators" />
 </package>
 
 

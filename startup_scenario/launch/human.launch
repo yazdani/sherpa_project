@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+<param name="robot_description" textfile="$(find agents_model_description)/urdf/human.urdf"/> 
+
+<node name="spawn_human" pkg="gazebo_ros" type="spawn_model" args="-file $(find agents_model_description)/urdf/human.urdf -urdf -x 0 -y 0 -z 0 -R 0 -P 0  -Y 1.5 -model human "/>
+
+<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" >
+     <param name="publish_frequency" type="double" value="50.0" />
+     <!-- <param name="tf_prefix" type="string" value="busy_genius" /> -->
+   </node>
+
+  <rosparam  file="$(find agents_model_description)/config/human_controller.yaml"  command="load" />
+
+  <node  name="human_controllers" pkg="controller_manager" type="spawner" respawn="false"
+        output="screen" args="
+        joint_state_controller
+        pelvis_joint_controller 
+        l5_joint_controller 
+        l3_joint_controller 
+        t12_joint_controller 
+        t8_joint_controller 
+        neck_joint_controller 
+        head_joint_controller 
+        
+        right_shoulder_joint_controller 
+        right_upper_arm_joint_controller 
+        right_lower_arm_joint_controller 
+        right_hand_joint_controller 
+        
+        right_upper_leg_joint_controller 
+        right_lower_leg_joint_controller 
+        right_foot_joint_controller 
+        right_toe_joint_controller 
+        
+        left_shoulder_joint_controller 
+        left_upper_arm_joint_controller 
+        left_lower_arm_joint_controller 
+        left_hand_joint_controller 
+        
+        left_upper_leg_joint_controller 
+        left_lower_leg_joint_controller 
+        left_foot_joint_controller 
+        left_toe_joint_controller 
+            ">
+        </node>
+
+
+
+</launch>

@@ -27,7 +27,7 @@
 ;;; POSSIBILITY OF SUCH DAMAGE.
 
 (desig-props:def-desig-package cognitive-reasoning
-    (:nicknames :cr)
+    (:nicknames :cognitive-reasoning)
      (:use #:common-lisp
 	   #:roslisp
 	   #:cram-roslisp-common

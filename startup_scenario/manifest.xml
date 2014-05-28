@@ -8,7 +8,32 @@
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/startup_scenario</url>
-
+ <depend package="actionlib"/>
+  <depend package="bullet_reasoning_designators" />
+  <depend package="bullet_reasoning"/>
+  <depend package="cl_bullet" />
+  <depend package="cl_bullet_vis" />
+  <depend package="cl_tf" />
+  <depend package="cl_urdf" />   
+  <depend package="control_msgs"/>
+  <depend package="cram_designators"/>
+  <depend package="cram_json_prolog" />
+  <depend package="cram_language"/>
+  <depend package="cram_roslisp_common"/>
+  <depend package="simple_knowledge"/>
+  <depend package="cram_gazebo_utilities"/>
+  <depend package="gazebo_msgs"/>  
+  <depend package="object_location_designators"/>  
+  <depend package="pr2_projection_process_modules"/>
+  <depend package="roscpp"/>
+  <depend package="sensor_msgs"/>
+  <depend package="trajectory_msgs"/>  
+  <!--<depend package="household_objects_database_msgs"/>-->
+  <depend package="geometry_msgs"/>
+  <depend package="control_msgs"/>
+ <depend package="pcl_ros"/>
+ <depend package="pcl_conversions"/>
+ <depend package="agents_model_description"/>
 </package>
 
 

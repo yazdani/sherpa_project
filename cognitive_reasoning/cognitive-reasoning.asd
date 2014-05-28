@@ -57,10 +57,11 @@
   ((:module "src"
     :components
     ((:file "package")
-     (:file "cost-functions" :depends-on ("package"))
-     (:file "prolog" :depends-on ("package" "cost-functions"))
-     (:file "costmap-knowledge" :depends-on("package"))
-     (:file "test-world" :depends-on("package" "prolog" "costmap-knowledge"))
+     (:file "environment-objects" :depends-on ("package"))
+     ;; (:file "cost-functions" :depends-on ("package"))
+     ;; (:file "prolog" :depends-on ("package" "cost-functions"))
+     ;; (:file "costmap-knowledge" :depends-on("package"))
+     ;; (:file "test-world" :depends-on("package" "prolog" "costmap-knowledge"))
      ;; (:file "environment-objects" :depends-on("package")) 
      ;; (:file "pointing-gesture" :depends-on("package"))
      ;; 	   (:file "calculations" :depends-on("package"))

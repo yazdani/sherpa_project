@@ -1,0 +1,174 @@
+joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 200 
+    
+    
+        
+pelvis_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - pelvis_joint_x
+        - pelvis_joint_y
+        - pelvis_joint_z
+        
+        
+l5_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - l5_joint_x
+        - l5_joint_y
+        - l5_joint_z
+        
+        
+l3_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - l3_joint_x
+        - l3_joint_y
+        - l3_joint_z
+        
+        
+t12_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - t12_joint_x
+        - t12_joint_y
+        - t12_joint_z
+        
+        
+t8_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - t8_joint_x
+        - t8_joint_y
+        - t8_joint_z
+        
+        
+neck_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - neck_joint_x
+        - neck_joint_y
+        - neck_joint_z
+        
+        
+head_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - head_joint_x
+        - head_joint_y
+        - head_joint_z
+
+right_upper_arm_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - right_upper_arm_joint_x
+        - right_upper_arm_joint_y
+        - right_upper_arm_joint_z
+        
+right_lower_arm_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - right_lower_arm_joint_x
+        - right_lower_arm_joint_y
+        - right_lower_arm_joint_z
+        
+right_hand_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - right_hand_joint_x
+        - right_hand_joint_y
+        - right_hand_joint_z
+        
+right_shoulder_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - right_shoulder_joint_x
+        - right_shoulder_joint_y
+        - right_shoulder_joint_z
+        
+right_upper_leg_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - right_upper_leg_joint_x
+        - right_upper_leg_joint_y
+        - right_upper_leg_joint_z
+        
+right_lower_leg_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - right_lower_leg_joint_x
+        - right_lower_leg_joint_y
+        - right_lower_leg_joint_z
+        
+right_foot_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - right_foot_joint_x
+        - right_foot_joint_y
+        - right_foot_joint_z
+        
+right_toe_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - right_toe_joint_x
+        - right_toe_joint_y
+        - right_toe_joint_z
+    
+
+left_upper_arm_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - left_upper_arm_joint_x
+        - left_upper_arm_joint_y
+        - left_upper_arm_joint_z
+        
+left_lower_arm_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - left_lower_arm_joint_x
+        - left_lower_arm_joint_y
+        - left_lower_arm_joint_z
+        
+left_hand_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - left_hand_joint_x
+        - left_hand_joint_y
+        - left_hand_joint_z
+        
+left_shoulder_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - left_shoulder_joint_x
+        - left_shoulder_joint_y
+        - left_shoulder_joint_z
+        
+left_upper_leg_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - left_upper_leg_joint_x
+        - left_upper_leg_joint_y
+        - left_upper_leg_joint_z
+        
+left_lower_leg_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - left_lower_leg_joint_x
+        - left_lower_leg_joint_y
+        - left_lower_leg_joint_z
+        
+left_foot_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - left_foot_joint_x
+        - left_foot_joint_y
+        - left_foot_joint_z
+        
+left_toe_joint_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - left_toe_joint_x
+        - left_toe_joint_y
+        - left_toe_joint_z
+            
