@@ -26,7 +26,7 @@
 ;;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 ;;; POSSIBILITY OF SUCH DAMAGE.
 
-(in-package :agents-knowledge)
+(in-package :agents-model-description)
 ;;;TODO: FIXING THE CAM-PROPERTIES OF DIFFERENT AGENTS
 ;;;TODO SRDL FOR HUMAN
 ;; (def-fact-group human-metadata (robot cam-frame)

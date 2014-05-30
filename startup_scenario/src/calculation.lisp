@@ -235,3 +235,37 @@
 
 (defun sherpa-joint-states ()
   *joint-states*)
+
+(defun get-object-pose (obj-name)
+  (let* ((lists (force-ll
+                 (prolog `(and (bullet-world ?w)
+                            (object-pose ?w ,obj-name ?pose)))))
+         (list (car lists))
+         (a-list (assoc '?pose list)))
+    (cdr a-list)))
+
+(defun set-object-new-pose (pose obj-name)
+  (let* ((vector (cl-transforms:origin pose))
+         (vec-x  (cl-transforms:x vector))
+         (vec-y  (cl-transforms:y vector))
+         (vec-z   (cl-transforms:z vector))
+         (height-z   (+ 2 vec-z))
+         (quaternion (cl-transforms:orientation pose))
+         (quat-x  (cl-transforms:x quaternion))
+         (quat-y  (cl-transforms:y quaternion))
+         (quat-z   (cl-transforms:z quaternion))
+         (quat-w   (cl-transforms:w quaternion)))
+    (cond ((eql obj-name 'quad)
+           (prolog `(and 
+                     (bullet-world ?w)
+                     (assert 
+                      (object-pose ?w ,obj-name 
+                                   ((,vec-x ,vec-y ,height-z)(,quat-x ,quat-y ,quat-z ,quat-w))))))
+           (format t "here1~%"))
+          (t 
+           (prolog `(and 
+                     (bullet-world ?w)
+                     (assert 
+                      (object-pose ?w ,obj-name 
+                                   ((,vec-x ,vec-y ,vec-z)(,quat-x ,quat-y ,quat-z ,quat-w))))))
+           (format t "here2~%")))))

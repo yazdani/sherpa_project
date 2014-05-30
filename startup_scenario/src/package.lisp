@@ -27,7 +27,7 @@
 ;;; POSSIBILITY OF SUCH DAMAGE.
 
 (desig-props:def-desig-package startup-scenario
-  (:nicknames :startup-scenario)
+  (:nicknames :startup-scenario); :cognitive-reasoning)
   (:use #:common-lisp
         #:roslisp
 	;;        #:cpl

@@ -174,3 +174,23 @@
     'string
     "package://world_model_description/urdf/"
     name)))
+
+;;;;;PROJECTION;;;;;
+
+;; (cpl-impl:def-top-level-cram-function find-obj-in-world ()
+;;   (cram-projection:with-projection-environment
+;;       projection-process-modules::pr2-bullet-projection-environment
+;;     (loop for i from 1 to 5 do
+;;     (let ((obj (make-designator
+
+;;(cpl-impl:top-level...)
+(cpl-impl:def-cram-function find-object-in-world (object-type obstacle-name)
+  "Return an object deisgnator."
+  (cram-language-designator-support:with-designators
+      ((on-obstacle (desig-props:location `((desig-props:name ,obstacle-name)
+                                            (right-of ,(get-object-pose 'tree-5)))))
+       (the-object (desig-props:object `((desig-props:type ,object-type)
+                                      (desig-props:at ,on-obstacle)))))
+    (format t "in the new function find-object-in-world~%")
+    (reference on-obstacle)
+    (plan-lib:perceive-object 'cram-plan-library:a the-object)))
