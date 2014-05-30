@@ -50,5 +50,6 @@
   ((:module "src"
     :components
     ((:file "package")
-     (:file "start-scenario" :depends-on ("package")) 
+     (:file "start-scenario" :depends-on ("package" "calculation")) 
+     (:file "calculation" :depends-on ("package"))
      ))))

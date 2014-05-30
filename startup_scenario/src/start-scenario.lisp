@@ -28,11 +28,6 @@
 
 (in-package :startup-scenario)
 
-(defvar *joint-states* nil
-  "List of current joint states as published by /joint_states.")
-
-(defvar *joint-states-subscriber* nil
-  "Subscriber to /joint_states.")
 
 ;; (defparameter *cone-pose* (cl-transforms:make-pose
 ;;                            (cl-transforms:make-3d-vector 6.9 -0.22 3.85)
