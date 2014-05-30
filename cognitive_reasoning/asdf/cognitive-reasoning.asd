@@ -1,1 +1,0 @@
-../cognitive-reasoning.asd
