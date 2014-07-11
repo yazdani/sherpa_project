@@ -26,7 +26,7 @@
 ;;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 ;;; POSSIBILITY OF SUCH DAMAGE.
 
-(desig-props:def-desig-package cognitive-reasoning
+(desig-props:def-desig-package cognitive-reasoning 
     (:nicknames :cognitive-reasoning)
      (:use #:common-lisp
 	   #:roslisp
@@ -35,10 +35,15 @@
  ;;        #:cram-plan-library
 	   #:location-costmap
 	   #:cram-reasoning
+	   #:cram-agents-knowledge
+     ;; #:agents-model-description
 	   #:cram-utilities
-	   #:btr)
+	   #:btr
+	   ;; #:startup-scenario
+	   )
  (:shadowing-import-from #:btr object household-object pose object-pose width height robot)
-  (:import-from #:cram-reasoning #:<- #:def-fact-group)
- ; (:import-from #:cram-pr2-knowledge pr2)
+  (:shadowing-import-from #:cram-agents-knowledge quadrotor)
+ (:import-from #:cram-reasoning #:<- #:def-fact-group )
 ;  (:export hat tree)
   (:desig-properties #:go-to #:far-from #:close-to #:sourrounded-by #:right-of #:left-of #:type #:behind #:in-front #:for-robot #:name))
+

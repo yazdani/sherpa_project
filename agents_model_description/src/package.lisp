@@ -26,12 +26,13 @@
 ;;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 ;;; POSSIBILITY OF SUCH DAMAGE.
 
-(in-package :agents-model-description)
 
 (desig-props:def-desig-package agents-model-description
   (:nicknames :agents-model-description)
-  (:use #:common-lisp #:bullet-reasoning #:cram-reasoning)
-  (:import-from  #:cram-manipulation-knowledge
-                 )
+  (:use #:common-lisp #:cram-reasoning
+	#:bullet-reasoning)
+  ;; (:import-from  #:cram-manipulation-knowledge
+  ;;                )
+  (:shadowing-import-from #:btr width height robot)
   (:import-from #:cram-designators desig-prop)
   (:desig-properties type go-to look-at color))

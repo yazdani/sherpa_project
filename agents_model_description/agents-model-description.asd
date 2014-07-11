@@ -32,9 +32,10 @@
   :depends-on (cram-reasoning
                designators
                cram-manipulation-knowledge
-               bullet-reasoning)
+	       bullet-reasoning
+               )
   :components
   ((:module "src"
     :components
-    ((:file "package")
-     (:file "agents-knowledge" :depends-on ("package"))))))
+    ((:file "package")))))
+     ;; (:file "agents-knowledge" :depends-on ("package"))))))

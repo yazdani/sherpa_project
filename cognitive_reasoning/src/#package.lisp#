@@ -26,31 +26,23 @@
 ;;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 ;;; POSSIBILITY OF SUCH DAMAGE.
 
-(defsystem startup-scenario
-  :author "Fereshta Yazdani <yazdani@cs.uni-bremen.de>"
-  :license "BSD"
-  :description "STARTUP-SCENARIO"
-   :depends-on (cram-language
-               location-costmap
-               roslisp
-	       cram-agents-knowledge
-	       simple-knowledge
-	       ;; agents-model-description
-	       ;; pr2-manipulation-knowledge
-	       simple-knowledge
-	       cram-environment-representation
-	       projection-process-modules
-	       cram-gazebo-utilities
-	       bullet-reasoning-designators
-               control_msgs-msg
-               geometry_msgs-msg
-               trajectory_msgs-msg
-	       cognitive-reasoning
-	       actionlib)
- :components 
-  ((:module "src"
-    :components
-    ((:file "package")
-     (:file "start-scenario" :depends-on ("package" "calculation")) 
-     (:file "calculation" :depends-on ("package"))
-     ))))
+(desig-props:def-desig-package cognitive-reasoning 
+    (:nicknames :cognitive-reasoning)
+     (:use #:common-lisp
+	   #:roslisp
+	   #:cram-roslisp-common
+	   #:cram-designators
+ ;;        #:cram-plan-library
+	   #:location-costmap
+	   #:cram-reasoning
+	   #:agents-model-description
+	   #:cram-utilities
+	   #:btr
+	   ;; #:startup-scenario
+	   )
+ (:shadowing-import-from #:btr object household-object pose object-pose width height robot)
+  (:shadowing-import-from #:agents-model-description quadrotor)
+ (:import-from #:cram-reasoning #:<- #:def-fact-group )
+;  (:export hat tree)
+  (:desig-properties #:go-to #:far-from #:close-to #:sourrounded-by #:right-of #:left-of #:type #:behind #:in-front #:for-robot #:name))
+

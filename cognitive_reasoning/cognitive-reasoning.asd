@@ -46,6 +46,7 @@
                ;; projection-process-modules
                ;; cram-gazebo-utilities
                ;;              simple-knowledge
+	       cram-agents-knowledge
                bullet-reasoning-designators
                control_msgs-msg
                geometry_msgs-msg
@@ -61,6 +62,8 @@
      (:file "perception" :depends-on ("package"))
      (:file "cost-functions" :depends-on ("package"))
      (:file "prolog" :depends-on ("package" "cost-functions"))
+     ;; (:file "robot-model-facts" :depends-on ("package" "robot-model-utils"))
+     ;; (:file "robot-model-utils" :depends-on ("package"))
      (:file "costmap-knowledge" :depends-on("package"))
      ;; (:file "test-world" :depends-on("package" "prolog" "costmap-knowledge"))
      ;; (:file "environment-objects" :depends-on("package")) 

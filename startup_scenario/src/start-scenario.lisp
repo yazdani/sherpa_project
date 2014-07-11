@@ -51,16 +51,16 @@
          )
     (setf *list*
           (car 
-           (force-ll
-            (prolog
+           (btr::force-ll
+            (btr::prolog
              `(and
 	       (clear-bullet-world)
                (bullet-world ?w)
                (assert (object ?w static-plane floor ((0 0 0) (0 0 0 1))
                                :normal (0 0 1) :constant 0 :no-robot-collision t))
 	       (debug-window ?w)
-	       (assert (object ?w urdf genius ((0 0 0) (0 0 1 1)) :urdf ,genius-urdf))
-	       (assert (object ?w urdf quad ((-1 -2 0.2)(0 0 1 1)) :urdf ,quad-urdf))
+	       (assert (object ?w urdf human ((0 0 0) (0 0 1 1)) :urdf ,genius-urdf))
+	       (assert (object ?w urdf quadrotor ((-1 -2 0.2)(0 0 1 1)) :urdf ,quad-urdf))
 	       ;; (assert (object ?w urdf rover ((1 3 0) (0 0 0 1)) :urdf ,rover-urdf))
          )))))))
  
@@ -179,18 +179,22 @@
 
 ;; (cpl-impl:def-top-level-cram-function find-obj-in-world ()
 ;;   (cram-projection:with-projection-environment
-;;       projection-process-modules::pr2-bullet-projection-environment
+;;       pr1qojection-process-modules::pr2-bullet-projection-environment
 ;;     (loop for i from 1 to 5 do
 ;;     (let ((obj (make-designator
 
 ;;(cpl-impl:top-level...)
 (cpl-impl:def-cram-function find-object-in-world (object-type obstacle-name)
-  "Return an object deisgnator."
+  "Return an object designator."
   (cram-language-designator-support:with-designators
       ((on-obstacle (desig-props:location `((desig-props:name ,obstacle-name)
-                                            (right-of ,(get-object-pose 'tree-5)))))
+                                            (desig-props:right-of ,(get-object-pose 'tree-5)))))
        (the-object (desig-props:object `((desig-props:type ,object-type)
                                       (desig-props:at ,on-obstacle)))))
+   (setf ma (plan-lib:perceive-object 'plan-lib:a the-object))
+    (format t "maa is ~a~%" ma)
     (format t "in the new function find-object-in-world~%")
+    (format t "obstacle ~a~%" on-obstacle)
     (reference on-obstacle)
-    (plan-lib:perceive-object 'cram-plan-library:a the-object)))
+    ;; (plan-lib:perceive-object 'plan-lib:a the-object)
+    ))

@@ -26,31 +26,48 @@
 ;;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 ;;; POSSIBILITY OF SUCH DAMAGE.
 
-(defsystem startup-scenario
+(defsystem cognitive-reasoning
   :author "Fereshta Yazdani <yazdani@cs.uni-bremen.de>"
   :license "BSD"
-  :description "STARTUP-SCENARIO"
-   :depends-on (cram-language
+  :description "SHERPA SPATIAL RELATIONS"
+  
+  :depends-on (cram-language
                location-costmap
                roslisp
-	       cram-agents-knowledge
-	       simple-knowledge
-	       ;; agents-model-description
-	       ;; pr2-manipulation-knowledge
-	       simple-knowledge
-	       cram-environment-representation
-	       projection-process-modules
-	       cram-gazebo-utilities
-	       bullet-reasoning-designators
+               ;; cram-pr2-knowledge
+               ;; pr2-manipulation-knowledge
+               ;; simple-knowledge
+               ;; cram-gazebo-utilities
+               ;;               cram-plan-library
+               ;;               pr2-manipulation-process-module
+               ;; cram-environment-representation
+               ;;               object-location-designators
+               ;;               cram-plan-knowledge
+               ;; projection-process-modules
+               ;; cram-gazebo-utilities
+               ;;              simple-knowledge
+	       
+               bullet-reasoning-designators
                control_msgs-msg
                geometry_msgs-msg
                trajectory_msgs-msg
-	       cognitive-reasoning
-	       actionlib)
- :components 
+               household_objects_database_msgs-msg
+               ;; household_objects_database_msgs-srv
+               actionlib)
+  :components 
   ((:module "src"
     :components
     ((:file "package")
-     (:file "start-scenario" :depends-on ("package" "calculation")) 
-     (:file "calculation" :depends-on ("package"))
+     (:file "environment-objects" :depends-on ("package"))
+     (:file "perception" :depends-on ("package"))
+     (:file "cost-functions" :depends-on ("package"))
+     (:file "prolog" :depends-on ("package" "cost-functions"))
+     (:file "costmap-knowledge" :depends-on("package"))
+     ;; (:file "test-world" :depends-on("package" "prolog" "costmap-knowledge"))
+     ;; (:file "environment-objects" :depends-on("package")) 
+     ;; (:file "pointing-gesture" :depends-on("package"))
+     ;; 	   (:file "calculations" :depends-on("package"))
      ))))
+;;	    (:file "human-specific-objects" :depends-on("package"))
+;;      (:file "designator-integration" :depends-on("package"))
+;,      ))))

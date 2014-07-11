@@ -29,8 +29,8 @@
 (in-package :agents-model-description)
 ;;;TODO: FIXING THE CAM-PROPERTIES OF DIFFERENT AGENTS
 ;;;TODO SRDL FOR HUMAN
-;; (def-fact-group human-metadata (robot cam-frame)
-;;   (<- (robot human))
+;; (def-fact-group human-metadata (robot)
+;;   (<- (robot human)))
 ;;   (<- (cam-frame human "camera_rgb_frame")))
 
 (def-fact-group quadrotor-metadata (robot camera-frame camera-minimal-height camera-maximal-height)
@@ -38,9 +38,10 @@
   (<- (camera-frame quadrotor "camera_rgb_optical_frame"))
   (<- (camera-frame quadrotor "camera_depth_optical_frame"))
   (<- (camera-minimal-height 0.6))
-  (<- (camera-maximal-height 1.0)))
+  (<- (camera-maximal-height 1.0))
+  (<- (robot-pan-links "base_link")))
 
-;; (def-fact-group ground-robot-metadata (robot camera-frame camera-minimal-height camera-maximal-height)
-;;   (<- (robot quadrotor))
-;;   (<- (camera-frame quadrotor "camera_rgb_optical_frame"))
-;;   (<- (camera-frame quadrotor "camera_depth_optical_frame")))
+;; (def-fact-group ground-robot-metadata (robot); camera-frame camera-minimal-height camera-maximal-height)
+;;   (<- (robot rover)))
+  ;; (<- (camera-frame quadrotor "camera_rgb_optical_frame"))
+  ;; (<- (camera-frame quadrotor "camera_depth_optical_frame")))

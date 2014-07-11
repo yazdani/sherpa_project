@@ -63,7 +63,7 @@
 (defun pointing-direction ()
   (roslisp:ros-info (sherpa-spatial-relations) "POINTING GESTURE")
   (crs:prolog
-   `(assert (btr:joint-state ?w genius (("right_shoulder_joint_x" 0.06) ;;0.1
+   `(assert (btr:joint-state ?w human (("right_shoulder_joint_x" 0.06) ;;0.1
 					("right_shoulder_joint_y" -0.25)  ;;0.0 0.40
 					("right_shoulder_joint_z" 1.4)  ;;0.6 0.500
 					("left_upper_arm_joint_x" 0.1)

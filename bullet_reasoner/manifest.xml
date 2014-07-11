@@ -1,0 +1,15 @@
+<package>
+  <description brief="bullet_reasoner">
+
+     bullet_reasoner
+
+  </description>
+  <author>yazdani</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/bullet_reasoner</url>
+  <depend package="cognitive_reasoning"/>
+
+</package>
+
+

@@ -14,7 +14,9 @@
 <depend package="cl_bullet" />   
 <depend package="cl_bullet_vis" /> 
   <depend package="cram_designators"/>   
-<depend package="cram_json_prolog" /> 
+<depend package="cram_json_prolog" />
+<depend package="agents_model_description"/>
+<!-- depend package="startup_scenario" /> -->
 </package>
 
 

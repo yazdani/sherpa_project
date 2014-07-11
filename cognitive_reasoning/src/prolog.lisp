@@ -35,6 +35,7 @@
  (<- (desig-costmap ?desig ?costmap)
     (bullet-world ?world)
    (format "helooo~%")
+   (format "desig is ~a~%" ?desig)
  ;; (findall ?obj (and
     ;;                (bullet-world ?world)
     ;;                (object ?world ?name)
@@ -48,15 +49,18 @@
     ;;  collisions
     ;;  (make-costmap-bbox-generator ?objs :invert t :padding -0.2)
     ;;  ?costmap)
-   (desig-prop ?desig (right-of ?pos-tree))
+  (desig-prop ?desig (right-of ?pos-tree))
     (format "?objs: ~%")
+   (robot ?robot)
+   ;; (robot agents-model-description::quad)
     ;; (agents-knowledge::robot ?robot)
-    (format "robot ~a~%")
+    (format "robot ~a~%" ?robot)
     (costmap ?costmap)
     (format "?oAAAbjs: ~%")
     (costmap-add-function reasoning-generator
                           (make-cognitive-reasoning-cost-function ?pos-tree :Y  < 0.0)
                           ?costmap))
+
   (<- (environment-object-type ?world ?name ?type)
     (bullet-world ?world)
     (object ?world ?name)
@@ -64,11 +68,29 @@
     (lisp-type ?object-instance environment-object)
     (get-slot-value ?object-instance types ?types)
     (member ?type ?types))
-
- (<- (human-specific-object-type ?world ?name ?type)
+  
+  (<- (human-specific-object-type ?world ?name ?type)
     (bullet-world ?world)
     (object ?world ?name)
     (%object ?world ?name ?object-instance)
     (lisp-type ?object-instance human-specific-object)
     (get-slot-value ?object-instance types ?types)
-    (member ?type ?types)))
+    (member ?type ?types))
+  
+  (<- (robots-checker ?world)
+    (bullet-world ?world)
+    (format "end checker of rob~%")
+    (robot ?rob)
+    (object ?world ?obj)
+    (-> (== human ?rob)
+        (format "hello human~%")
+        (-> (== ?rob pr2) 
+        (format "hello quad~%")
+        (-> (== ?rob quadrotor)
+            (format "ya~%")
+            (format "h 2~%"))))
+    (format "end checker of rob ~a~%" ?rob))
+) 
+
+  
+ 
