@@ -82,14 +82,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/Hips.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/Hips.dae"/>
       </geometry>
     <material name="Blue"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/Hips.dae.stl"/>
+        <mesh filename="package://agents_model_description/meshes/human/Hips.dae.stl"/>
       </geometry>
     </collision>
   </link>
@@ -116,14 +116,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/Body1.dae" />
+        <mesh filename="package://agents_model_description/meshes/human/Body1.dae" />
       </geometry>
   <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/Body1.dae.stl"/>
+        <mesh filename="package://agents_model_description/meshes/human/Body1.dae.stl"/>
       </geometry>
     </collision>
   </link>
@@ -150,14 +150,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/Body2.dae" />
+        <mesh filename="package://agents_model_description/meshes/human/Body2.dae" />
       </geometry>
      <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/Body2.dae.stl"/>
+        <mesh filename="package://agents_model_description/meshes/human/Body2.dae.stl"/>
       </geometry>
     </collision>
   </link>
@@ -184,14 +184,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/Body3.dae" />
+        <mesh filename="package://agents_model_description/meshes/human/Body3.dae" />
       </geometry>
       <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/Body3.dae.stl"/>
+        <mesh filename="package://agents_model_description/meshes/human/Body3.dae.stl"/>
       </geometry>
     </collision>
   </link>
@@ -218,14 +218,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/Body4.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/Body4.dae"/>
       </geometry>
      <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/Body4.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/Body4.dae"/>
       </geometry>
     </collision>
   </link>
@@ -252,14 +252,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/Neck.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/Neck.dae"/>
       </geometry>
   <material name="LightGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/Neck.dae.stl"/>
+        <mesh filename="package://agents_model_description/meshes/human/Neck.dae.stl"/>
       </geometry>
     </collision>
   </link>
@@ -287,14 +287,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/Head.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/Head.dae"/>
       </geometry>
   <material name="Blue"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/Head.dae.stl"/>
+        <mesh filename="package://agents_model_description/meshes/human/Head.dae.stl"/>
       </geometry>
     </collision>
   </link>
@@ -650,14 +650,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/ShoulderRight.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/ShoulderRight.dae"/>
       </geometry>
  <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/ShoulderRight.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/ShoulderRight.dae"/>
       </geometry>
     </collision>
   </link>
@@ -684,14 +684,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/UpperArmRight.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/UpperArmRight.dae"/>
       </geometry>
  <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/UpperArmRight.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/UpperArmRight.dae"/>
       </geometry>
     </collision>
   </link>
@@ -718,14 +718,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/LowerArmRight.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/LowerArmRight.dae"/>
       </geometry>
 <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/LowerArmRight.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/LowerArmRight.dae"/>
       </geometry>
     </collision>
   </link>
@@ -753,14 +753,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/HandRight.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/HandRight.dae"/>
       </geometry>
  <material name="DarkGreen"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/HandRight.dae.stl"/>
+        <mesh filename="package://agents_model_description/meshes/human/HandRight.dae.stl"/>
       </geometry>
     </collision>
   </link>
@@ -857,7 +857,7 @@
   <visual>
     <origin xyz="0.03 -0.05 0.0" rpy="1.5 0 0"/>
     <geometry>
-      <mesh filename="package://sherpa_spatial_relations/meshes/hokuyo.dae"/>
+      <mesh filename="package://agents_model_description/meshes/human/hokuyo.dae"/>
       <!-- <mesh filename="package://hector_sensors_description/meshes/kinect_camera/kinect_camera_simple.dae"/> -->
 </geometry>
     <material name="DarkOrange" />
@@ -866,7 +866,7 @@
     <origin xyz="0.03 -0.05 0.0" rpy="1.5 0 0"/>
     <geometry>
   <!-- <mesh filename="package://hector_sensors_description/meshes/kinect_camera/kinect_camera_simple.dae"/> -->
-      <mesh filename="package://sherpa_spatial_relations/meshes/hokuyo.dae"/>
+      <mesh filename="package://agents_model_description/meshes/human/hokuyo.dae"/>
     </geometry>
   </collision>
  </link>
@@ -1258,14 +1258,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/ShoulderLeft.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/ShoulderLeft.dae"/>
       </geometry>
       <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/ShoulderLeft.dae.stl"/>
+        <mesh filename="package://agents_model_description/meshes/human/ShoulderLeft.dae.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1292,14 +1292,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/UpperArmLeft.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/UpperArmLeft.dae"/>
       </geometry>
  <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/UpperArmLeft.dae.stl"/>
+        <mesh filename="package://agents_model_description/meshes/human/UpperArmLeft.dae.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1326,14 +1326,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/LowerArmLeft.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/LowerArmLeft.dae"/>
       </geometry>
  <material name="Red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/LowerArmLeft.dae.stl" />
+        <mesh filename="package://agents_model_description/meshes/human/LowerArmLeft.dae.stl" />
       </geometry>
     </collision>
   </link>
@@ -1360,14 +1360,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/HandLeft.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/HandLeft.dae"/>
       </geometry>
  <material name="DarkGreen"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/HandLeft.dae.stl"/>
+        <mesh filename="package://agents_model_description/meshes/human/HandLeft.dae.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1586,14 +1586,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/UpperLegRight.dae" />
+        <mesh filename="package://agents_model_description/meshes/human/UpperLegRight.dae" />
       </geometry> 
 <material name="Blue"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/UpperLegRight.dae.stl"/>
+        <mesh filename="package://agents_model_description/meshes/human/UpperLegRight.dae.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1620,14 +1620,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/LowerLegRight.dae" />
+        <mesh filename="package://agents_model_description/meshes/human/LowerLegRight.dae" />
       </geometry>
  <material name="Blue"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/LowerLegRight.dae.stl" />
+        <mesh filename="package://agents_model_description/meshes/human/LowerLegRight.dae.stl" />
       </geometry>
     </collision>
   </link>
@@ -1656,14 +1656,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/FootRight.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/FootRight.dae"/>
       </geometry>
   <material name="Black"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/FootRight.dae.stl"/>
+        <mesh filename="package://agents_model_description/meshes/human/FootRight.dae.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1690,14 +1690,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/ToeRight.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/ToeRight.dae"/>
       </geometry>
 <material name="Black"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/ToeRight.dae.stl" />
+        <mesh filename="package://agents_model_description/meshes/human/ToeRight.dae.stl" />
       </geometry>
     </collision>
   </link>
@@ -1916,14 +1916,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/UpperLegLeft.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/UpperLegLeft.dae"/>
       </geometry>
  <material name="Blue"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/UpperLegLeft.dae.stl" />
+        <mesh filename="package://agents_model_description/meshes/human/UpperLegLeft.dae.stl" />
       </geometry>
     </collision>
   </link>
@@ -1950,14 +1950,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/LowerLegLeft.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/LowerLegLeft.dae"/>
       </geometry>
  <material name="Blue"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/LowerLegLeft.dae.stl"/>
+        <mesh filename="package://agents_model_description/meshes/human/LowerLegLeft.dae.stl"/>
       </geometry>
     </collision>
   </link>
@@ -1984,14 +1984,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/FootLeft.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/FootLeft.dae"/>
       </geometry>
      <material name="Black"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/FootLeft.dae.stl"/>
+        <mesh filename="package://agents_model_description/meshes/human/FootLeft.dae.stl"/>
       </geometry>
     </collision>
   </link>
@@ -2018,14 +2018,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/ToeLeft.dae"/>
+        <mesh filename="package://agents_model_description/meshes/human/ToeLeft.dae"/>
       </geometry>
  <material name="Black"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/ToeLeft.dae.stl"/>
+        <mesh filename="package://agents_model_description/meshes/human/ToeLeft.dae.stl"/>
       </geometry>
     </collision>
   </link>
