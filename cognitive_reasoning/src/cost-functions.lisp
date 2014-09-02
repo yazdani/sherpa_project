@@ -48,8 +48,8 @@
                 0.0d0)
             0.0d0)))))
 
-(defun make-costmap-bbox-generator (objs &key invert padding)
-(format t "objs: ~a~%" objs);(force-ll objs))
+(defun make-costmap-bbox-gen (objs &key invert padding)
+(force-ll objs))
   (when objs
     (let ((aabbs (loop for obj in (cut:force-ll objs)
                        collecting (btr:aabb obj))))
@@ -74,7 +74,7 @@
                 (return (if invert 0.0d0 1.0d0)))
               )))))) )
 
-(defun make-object-bounding-box-costmap-gen (object)
+(defun make-costmap-bbox-gen-object (object)
   (let* ((bounding-box (btr::aabb object))
          (dimensions-x/2 (/ (cl-transforms:x (bt:bounding-box-dimensions bounding-box))
                             2))
