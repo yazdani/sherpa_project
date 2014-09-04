@@ -187,11 +187,17 @@
 (cpl-impl:def-cram-function find-object-in-world (object-type obstacle-name)
   "Return an object designator."
   (cram-language-designator-support:with-designators
-      ((on-obstacle (desig-props:location `((right-of ,(get-object-pose obstacle-name))
-                                            (close-to ,(get-object-from-name (get-object-name-from-type object-type))))))
-       (the-object (desig-props:object `((type ,object-type)))))                                      
-    ;; (setf ma (plan-lib:perceive-object 'plan-lib:a the-object))
-    ;; (format t "maa is ~a~%" ma)
+      (
+       (on-obstacle (desig-props:location `(;; (desig-props:to desig-props:see)
+                                             (right-of ,(get-object-pose obstacle-name)))))
+                                             ;; (close-to ,(get-object-pose (get-object-name-from-type object-type)))
+                                                   ;; (desig-props:obj ,(get-object-from-name (get-object-name-from-type object-type)))
+                                          
+       (the-object (desig-props:object `((desig-props:type ,object-type)
+                                         (desig-props:at ,on-obstacle))))
+)             (reference on-obstacle)                          
+    (setf ma (plan-lib:perceive-object 'plan-lib:a the-object))
+    (format t "maa is ~a~%" ma)
     (format t "in the new function find-object-in-world~%")
     (format t "obstacle ~a~%" on-obstacle)
     (reference on-obstacle)
