@@ -60,7 +60,9 @@
                                :normal (0 0 1) :constant 0 :no-robot-collision t))
 	       (debug-window ?w)
 	       (assert (object ?w urdf human ((0 0 0) (0 0 1 1)) :urdf ,genius-urdf))
-	       (assert (object ?w urdf quadrotor ((-1 -2 0.2)(0 0 1 1)) :urdf ,quad-urdf))
+	       (assert (object ?w urdf quadrotor ((-1 -2 2)(0 0 1 1)) :urdf ,quad-urdf))
+ 	       ;; (assert (object ?w urdf quadrotor ((-1 -2 0.2)(0 0 1 1)) :urdf ,quad-urdf))
+ 
 	       ;; (assert (object ?w urdf rover ((1 3 0) (0 0 0 1)) :urdf ,rover-urdf))
          )))))))
  
@@ -184,22 +186,79 @@
 ;;     (let ((obj (make-designator
 
 ;;(cpl-impl:top-level...)
+
+
+
+(cpl-impl:def-cram-function create-loc-desig (obstacle-name)
+(sb-ext:gc :full t)
+(format t "creating a location designator~%")
+(let ((loc (make-designator 'location `((desig-props:at ,obstacle-name)))))
+  (sb-ext:gc :full t)
+ loc))
+
+(cpl-impl:def-cram-function create-obj-desig (obj-type obstacle)
+(sb-ext:gc :full t)
+(format t "creating an object designator~%")
+(let ((object (make-designator 'desig-props:object `((desig-props:type ,obj-type)
+                                           (desig-props:at ,obstacle)))))
+  (sb-ext:gc :full t)
+  object))
+
+;; (cpl-impl:def-cram-function find-object-in-world (object-type obstacle-name)
+;;    (cpl-impl:top-level
+;;      (cram-projection:with-projection-environment
+;;         projection-process-modules::pr2-bullet-projection-environment
+;;       (let ((obj (put-object-from-counter-on-table type)))
+;; obj)))))
+
 (cpl-impl:def-cram-function find-object-in-world (object-type obstacle-name)
   "Return an object designator."
+ (sb-ext:gc :full t)
   (cram-language-designator-support:with-designators
-      (
-       (on-obstacle (desig-props:location `(;; (desig-props:to desig-props:see)
-                                             (right-of ,(get-object-pose obstacle-name)))))
-                                             ;; (close-to ,(get-object-pose (get-object-name-from-type object-type)))
-                                                   ;; (desig-props:obj ,(get-object-from-name (get-object-name-from-type object-type)))
-                                          
-       (the-object (desig-props:object `((desig-props:type ,object-type)
-                                         (desig-props:at ,on-obstacle))))
-)             (reference on-obstacle)                          
-    (setf ma (plan-lib:perceive-object 'plan-lib:a the-object))
-    (format t "maa is ~a~%" ma)
-    (format t "in the new function find-object-in-world~%")
-    (format t "obstacle ~a~%" on-obstacle)
+      ((on-obstacle (desig-props:location `(;; (desig-props:to desig-props:see)
+                                            (right-of ,(get-object-pose obstacle-name)))))
+       ;; (close-to ,(get-object-pose (get-object-name-from-type object-type)))
+       ;; (desig-props:obj ,(get-object-from-name (get-object-name-from-type object-type)))
+       
+       (the-object (desig-props:object `((desig-props:name ,object-type)
+                                        (desig-props:at ,(get-object-pose obstacle-name))))))
     (reference on-obstacle)
-    ;; (plan-lib:perceive-object 'plan-lib:a the-object)
-    ))
+    (format t "perceive the object: ~a~%" the-object)
+    (let ((perceived-object (plan-lib:perceive-object 'cram-plan-library:a the-object)))
+       (unless (desig-equal the-object perceived-object)
+         (equate the-object perceived-object))
+       the-object)))
+
+;; (defun put-stuff-on-table ()
+;; (sb-ext:gc :full t)
+;;   (cram-projection:with-projection-environment
+;;       projection-process-modules::pr2-bullet-projection-environment
+;;     (cpl:top-level 
+;;       (let ((desig (find-object-in-world 'human 'tree-5)))
+;;         desig))))
+    
+;;   ;; (cram-projection:with-projection-environment
+;;   ;;     projection-process-modules::pr2-bullet-projection-environment
+;;       (cram-language-designator-support:with-designators
+;;        ((on-obstacle (desig-props:location `(;; (desig-props:to desig-props:see)
+;;                                           (right-of ,(get-object-pose obstacle-name)))))
+;;                                              ;; (close-to ,(get-object-pose (get-object-name-from-type object-type)))
+;;                                                    ;; (desig-props:obj ,(get-object-from-name (get-object-name-from-type object-type)))
+                                           
+;;        (the-object (desig-props:object `((desig-props:type ,object-type)
+;;                                          (desig-props:at ,on-obstacle)))))
+;;              (reference on-obstacle)
+;;     (format t "maa is ~%")
+;;     ;; (setf ma (plan-lib:perceive-object 'plan-lib:a the-object))
+;;     ;; (format t "maa is ~a~%" ma)
+;;     (format t "in the new function find-object-in-world~%")
+;;     (format t "obstacle ~a~%" on-obstacle)
+;;     ;; (reference on-obstacle)
+;;     ;; (plan-lib:perceive-object 'plan-lib:a the-object)
+;;     ))
+
+;; (defmacro with-process-modules (&body body)
+;;   `(cpm:with-process-modules-running
+;;        (pr2-projection-process-modules:projection-process-modules)
+;;         ;; gazebo-perception-pm:gazebo-perception-process-module)
+;;      ,@body))
