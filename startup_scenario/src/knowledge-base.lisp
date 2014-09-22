@@ -32,7 +32,7 @@
   (physics-utils:parse-uri
    (concatenate
     'string
-    "package://sherpa_spatial_relations/urdf/"
+    "package://world_model_description/urdf/"
     name)))
 
 (defun fill-knowledge-list (name)
