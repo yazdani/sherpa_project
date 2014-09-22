@@ -5,13 +5,13 @@
      <visual>
        <!-- <origin xyz="-4 -3 0"/> -->
         <geometry>
-        <mesh filename="package://sherpa_spatial_relations/meshes/tanne12.dae"/>
+        <mesh filename="package://world_model_description/meshes/tanne12.dae"/>
         </geometry>
      </visual> 
    
      <collision>
        <geometry>
-	 <mesh filename="package://sherpa_spatial_relations/meshes/tanne12.dae"/>
+	 <mesh filename="package://world_model_description/meshes/tanne12.dae"/>
        </geometry>
      </collision>
 
