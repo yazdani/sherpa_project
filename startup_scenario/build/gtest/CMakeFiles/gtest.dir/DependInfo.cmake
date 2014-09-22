@@ -10,6 +10,7 @@ SET(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 SET(CMAKE_TARGET_DEFINITIONS
+  "ROS_PACKAGE_NAME=\"startup_scenario\""
   "GTEST_CREATE_SHARED_LIBRARY=1"
   )
 

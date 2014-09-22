@@ -46,6 +46,7 @@
                geometry_msgs-msg
                trajectory_msgs-msg
 	       cognitive-reasoning
+         cram-environment-representation
 	       actionlib)
  :components 
   ((:module "src"

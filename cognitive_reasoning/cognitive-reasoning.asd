@@ -51,6 +51,7 @@
                control_msgs-msg
                geometry_msgs-msg
                trajectory_msgs-msg
+	       gazebo_msgs-msg
                household_objects_database_msgs-msg
                ;; household_objects_database_msgs-srv
                actionlib)

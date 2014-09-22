@@ -47,7 +47,7 @@
                   (lisp-type ?obj environment-object)
                   (get-slot-value ?obj types ?types)
                   (member ?type ?types)) ?objs)
-   (format "?objs: ~a~%" ?objs)
+   (format "?objs: ~a~%" (force-ll ?objs))   
     ;; (costmap ?costmap)
     ;; (costmap-add-function
     ;;  collisions

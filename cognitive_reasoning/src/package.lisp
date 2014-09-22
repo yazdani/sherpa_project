@@ -44,6 +44,6 @@
  (:shadowing-import-from #:btr object household-object pose object-pose width height robot)
   (:shadowing-import-from #:cram-agents-knowledge quadrotor)
  (:import-from #:cram-reasoning #:<- #:def-fact-group )
-;  (:export hat tree)
+ (:export human-specific-object);hat tree)
   (:desig-properties #:go-to #:far-from #:close-to #:sourrounded-by #:right-of #:left-of #:type #:behind #:in-front #:for-robot #:name))
 

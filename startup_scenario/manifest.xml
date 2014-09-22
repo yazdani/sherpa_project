@@ -20,12 +20,15 @@
   <depend package="cram_designators"/>
   <depend package="cram_json_prolog" />
   <depend package="cram_language"/>
+ <depend package="cram_plan_language"/>
+  <depend package="cram_environment_representation"/>
+  <depend package="object_location_designators"/>
   <!-- <depend package="cram_roslisp_common"/> -->
   <depend package="simple_knowledge"/>
   <depend package="cram_gazebo_utilities"/>
   <depend package="gazebo_msgs"/>  
   <depend package="object_location_designators"/>  
-  <depend package="agents_projection_process_modules"/>
+  <depend package="pr2_projection_process_modules"/>
   <depend package="roscpp"/>
   <depend package="sensor_msgs"/>
   <depend package="trajectory_msgs"/>  

@@ -43,7 +43,7 @@ CMAKE_BINARY_DIR = /home/yazdani/work/ros/hydro/rosbuild_ws/workspace/sherpa_pro
 include CMakeFiles/rosbuild_clean-test-results.dir/progress.make
 
 CMakeFiles/rosbuild_clean-test-results:
-	if ! rm -rf /home/yazdani/work/ros/hydro/catkin_ws/build/test_results/cognitive_reasoning; then echo WARNING:\ failed\ to\ remove\ test-results\ directory ; fi
+	if ! rm -rf /home/yazdani/work/ros/hydro/catkin_ws/build/test_results/cognitive_reasoning; then echo "WARNING:\ failed\ to\ remove\ test-results\ directory"\; fi
 
 rosbuild_clean-test-results: CMakeFiles/rosbuild_clean-test-results
 rosbuild_clean-test-results: CMakeFiles/rosbuild_clean-test-results.dir/build.make

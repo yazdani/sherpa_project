@@ -11,13 +11,6 @@ SET(CMAKE_FORCE_UNIX_PATHS 1)
 # The C and CXX include file search paths:
 SET(CMAKE_C_INCLUDE_PATH
   "/home/yazdani/work/ros/hydro/rosbuild_ws/workspace/sherpa_project/startup_scenario/include"
-  "/home/yazdani/work/ros/hydro/rosbuild_ws/knowrob/json_prolog_msgs/srv_gen/cpp/include"
-  "/opt/ros/hydro/include"
-  "/usr/include/eigen3"
-  "/usr/include/pcl-1.7"
-  "/usr/include/ni"
-  "/usr/include/vtk-5.8"
-  "/usr/include/qhull"
   "/usr/src/gtest/include"
   "/usr/src/gtest"
   )

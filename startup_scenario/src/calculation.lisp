@@ -244,6 +244,24 @@
          (a-list (assoc '?pose list)))
     (cdr a-list)))
 
+(defun get-object-name-from-type (obj-type)
+  (let* ((lists (force-ll
+                 (prolog `(and (bullet-world ?w)
+                            (object-type ?w ?name ,obj-type)))))
+         (list (car lists))
+         (a-list (assoc '?name list)))
+    
+    (cdr a-list)))
+
+(defun get-object-from-name (obj-name)
+   (let* ((lists (force-ll
+                 (prolog `(and (bullet-world ?w)
+                            (%object ?w ,obj-name ?obj-ins)))))
+         (list (car lists))
+         (a-list (assoc '?obj-ins list)))
+    (cdr a-list)))
+
+
 (defun set-object-new-pose (pose obj-name)
   (let* ((vector (cl-transforms:origin pose))
          (vec-x  (cl-transforms:x vector))
