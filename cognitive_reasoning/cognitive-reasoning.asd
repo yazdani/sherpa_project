@@ -46,7 +46,7 @@
                ;; projection-process-modules
                ;; cram-gazebo-utilities
                ;;              simple-knowledge
-	       cram-agents-knowledge
+	       ;; cram-agents-knowledge
                bullet-reasoning-designators
                control_msgs-msg
                geometry_msgs-msg

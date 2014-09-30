@@ -20,7 +20,7 @@
   <depend package="cram_designators"/>
   <depend package="cram_json_prolog" />
   <depend package="cram_language"/>
- <depend package="cram_plan_language"/>
+ <!-- <depend package="cram_plan_language"/> -->
   <depend package="cram_environment_representation"/>
   <depend package="object_location_designators"/>
   <!-- <depend package="cram_roslisp_common"/> -->
@@ -33,7 +33,7 @@
   <depend package="sensor_msgs"/>
   <depend package="trajectory_msgs"/>  
   <!--<depend package="household_objects_database_msgs"/>-->
-  <depend package="cram_agents_knowledge"/>
+  <!-- <depend package="cram_agents_knowledge"/> -->
   <depend package="geometry_msgs"/>
   <depend package="control_msgs"/>
  <depend package="pcl_ros"/>

@@ -764,249 +764,66 @@
       </geometry>
     </collision>
   </link>
-<!-- HERE WE ARE STARTING WITH THE KINECT -->
-
-   <!--  <joint name="camera_rgb_joint" type="fixed"> -->
-<!--       <origin xyz="0 0 0" rpy="0 0 0"/> -->
-<!--       <parent link="right_hand_y"/> -->
-<!--       <child link="camera_rgb_frame" /> -->
-<!--     </joint> -->
-
-<!--     <link name="camera_rgb_frame"> -->
-<!--       <inertial> -->
-<!--         <mass value="0.001" /> -->
-<!--         <origin xyz="0 0 0" /> -->
-<!--         <inertia ixx="0.0001" ixy="0.0" ixz="0.0" -->
-<!--                  iyy="0.0001" iyz="0.0" -->
-<!--                  izz="0.0001" /> -->
-<!--       </inertial> -->
-<!--     </link> -->
-
-<!--     <joint name="camera_rgb_optical_joint" type="fixed"> -->
-<!--       <origin xyz="0 0 0" rpy="0 0 0" /> -->
-<!--       <parent link="camera_rgb_frame" /> -->
-<!--       <child link="camera_rgb_optical_frame" /> -->
-<!--     </joint> -->
-
-<!--     <link name="camera_rgb_optical_frame"> -->
-<!--       <inertial> -->
-<!--         <mass value="0.001" /> -->
-<!--         <origin xyz="0 0 0" /> -->
-<!--         <inertia ixx="0.0001" ixy="0.0" ixz="0.0" -->
-<!--                  iyy="0.0001" iyz="0.0" -->
-<!--                  izz="0.0001" /> -->
-<!--       </inertial> -->
-<!--     </link> -->
-
-<!--   <joint name="camera_joint" type="fixed"> -->
-<!--     <origin xyz="-0.031 0 -0.016" rpy="0 0 0"/> -->
-<!--     <parent link="camera_rgb_frame"/> -->
-<!--     <child link="laser_link"/> -->
-<!--   </joint> -->
 
 
-
-<!-- files. However, for Gazebo simulation we need them, so we add them here. -->
-<!-- (Hence, don't publish them additionally!) -\-> -->
-
-<!-- <joint name="camera_depth_joint" type="fixed"> -->
-<!-- <origin xyz="0 0 0" rpy="0 0 0" /> -->
-<!-- <parent link="camera_rgb_frame" /> -->
-<!-- <child link="camera_depth_frame" /> -->
-<!-- </joint> -->
-
-<!-- <link name="camera_depth_frame"> -->
-<!--     <inertial> -->
-<!--       <mass value="0.001" /> -->
-<!--       <origin xyz="0 0 0" /> -->
-<!--       <inertia ixx="0.0001" ixy="0.0" ixz="0.0" -->
-<!--                iyy="0.0001" iyz="0.0" -->
-<!--                izz="0.0001" /> -->
-<!--     </inertial> -->
-<!-- </link> -->
-
-<!-- <joint name="camera_depth_optical_joint" type="fixed"> -->
-<!-- <origin xyz="0 0 0" rpy="0 0 0" /> -->
-<!-- <parent link="camera_depth_frame" /> -->
-<!-- <child link="camera_depth_optical_frame" /> -->
-<!-- </joint> -->
-
-<!-- <link name="camera_depth_optical_frame"> -->
-<!--     <inertial> -->
-<!--       <mass value="0.001" /> -->
-<!--       <origin xyz="0 0 0" /> -->
-<!--       <inertia ixx="0.0001" ixy="0.0" ixz="0.0" -->
-<!--                iyy="0.0001" iyz="0.0" -->
-<!--                izz="0.0001" /> -->
-<!--     </inertial> -->
-<!-- </link> -->
-
-   <!-- Kinect -->
-  <joint name="camera_joint" type="fixed">
+ <joint name="laser00_joint" type="fixed">
     <origin rpy="0 0 1.5" xyz="-0.01 0 0"/>
     <parent link="right_hand_y"/>
-    <child link="camera_link"/>
+    <child link="laser00_frame"/>
   </joint>
 
-  <link name="camera_link">
-  <inertial>
-    <mass value="0.001" />
-    <origin xyz="0 0 0" rpy="0 0 0" />
-    <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001" />
-  </inertial>
-  <visual>
-    <origin xyz="0.03 -0.05 0.0" rpy="1.5 0 0"/>
-    <geometry>
-      <mesh filename="package://agents_model_description/meshes/human/hokuyo.dae"/>
-      <!-- <mesh filename="package://hector_sensors_description/meshes/kinect_camera/kinect_camera_simple.dae"/> -->
-</geometry>
-    <material name="DarkOrange" />
-  </visual>
-  <collision>
-    <origin xyz="0.03 -0.05 0.0" rpy="1.5 0 0"/>
-    <geometry>
-  <!-- <mesh filename="package://hector_sensors_description/meshes/kinect_camera/kinect_camera_simple.dae"/> -->
-      <mesh filename="package://agents_model_description/meshes/human/hokuyo.dae"/>
-    </geometry>
-  </collision>
- </link>
+  <link name="laser00_frame">
+    <inertial>
+      <mass value="0.270"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="2.632e-4" ixy="0" ixz="0" iyy="2.632e-4" iyz="0" izz="1.62e-4"/>
+    </inertial>
+    <visual>
+      <origin rpy="1.5 0 0" xyz="0.03 -0.05 0"/>
+      <geometry>
+        <mesh filename="package://hector_sensors_description/meshes/hokuyo_utm30lx/hokuyo_utm_30lx.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.03 -0.05 0.0" rpy="1.5 0 0"/>
+           <geometry>
+         <mesh filename="package://hector_sensors_description/meshes/hokuyo_utm30lx/hokuyo_utm_30lx.dae"/>
+      </geometry>
+    </collision>
+  </link>
 
-
-  <!--   <inertial_sphere diameter="0.07" mass="0.01"/> -->
-  <!--   <visual> -->
-  <!--     <origin rpy="0 0 0" xyz="0 0 0"/> -->
-  <!--     <geometry> -->
-  <!--       <mesh filename="package://hector_sensors_description/meshes/kinect_camera/kinect_camera_simple.dae"/> -->
-  <!--     </geometry> -->
-  <!--   </visual> -->
-  <!--   <collision> -->
-  <!--     <origin rpy="0 0 0" xyz="0 0 0"/> -->
-  <!--     <geometry> -->
-  <!--       <mesh filename="package://hector_sensors_description/meshes/kinect_camera/kinect_camera_simple.stl"/> -->
-  <!--     </geometry> -->
-  <!--   </collision> -->
-  <!-- </link> -->
-  <joint name="camera_depth_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.0 -0.02 0.0"/>
-    <parent link="camera_link"/>
-    <child link="camera_depth_frame"/>
-  </joint>
-  <link name="camera_depth_frame"/>
-  <joint name="camera_depth_optical_joint" type="fixed">
-    <origin rpy="-1.57079632679 0.0 -1.57079632679" xyz="0 0 0"/>
-    <parent link="camera_depth_frame"/>
-    <child link="camera_depth_optical_frame"/>
-  </joint>
-  <link name="camera_depth_optical_frame"/>
-  <joint name="camera_rgb_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.0 -0.0125 0.0"/>
-    <parent link="camera_link"/>
-    <child link="camera_rgb_frame"/>
-  </joint>
-  <link name="camera_rgb_frame"/>
-  <joint name="camera_rgb_optical_joint" type="fixed">
-    <origin rpy="-1.57079632679 0.0 -1.57079632679" xyz="0 0 0"/>
-    <parent link="camera_rgb_frame"/>
-    <child link="camera_rgb_optical_frame"/>
-  </joint>
-  <link name="camera_rgb_optical_frame"/>
-  <gazebo reference="camera_depth_frame">
-    <sensor name="camera" type="depth">
-      <update_rate>20</update_rate>
-      <camera>
-        <horizontal_fov>1.0</horizontal_fov>
-        <image>
-          <format>R8G8B8</format>
-          <width>100</width>
-          <height>50</height>
-        </image>
-        <clip>
-          <near>0.05</near>
-          <far>9</far>
-        </clip>
-      </camera>
-      <plugin filename="libgazebo_ros_openni_kinect.so" name="camera_camera_controller">
+  <gazebo reference="laser00_frame">
+    <sensor name="laser00" type="ray">
+      <always_on>true</always_on>
+      <update_rate>40</update_rate>
+      <pose>0 0 0.0 0 0 0</pose>
+      <visualize>false</visualize>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>1081</samples>
+            <resolution>1</resolution>
+            <min_angle>-2.35619449019</min_angle>
+            <max_angle>2.35619449019</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.08</min>
+          <max>30.0</max>
+          <resolution>0.01</resolution>
+        </range>
+      </ray>
+      <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_laser00_controller">
+        <gaussianNoise>0.005</gaussianNoise>
         <alwaysOn>true</alwaysOn>
-        <updateRate>20</updateRate>
-        <imageTopicName>camera/rgb/image_raw</imageTopicName>
-        <cameraInfoTopicName>camera/rgb/camera_info</cameraInfoTopicName>
-        <depthImageTopicName>camera/depth/image_raw</depthImageTopicName>
-        <depthImageCameraInfoTopicName>camera/depth/camera_info</depthImageCameraInfoTopicName>
-        <pointCloudTopicName>camera/depth/points</pointCloudTopicName>
-        <frameName>camera_depth_optical_frame</frameName>
-        <distortion_k1>0.0</distortion_k1>
-        <distortion_k2>0.0</distortion_k2>
-        <distortion_k3>0.0</distortion_k3>
-        <distortion_t1>0.0</distortion_t1>
-        <distortion_t2>0.0</distortion_t2>
+        <updateRate>40</updateRate>
+        <topicName>scanner</topicName>
+        <frameName>laser00_frame</frameName>
       </plugin>
     </sensor>
   </gazebo>
 
-<!-- <link name="laser_link" type="laser"> -->
-<!--   <inertial> -->
-<!--     <mass value="0.001" /> -->
-<!--     <origin xyz="0 0 0" rpy="0 0 0" /> -->
-<!--     <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.0001" /> -->
-<!--   </inertial> -->
-<!--   <visual> -->
-<!--     <origin xyz="0.03 -0.05 0.0" rpy="1.5 0 0"/> -->
-<!--     <geometry> -->
-      <!-- <mesh filename="package://pr2_description/meshes/tilting_laser_v0/tilting_hokuyo.dae"/> -->
-<!--       <mesh filename="package://sherpa_spatial_relations/meshes/hokuyo.dae"/> -\-> -->
-<!--     </geometry> -->
-<!--     <material name="DarkOrange" /> -->
-<!--   </visual> -->
-<!--   <collision> -->
-<!--     <origin xyz="0.03 -0.05 0.0" rpy="1.5 0 0"/> -->
-<!--     <geometry> -->
-      <!-- 	<mesh filename="package://pr2_description/meshes/tilting_laser_v0/tilting_hokuyo.dae"/> -->
-<!--       <mesh filename="package://sherpa_spatial_relations/meshes/hokuyo.dae"/> -->
-<!--     </geometry> -->
-<!--   </collision> -->
-<!-- </link> -->
 
-
-<!--   <joint name="laser_link_joint" type="fixed"> -->
-<!--     <parent link="right_hand_y"/> -->
-<!--     <child link="laser_link"/> -->
-<!--     <origin rpy="0 0 1.57" xyz="-0.03 -0.09 0"/> -->
-<!--     <axis xyz="0 1 0" /> -->
-<!--     <dynamics damping="0.7"/> -->
-<!--     <limit effort="100" lower="-2" upper="2" velocity="10.0"/> -->
-<!--   </joint> -->
-
-<!--  <gazebo reference="laser_link"> -->
-<!--     <sensor name="hokuyo_lx30_laser" type="ray"> -->
-<!--       <pose>0.03 -0.05 0.0 1.5 0 0</pose> -->
-<!--       <plugin name="gazebo_ros_hokuyo_lx30_laser_controller" filename="libgazebo_ros_laser.so"> -->
-<!--   	<frameName>laser_link</frameName> -->
-<!--   	<bodyName>laser_link</bodyName> -->
-<!--   	<topicName>handscan</topicName> -->
-<!--   	<updateRate>30.0</updateRate> -->
-<!-- 	<hokuyoMinIntensity>101</hokuyoMinIntensity> -->
-<!--       </plugin>     -->
-<!--       <ray> -->
-<!-- 	<scan> -->
-<!-- 	  <horizontal> -->
-<!--               <samples>800</samples> -->
-<!--               <resolution>1</resolution> -->
-<!--               <min_angle>0.08</min_angle> -->
-<!--               <max_angle>10.0</max_angle> -->
-<!-- 	  </horizontal> -->
-<!-- 	</scan> -->
-<!-- 	<range> -->
-<!-- 	  <min>0.1</min> -->
-<!--             <max>6.0</max> -->
-<!--             <resolution>0.01</resolution> -->
-<!-- 	</range> -->
-<!--       </ray> -->
-<!--       <always_on>0</always_on> -->
-<!--       <update_rate>10.000000</update_rate> -->
-<!--       <visualize>0</visualize> -->
-<!--     </sensor> -->
-<!--  </gazebo> -->
- 
   <joint name="right_shoulder_joint_x" type="revolute">
     <parent link="neck_y"/>
     <child link="right_shoulder_x"/>
@@ -1192,40 +1009,6 @@
     <limit effort="100" lower="-2" upper="2" velocity="10.0"/>
   </joint>
 
-
- <!-- <include filename="$(find pr2_description)/urdf/sensors/hokuyo_lx30_laser.urdf.xacro" /> -->
- <!--  <xacro:hokuyo_lx30_laser_v0 name="hand_laser" parent="right_hand_joint_y" ros_topic="side_scan" -->
- <!--                              update_rate="20" min_angle="-1.57" max_angle="1.57" > -->
- <!--      <origin xyz="0 -.220 0.200" rpy="0 0 0" /> -->
- <!--  </xacro:hokuyo_lx30_laser_v0> -->
-
- <!--  <joint name="side_laser_box_joint" type="fixed"> -->
- <!--    <origin xyz="0 0 0" rpy="0 0 0" /> -->
- <!--    <parent link="hand_laser_link" /> -->
- <!--    <child link="hand_laser_box_link"/> -->
- <!--  </joint> -->
-
- <!--  <link name="hand_laser_box_link"> -->
- <!--    <inertial> -->
- <!--      <mass value="0.01" /> -->
- <!--      <origin xyz="0 0 0" /> -->
- <!--      <inertia ixx="0.001"  ixy="0.0"  ixz="0.0" -->
- <!--               iyy="0.001"  iyz="0.0" -->
- <!--               izz="0.001" /> -->
- <!--    </inertial> -->
- <!--    <visual> -->
- <!--      <origin xyz="0 0 0" rpy="0 0 0"/> -->
- <!--      <geometry> -->
- <!--        <box size="0.05 0.05 0.1" /> -->
- <!--      </geometry> -->
- <!--    </visual> -->
- <!--    <collision> -->
- <!--      <origin xyz="0 0 0" rpy="0 0 0"/> -->
- <!--      <geometry> -->
- <!--        <box size="0.05 0.05 0.1" /> -->
- <!--      </geometry> -->
- <!--    </collision> -->
- <!--  </link> -->
 
   <transmission name="trans_right_hand_y">
     <type>transmission_interface/SimpleTransmission</type>

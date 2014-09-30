@@ -35,14 +35,14 @@
  ;;        #:cram-plan-library
 	   #:location-costmap
 	   #:cram-reasoning
-	   #:cram-agents-knowledge
+	   ;; #:cram-agents-knowledge
      ;; #:agents-model-description
 	   #:cram-utilities
 	   #:btr
 	   ;; #:startup-scenario
 	   )
  (:shadowing-import-from #:btr object household-object pose object-pose width height robot)
-  (:shadowing-import-from #:cram-agents-knowledge quadrotor)
+  ;; (:shadowing-import-from #:cram-agents-knowledge quadrotor)
  (:import-from #:cram-reasoning #:<- #:def-fact-group )
  (:export human-specific-object);hat tree)
   (:desig-properties #:go-to #:far-from #:close-to #:sourrounded-by #:right-of #:left-of #:type #:behind #:in-front #:for-robot #:name))

@@ -33,7 +33,7 @@
    :depends-on (cram-language
                location-costmap
                roslisp
-	       cram-agents-knowledge
+	       ;; cram-agents-knowledge
 	       simple-knowledge
 	       ;; agents-model-description
 	       ;; pr2-manipulation-knowledge
