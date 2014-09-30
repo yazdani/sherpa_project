@@ -170,6 +170,43 @@
   )
 
 
+(defun add-sphere ()
+  (simple-knowledge::clear-object-list)
+  (simple-knowledge::add-object-to-spawn
+   :name "sphere40"
+   :type 'collision-detector
+   :collision-parts nil
+   :pose (tf:make-pose-stamped
+          "/map"
+          0.0
+          (tf:make-3d-vector (+ (+ (+
+                                    (get-joint-value "right_hand_joint_x")
+                                    (get-joint-value "right_upper_arm_joint_x"))
+                                   (get-joint-value "right_lower_arm_joint_x"))
+                                (get-joint-value "right_shoulder_joint_x"))
+                             (+ (+ (+
+                                    (get-joint-value "right_hand_joint_y")
+                                    (get-joint-value "right_upper_arm_joint_y"))
+                                   (get-joint-value "right_lower_arm_joint_y"))
+                                (get-joint-value "right_shoulder_joint_y"))
+                              (+ (+ (+ (+ (+ (+ (+ (+ (+
+                                    (get-joint-value "right_hand_joint_z")
+                                    (get-joint-value "right_upper_arm_joint_z"))
+                                   (get-joint-value "right_lower_arm_joint_z"))
+                                (get-joint-value "right_shoulder_joint_z"))
+                                       (get-joint-value "right_foot_joint_z"))
+                                        (get-joint-value "pelvis_joint_z"))
+                                        (get-joint-value "l3_joint_z"))
+                                        (get-joint-value "l5_joint_z"))
+                                        (get-joint-value "t12_joint_z"))
+                                        (get-joint-value "t8_joint_z")))
+          (tf:make-quaternion 0 0 0 1))
+   :file (model-path "sphere.urdf"))
+   (simple-knowledge:spawn-objects)
+  )
+
+
+
 (defun model-path (name)
   (physics-utils:parse-uri
    (concatenate
