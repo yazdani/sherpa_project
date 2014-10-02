@@ -40,6 +40,7 @@
                              (victim "package://world_model_description/meshes/victim.stl" nil)
                              (mountain "package://world_model_description/meshes/mountain_gen.stl" nil)
                              (plane "package://world_model_description/meshes/map.stl" nil)
+                             (sphere "package://world_model_description/meshes/sphere.stl" nil)
                              (cone "package://world_model_description/meshes/cone.stl" nil)))
 
 

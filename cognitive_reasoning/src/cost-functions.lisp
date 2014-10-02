@@ -74,7 +74,7 @@
                 (return (if invert 0.0d0 1.0d0)))
               )))))) )
 
-;; (defun make-costmap-bbox-gen-object (object &key invert padding)
+;; (defun make-costmap-bbox-gen-object (object)
 ;;   (let* ((bounding-box (btr::aabb object))
 ;;          (dimensions-x/2 (/ (cl-transforms:x (bt:bounding-box-dimensions bounding-box))
 ;;                             2))
@@ -90,8 +90,8 @@
 ;;                    dimensions-y/2))
 ;;            (> y (- (cl-transforms:y (cl-bullet:bounding-box-center bounding-box))
 ;;                    dimensions-y/2)))
-;;       (return (if invert 0.0d0 1.0d0))))))
-          ;; 1.0 0.0))))
+;;        1.0d0))))
+        
 
 (defun make-constant-height-function (height)
   (format t "list height: ~a~%" (list height))
