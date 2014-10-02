@@ -171,16 +171,18 @@
   )
 
 (defun tester()
-  (let ((pose (pointed-direction)))
+  (let ((pose (pointed-direction))
+        )
+    (format t "hello sweety~%")
     (add-sphere pose)
     (check-collision)))
         
 (defun check-collision ()
  ;(add-sphere pose)
-(let* ((pose (get-object-pose 'sphere))
+(let* ((pose (get-object-pose 'sphere3))
        (collision-detector (prolog `(and
                                      (bullet-world ?w)
-                                     (contact ?w sphere ?objs))))
+                                     (contact ?w sphere3 ?objs))))
        (vector (cl-transforms:origin pose))
        (vec-y (cl-transforms:y vector))
        (vec-x  (cl-transforms:x vector))
@@ -189,10 +191,10 @@
   (cond ((eq nil collision-detector)(format t "great job, take this one ~%"))
         (t
          (prolog `(and 
-                   (bullet-world ?w
+                   (bullet-world ?w)
                    (assert
-                    (object-pose ?w sphere ((,vec-x ,new-vec-y ,vec-z) (0 0 0 1)))))))
-         (check-collision)))))
+                    (object-pose ?w sphere3 ((,vec-x ,new-vec-y ,vec-z) (0 0 0 1))))))
+         (format t "hellooooo~%")))))
 
 (defun pointed-direction ()
  ;; started rosrun nodes
@@ -203,17 +205,26 @@
          (x-val (+ (cl-transforms:x trans) 5))
          (new-vec (cl-transforms:make-3d-vector x-val (cl-transforms:y trans) (cl-transforms:z trans))))
          (publish-point new-vec)
-    (format t "the end~%")
+    (format t "the end ~a~%" new-vec)
     new-vec))
 
-
-(defun add-sphere(vector)
+(defun add-sphere2 ()
 ;; position of the joint
-  (let* ((vec-x (cl-transforms:x vector))
-        (vec-y (cl-transforms:y vector))
-        (vec-z (cl-transforms:z vector)))
+ (prolog `(and (bullet-world ?w)
+               (assert (object ?w mesh sphere3 ((6 1 0)(0 0 0 1))
+                                  :mesh cognitive-reasoning::sphere :mass 0.2 :color (0 0.5 0))))))
+
+
+(defun add-sphere (pose)
+;; position of the joint
+  (format t "pose is: ~a~%" pose)
+  (let* (;(vector (cl-transforms:origin pose))
+         (vec-x (cl-transforms:x pose))
+        (vec-y (cl-transforms:y pose))
+        (vec-z (cl-transforms:z pose)))
+    (format t "ich bin nun hier ~%")
       (prolog `(and (bullet-world ?w)
-                  (assert (object ?w mesh sphere5 ((,vec-x ,vec-y ,vec-z)(0 0 0 1))
+                  (assert (object ?w mesh sphere ((,vec-x ,vec-y ,vec-z)(0 0 0 1))
                                   :mesh cognitive-reasoning::sphere :mass 0.2 :color (0 0.5 0)))))
     (simple-knowledge::clear-object-list)
     (simple-knowledge::add-object-to-spawn
