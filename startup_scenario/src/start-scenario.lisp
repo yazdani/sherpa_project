@@ -44,6 +44,7 @@
 
 (defun start-world-with-robots ()
   (roslisp:ros-info (sherpa-spatial-relations) "START WORLD AND ROBOTS")
+  (location-costmap::location-costmap-vis-init)
   (setf *list* nil)
   (let* ((genius-urdf (cl-urdf:parse-urdf (roslisp:get-param "human/robot_description")))
          (quad-urdf (cl-urdf:parse-urdf (roslisp:get-param "quadrotor/robot_description")))
