@@ -75,11 +75,12 @@
   (let ((pose-arm (tf:make-pose-stamped
                    "/map"
                    0.0
-                   (tf:make-3d-vector (+ (get-joint-value "right_hand_joint_x") 10) (get-joint-value "right_hand_joint_y") (get-joint-value "right_hand_joint_z"))
+                   (tf:make-3d-vector (+ (get-joint-value "right_hand_joint_x") 10) 
+                                      (get-joint-value "right_hand_joint_y") 
+                                      (get-joint-value "right_hand_joint_z"))
                    (tf:make-quaternion 0 0 0 1))))
     (format t "pose-arm is ~a ~%" pose-arm)
-                  pose-arm)
-)
+    pose-arm))
 
 
 (defun default-position-to-trajectory ()

@@ -169,42 +169,68 @@
    (simple-knowledge:spawn-objects)
   )
 
+(defun tester()
+  (let ((pose (pointed-direction)))
+    (add-sphere pose)
+    (check-collision)))
+        
+(defun check-collision ()
+ ;(add-sphere pose)
+(let* ((pose (get-object-pose 'sphere))
+       (collision-detector (prolog `(and
+                                     (bullet-world ?w)
+                                     (contact ?w sphere ?objs))))
+       (vector (cl-transforms:origin pose))
+       (vec-y (cl-transforms:y vector))
+       (vec-x  (cl-transforms:x vector))
+       (vec-z   (cl-transforms:z vector))
+       (new-vec-y (+ vec-y -1)))
+  (cond ((eq nil collision-detector)(format t "great job, take this one ~%"))
+        (t
+         (prolog `(and 
+                   (bullet-world ?w
+                   (assert
+                    (object-pose ?w sphere ((,vec-x ,new-vec-y ,vec-z) (0 0 0 1)))))))
+         (check-collision)))))
 
-(defun add-sphere ()
-  (simple-knowledge::clear-object-list)
-  (simple-knowledge::add-object-to-spawn
-   :name "sphere40"
-   :type 'collision-detector
-   :collision-parts nil
-   :pose (tf:make-pose-stamped
-          "/map"
-          0.0
-          (tf:make-3d-vector (+ (+ (+
-                                    (get-joint-value "right_hand_joint_x")
-                                    (get-joint-value "right_upper_arm_joint_x"))
-                                   (get-joint-value "right_lower_arm_joint_x"))
-                                (get-joint-value "right_shoulder_joint_x"))
-                             (+ (+ (+
-                                    (get-joint-value "right_hand_joint_y")
-                                    (get-joint-value "right_upper_arm_joint_y"))
-                                   (get-joint-value "right_lower_arm_joint_y"))
-                                (get-joint-value "right_shoulder_joint_y"))
-                              (+ (+ (+ (+ (+ (+ (+ (+ (+
-                                    (get-joint-value "right_hand_joint_z")
-                                    (get-joint-value "right_upper_arm_joint_z"))
-                                   (get-joint-value "right_lower_arm_joint_z"))
-                                (get-joint-value "right_shoulder_joint_z"))
-                                       (get-joint-value "right_foot_joint_z"))
-                                        (get-joint-value "pelvis_joint_z"))
-                                        (get-joint-value "l3_joint_z"))
-                                        (get-joint-value "l5_joint_z"))
-                                        (get-joint-value "t12_joint_z"))
-                                        (get-joint-value "t8_joint_z")))
+(defun pointed-direction ()
+ ;; started rosrun nodes
+  (location-costmap::location-costmap-vis-init)
+  (let* ((transform-x (tf:lookup-transform cram-roslisp-common:*tf* :time 0.0 :source-frame "right_hand_x" :target-frame "map"))
+         (trans-x (cl-transforms:transform->pose transform-x))
+         (trans (cl-transforms:origin trans-x))
+         (x-val (+ (cl-transforms:x trans) 5))
+         (new-vec (cl-transforms:make-3d-vector x-val (cl-transforms:y trans) (cl-transforms:z trans))))
+         (publish-point new-vec)
+    (format t "the end~%")
+    new-vec))
+
+
+(defun add-sphere(vector)
+;; position of the joint
+  (let* ((vec-x (cl-transforms:x vector))
+        (vec-y (cl-transforms:y vector))
+        (vec-z (cl-transforms:z vector)))
+      (prolog `(and (bullet-world ?w)
+                  (assert (object ?w mesh sphere5 ((,vec-x ,vec-y ,vec-z)(0 0 0 1))
+                                  :mesh cognitive-reasoning::sphere :mass 0.2 :color (0 0.5 0)))))
+    (simple-knowledge::clear-object-list)
+    (simple-knowledge::add-object-to-spawn
+     :name "sphere15"
+     :type 'collision-detector
+     :collision-parts nil
+     :pose 
+     (tf:make-pose-stamped
+      "/map"
+      0.0
+      (tf:make-3d-vector vec-x vec-y vec-z)
           (tf:make-quaternion 0 0 0 1))
    :file (model-path "sphere.urdf"))
+  (format t "ja endlich~%")
    (simple-knowledge:spawn-objects)
-  )
+  ))
 
+;rosrun tf static_transform_publisher 0 0 0 1.5 0 0 map odom_combined 100
 
 
 (defun model-path (name)
