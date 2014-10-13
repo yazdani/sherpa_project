@@ -37,17 +37,18 @@
 	;;	#:plan-lib
 	;;        #:cram-plan-library
         ;; #:agents-model-description
-        ;; #:cram-agents-knowledge
+        #:cram-agents-knowledge
         #:cognitive-reasoning
         #:location-costmap
         #:cram-reasoning
         #:cram-utilities
         #:btr
-        #:cram-environment-representation)
+        #:cram-environment-representation
+	#:agents-projection-process-modules)
   (:shadowing-import-from #:btr object household-object pose object-pose width height robot)
-  ;; (:shadowing-import-from #:cram-agents-knowledge quadrotor)
+  (:shadowing-import-from #:cram-agents-knowledge quadrotor)
   ;(-from #:agents-model-description robot)
   (:import-from #:cram-reasoning #:<- #:def-fact-group)
   ;; (:import-from #:cram-agents-knowledge quadrotor);cram-pr2-knowledge pr2)
   (:export tree victim)
-  (:desig-properties #:go-to #:far-from #:close-to #:sourrounded-by #:right-of #:left-of #:type #:behind #:in-front #:for-robot #:name #:color #:a-gesture))
+  (:desig-properties #:go-to #:far-from #:close-to #:sourrounded-by #:right-of #:left-of #:type #:behind #:in-front #:for-robot #:name #:color #:a-gesture #:pointed-pos))
