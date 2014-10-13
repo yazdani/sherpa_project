@@ -29,9 +29,9 @@
 (in-package :cognitive-reasoning)
 
 (def-fact-group costmap-metadata ()
-  (<- (costmap-size 20 20))
-  (<- (costmap-origin -10 -10))
-  (<- (costmap-resolution 0.02))
+  (<- (costmap-size 30 30))
+  (<- (costmap-origin -15 -15))
+  (<- (costmap-resolution 0.025))
   (<- (costmap-padding 0.38))
   (<- (costmap-manipulation-padding 0.38))
   (<- (costmap-in-reach-distance 1.0))
