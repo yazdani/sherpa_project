@@ -28,18 +28,21 @@
   <depend package="cram_gazebo_utilities"/>
   <depend package="gazebo_msgs"/>  
   <depend package="object_location_designators"/>  
-  <depend package="pr2_projection_process_modules"/>
+  <!-- <depend package="pr2_projection_process_modules"/> -->
   <depend package="roscpp"/>
   <depend package="sensor_msgs"/>
   <depend package="trajectory_msgs"/>  
   <!--<depend package="household_objects_database_msgs"/>-->
-  <!-- <depend package="cram_agents_knowledge"/> -->
+  <depend package="cram_agents_knowledge"/>
   <depend package="geometry_msgs"/>
   <depend package="control_msgs"/>
  <depend package="pcl_ros"/>
  <depend package="pcl_conversions"/>
  <depend package="cognitive_reasoning"/>
-
+<depend package="hector_quadrotor_msgs"/>
+<depend package="agents_navigation_process_module"/>
+<depend package ="gazebo_perception_process_module"/>
+<depend package="agents_projection_process_modules"/>
 </package>
 
 

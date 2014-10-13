@@ -33,21 +33,27 @@
    :depends-on (cram-language
                location-costmap
                roslisp
-	       ;; cram-agents-knowledge
+	       cram-agents-knowledge
 	       simple-knowledge
 	       ;; agents-model-description
 	       ;; pr2-manipulation-knowledge
 	       simple-knowledge
 	       cram-environment-representation
-	       projection-process-modules
+	       ;; projection-process-modules
 	       cram-gazebo-utilities
 	       bullet-reasoning-designators
                control_msgs-msg
                geometry_msgs-msg
                trajectory_msgs-msg
 	       cognitive-reasoning
-         cram-environment-representation
-	       actionlib)
+	       cram-environment-representation
+	       actionlib
+               hector_quadrotor_msgs-msg
+	       agents-navigation-process-module
+	       gazebo-perception-process-module
+	       gazebo_msgs-msg
+	       agents-projection-process-modules
+	       )
  :components 
   ((:module "src"
     :components
