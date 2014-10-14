@@ -61,7 +61,7 @@
                                :normal (0 0 1) :constant 0 :no-robot-collision t))
 	       (debug-window ?w)
 	       (assert (object ?w urdf human ((0 0 0) (0 0 1 1)) :urdf ,genius-urdf))
-	       (assert (object ?w urdf quadrotor ((-1 -2 2)(0 0 1 1)) :urdf ,quad-urdf))
+	       (assert (object ?w urdf quadrotor ((-1 -2 2)(0 0 0 1)) :urdf ,quad-urdf))
  	       ;; (assert (object ?w urdf quadrotor ((-1 -2 0.2)(0 0 1 1)) :urdf ,quad-urdf))
  
 	       ;; (assert (object ?w urdf rover ((1 3 0) (0 0 0 1)) :urdf ,rover-urdf))
