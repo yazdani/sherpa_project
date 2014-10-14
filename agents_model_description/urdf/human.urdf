@@ -299,69 +299,69 @@
     </collision>
   </link>
   
-<!--camera link-->
+<!--camera link--> 
 
-  <joint name="camera_joint" type="fixed">
-    <origin rpy="0 0.349065850399 0" xyz="0.1 0.0 -0.03"/>
+  <joint name="cam_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.05 0.0 -0.06"/>
     <parent link="head_y"/>
-    <child link="camera_link"/>
+    <child link="cam_link"/>
   </joint>
-  <link name="camera_link">
-    <inertial>
-      <mass value="0.200"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <inertia ixx="5.8083e-4" ixy="0" ixz="0" iyy="3.0833e-5" iyz="0" izz="5.9083e-4"/>
-    </inertial>
+  <link name="cam_link">
+    <inertial_sphere diameter="0.07" mass="0.01"/>
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+   <origin xyz="-0.05 0.1 0.15" rpy="-1.5 -1.5 0"/>
+      <!-- <origin rpy="0 0 0" xyz="0 0 0"/> -->
       <geometry>
-        <mesh filename="package://hector_sensors_description/meshes/asus_camera/asus_camera_simple.dae"/>
+        <mesh filename="package://hector_sensors_description/meshes/kinect_camera/kinect_camera_simple.dae"/>
       </geometry>
+ <material name="Green"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+   <origin xyz="-0.05 0.1 0.15" rpy="-1.5 -1.5 0"/>
+    <!-- <origin rpy="0 0 0" xyz="0 0 0"/> -->
+    <!--   <origin rpy="0 0 0" xyz="0 0 0"/> -->
       <geometry>
-        <box size="0.035 0.185 0.025"/>
+        <mesh filename="package://hector_sensors_description/meshes/kinect_camera/kinect_camera_simple.stl"/>
       </geometry>
     </collision>
   </link>
-<joint name="camera_depth_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.0 0.049 0.0"/>
-    <parent link="camera_link"/>
-    <child link="camera_depth_frame"/>
+  <joint name="cam_depth_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 -0.02 0.0"/>
+    <parent link="cam_link"/>
+    <child link="cam_depth_frame"/>
   </joint>
-  <link name="camera_depth_frame"/>
-  <joint name="camera_depth_optical_joint" type="fixed">
+  <link name="cam_depth_frame"/>
+  <joint name="cam_depth_optical_joint" type="fixed">
     <origin rpy="-1.57079632679 0.0 -1.57079632679" xyz="0 0 0"/>
-    <parent link="camera_depth_frame"/>
-    <child link="camera_depth_optical_frame"/>
+    <parent link="cam_depth_frame"/>
+    <child link="cam_depth_optical_frame"/>
   </joint>
-  <link name="camera_depth_optical_frame"/>
-  <joint name="camera_rgb_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.0 0.022 0.0"/>
-    <parent link="camera_link"/>
-    <child link="camera_rgb_frame"/>
+  <link name="cam_depth_optical_frame"/>
+  <joint name="cam_rgb_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 -0.0125 0.0"/>
+    <parent link="cam_link"/>
+    <child link="cam_rgb_frame"/>
   </joint>
-  <link name="camera_rgb_frame"/>
-  <joint name="camera_rgb_optical_joint" type="fixed">
+  <link name="cam_rgb_frame"/>
+  <joint name="cam_rgb_optical_joint" type="fixed">
     <origin rpy="-1.57079632679 0.0 -1.57079632679" xyz="0 0 0"/>
-    <parent link="camera_rgb_frame"/>
-    <child link="camera_rgb_optical_frame"/>
+    <parent link="cam_rgb_frame"/>
+    <child link="cam_rgb_optical_frame"/>
   </joint>
-  <link name="camera_rgb_optical_frame"/>
-  <gazebo reference="camera_depth_frame">
+  <link name="cam_rgb_optical_frame"/>
+  <gazebo reference="cam_depth_frame">
     <sensor name="camera" type="depth">
       <update_rate>20</update_rate>
       <camera>
-        <horizontal_fov>1.09606677025</horizontal_fov>
+        <horizontal_fov>1.0471975512</horizontal_fov>
         <image>
           <format>R8G8B8</format>
           <width>640</width>
           <height>480</height>
         </image>
         <clip>
-          <near>0.5</near>
-          <far>9</far>
+          <near>0.05</near>
+          <far>3</far>
         </clip>
       </camera>
       <plugin filename="libgazebo_ros_openni_kinect.so" name="camera_camera_controller">
@@ -372,7 +372,7 @@
         <depthImageTopicName>camera/depth/image_raw</depthImageTopicName>
         <depthImageCameraInfoTopicName>camera/depth/camera_info</depthImageCameraInfoTopicName>
         <pointCloudTopicName>camera/depth/points</pointCloudTopicName>
-        <frameName>camera_depth_optical_frame</frameName>
+        <frameName>cam_depth_optical_frame</frameName>
         <distortion_k1>0.0</distortion_k1>
         <distortion_k2>0.0</distortion_k2>
         <distortion_k3>0.0</distortion_k3>
@@ -381,6 +381,8 @@
       </plugin>
     </sensor>
   </gazebo>
+
+
   <!--  <link name="sonar_link"> -->
   <!--   <inertial> -->
   <!--     <mass value="0.001"/> -->
