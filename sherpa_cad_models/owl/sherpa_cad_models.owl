@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+<!ENTITY local_path 'file:///home/yazdani/work/ros/hydro/rosbuild_ws/knowrob/ias_knowledge_base/owl/'>
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY knowrob "http://ias.cs.tum.edu/kb/knowrob.owl#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY computable "http://ias.cs.tum.edu/kb/computable.owl#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+<rdf:RDF xmlns="http://ias.cs.tum.edu/kb/knowrob_cad_models.owl#"
+     xml:base="http://ias.cs.tum.edu/kb/knowrob_cad_models.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:computable="http://ias.cs.tum.edu/kb/computable.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:knowrob="http://ias.cs.tum.edu/kb/knowrob.owl#">
+    <owl:Ontology rdf:about="http://ias.cs.tum.edu/kb/knowrob_cad_models.owl">
+        <owl:imports rdf:resource="&local_path;knowrob.owl"/>
+    </owl:Ontology>
+
+  <computable:PrologProperty rdf:about="#computeCadModelXDim">
+        <computable:command rdf:datatype="&xsd;string"
+            >cad_model_xdim</computable:command>
+        <computable:cache rdf:datatype="&xsd;string">dontCache</computable:cache>
+        <computable:visible rdf:datatype="&xsd;string">unvisible</computable:visible>
+        <computable:target rdf:resource="&knowrob;widthOfObject"/>
+    </computable:PrologProperty>
+
+    <computable:PrologProperty rdf:about="#computeCadModelYDim">
+        <computable:command rdf:datatype="&xsd;string"
+            >cad_model_ydim</computable:command>
+        <computable:cache rdf:datatype="&xsd;string">dontCache</computable:cache>
+        <computable:visible rdf:datatype="&xsd;string">unvisible</computable:visible>
+        <computable:target rdf:resource="&knowrob;depthOfObject"/>
+    </computable:PrologProperty>
+
+    <computable:PrologProperty rdf:about="#computeCadModelZDim">
+        <computable:command rdf:datatype="&xsd;string"
+            >cad_model_zdim</computable:command>
+        <computable:cache rdf:datatype="&xsd;string">dontCache</computable:cache>
+        <computable:visible rdf:datatype="&xsd;string">unvisible</computable:visible>
+        <computable:target rdf:resource="&knowrob;heightOfObject"/>
+    </computable:PrologProperty>
+
+
+    <!--
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&knowrob;pathToCadModel"/>
+
+
+
+    <!--
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+
+
+    <!--
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+
+
+    <!-- http://ias.cs.tum.edu/kb/knowrob.owl#pathToCadModel -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;pathToCadModel"/>
+
+
+
+    <!--
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+   <rdf:Description rdf:about="&knowrob;Tree">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/environmentspecific-items/tanne1.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+
+  <rdf:Description rdf:about="&knowrob;Tree1">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/environmentspecific-items/tanne2.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+
+ <rdf:Description rdf:about="&knowrob;Victim">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/humanspecific-items/victim.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+
+</rdf:RDF>
