@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<robot name="area" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <xacro:include filename="$(find world_model_description)/defs/tree_1.xml"/>
+  <xacro:include filename="$(find world_model_description)/defs/tree_2.xml"/>
+  <xacro:include filename="$(find world_model_description)/defs/tree_3.xml"/>
+  <xacro:include filename="$(find world_model_description)/defs/tree_4.xml"/>
+  <xacro:include filename="$(find world_model_description)/defs/tree_5.xml"/>
+  <xacro:include filename="$(find world_model_description)/defs/tree_6.xml"/>
+  <xacro:include filename="$(find world_model_description)/defs/tree_7.xml"/>
+  <xacro:include filename="$(find world_model_description)/defs/victim_1.xml"/>
+  
+  <!-- This is the top level joint /tf frame. -->
+  <link name="area_link">
+  </link>
+  
+  <tree_1/>
+  <tree_2/>
+  <tree_3/>
+  <tree_4/>
+  <tree_5/>
+  <tree_6/>
+  <tree_7/>
+  <victim_1/>
+
+</robot>

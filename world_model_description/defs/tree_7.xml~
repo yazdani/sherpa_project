@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+ <material name="Blue">
+    <color rgba="0.0 0.0 0.8 1.0"/>
+  </material>
+<material name="DarkGreen">
+    <color rgba="0.0 0.5 0.0 1.0"/>
+  </material>
+  <material name="Green">
+    <color rgba="0.0 0.8 0.0 1.0"/>
+  </material>
+  <material name="Grey">
+    <color rgba="0.7 0.7 0.7 1.0"/>
+  </material>
+  <material name="Grey2">
+    <color rgba="0.9 0.9 0.9 1.0"/>
+  </material>
+  <material name="Red">
+    <color rgba="0.8 0.0 0.0 1.0"/>
+  </material>
+  <material name="White">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+  </material>
+  <material name="Black">
+    <color rgba="0.1 0.1 0.1 1.0"/>
+  </material>
+  <material name="LightGrey">
+    <color rgba="0.6 0.6 0.6 1.0"/>
+  </material>
+
+<material name="DarkOrange">
+    <color rgba="0.8 0.5 0.0 1.0"/>
+  </material>
+
+  <macro name="tree_7">
+
+<joint name="tree_7_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <parent link="tree_7_link"/>
+      <child link="tree_link"/>
+    </joint>
+    
+    <link name="tree_link">
+      <visual>
+	<origin xyz="4 -8 0" rpy="0 0 0"/>
+	<geometry>
+	  <mesh filename="package://world_model_description/meshes/tanne1.dae"/>
+        </geometry>
+	<material name="Green"/>
+      </visual>
+      <collision>
+        <origin xyz="4 -8 0" rpy="0 0 0"/>
+	<geometry>
+	  <mesh filename="package://world_model_description/meshes/tanne1.dae"/>
+        </geometry>
+      </collision>
+</link>
+  <link name="tree_7_link"/>
+ <gazebo>
+	<static>true</static>
+      </gazebo>
+  </macro>
+</robot>
