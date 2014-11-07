@@ -48,6 +48,7 @@
   (setf *list* nil)
   (let* ((genius-urdf (cl-urdf:parse-urdf (roslisp:get-param "human/robot_description")))
          (quad-urdf (cl-urdf:parse-urdf (roslisp:get-param "quadrotor/robot_description")))
+         (sem-urdf (cl-urdf:parse-urdf (roslisp:get-param "area_description")))
          ;; (rover-urdf (cl-urdf:parse-urdf (roslisp:get-param "rover/robot_description")))
          )
     (setf *list*
@@ -60,6 +61,7 @@
                (assert (object ?w static-plane floor ((0 0 0) (0 0 0 1))
                                :normal (0 0 1) :constant 0 :no-robot-collision t))
 	       (debug-window ?w)
+         (assert (object ?w semantic-map sem-map ((0 0 0 0) (0 0 0 1)) :urdf ,sem-urdf))
 	       (assert (object ?w urdf human ((0 0 0) (0 0 1 1)) :urdf ,genius-urdf))
 	       (assert (object ?w urdf quadrotor ((-1 -2 2)(0 0 0 1)) :urdf ,quad-urdf))
  	       ;; (assert (object ?w urdf quadrotor ((-1 -2 0.2)(0 0 1 1)) :urdf ,quad-urdf))
@@ -72,18 +74,18 @@
  (prolog `(and (bullet-world ?w)
 		 (assert (object ?w mesh tree-5 ((6 1 0)(0 0 0 1))
 				 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0.5 0)))
-		 ;; (assert (object ?w mesh tree-6 ((10 4 0)(0 0 0 1))
-		 ;;  	 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0 0)))
-		 ;; (assert (object ?w mesh tree-7 ((10 -4 0)(0 0 0 1))
-		 ;;  	 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0 0)))
-		 ;; (assert (object ?w mesh tree-8 ((15 2 0)(0 0 0 1))
-		 ;;  	 :mesh cognitive-reasoning::tanne2 :mass 0.2 :color (0 0.5 0))) 
-		 ;; (assert (object ?w mesh tree-9 ((13 -6 0)(0 0 0 1))
-		 ;;  	 :mesh cognitive-reasoning::tanne2 :mass 0.2 :color (0 0.5 0))) 
-		 ;; (assert (object ?w mesh tree-10 ((10 -8 0)(0 0 0 1))
-		 ;;  	 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0 0)))
-		 ;; (assert (object ?w mesh tree-12 ((4 -8 0)(0 0 0 1))
-		 ;;  	 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0.5 0)))
+		 (assert (object ?w mesh tree-6 ((10 4 0)(0 0 0 1))
+		  	 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0 0)))
+		 (assert (object ?w mesh tree-7 ((10 -4 0)(0 0 0 1))
+		  	 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0 0)))
+		 (assert (object ?w mesh tree-8 ((15 2 0)(0 0 0 1))
+		  	 :mesh cognitive-reasoning::tanne2 :mass 0.2 :color (0 0.5 0))) 
+		 (assert (object ?w mesh tree-9 ((13 -6 0)(0 0 0 1))
+		  	 :mesh cognitive-reasoning::tanne2 :mass 0.2 :color (0 0.5 0))) 
+		 (assert (object ?w mesh tree-10 ((10 -8 0)(0 0 0 1))
+		  	 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0 0)))
+		 (assert (object ?w mesh tree-12 ((4 -8 0)(0 0 0 1))
+		  	 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0.5 0)))
 		 (assert (object ?w mesh victim ((9 0 0)(0 0 0 1))
 				 :mesh cognitive-reasoning::victim :mass 0.2 :color (1 0 0) :scale 0.6))))
   (simple-knowledge::clear-object-list)
@@ -97,66 +99,66 @@
           (tf:make-3d-vector 6 1 0)
           (tf:make-quaternion 0 0 0 1))
    :file (model-path "tanne1.urdf"))
- ;;  (simple-knowledge::add-object-to-spawn
- ;;   :name "tree-6"
- ;;   :type 'tree
- ;;   :collision-parts nil
- ;;   :pose (tf:make-pose-stamped
- ;;          "/map"
- ;;          0.0
- ;;          (tf:make-3d-vector 10 4 0)
- ;;          (tf:make-quaternion 0 0 0 1))
- ;;   :file (model-path "tanne12.urdf"))
- ;;  (simple-knowledge::add-object-to-spawn
- ;;   :name "tree-7"
- ;;   :type 'tree
- ;;   :collision-parts nil
- ;;   :pose (tf:make-pose-stamped
- ;;          "/map"
- ;;          0.0
- ;;          (tf:make-3d-vector 10 -4 0)
- ;;          (tf:make-quaternion 0 0 0 1))
- ;;   :file (model-path "tanne12.urdf"))
- ;; (simple-knowledge::add-object-to-spawn
- ;;   :name "tree-8"
- ;;   :type 'tree
- ;;   :collision-parts nil
- ;;   :pose (tf:make-pose-stamped
- ;;          "/map"
- ;;          0.0
- ;;          (tf:make-3d-vector 15 2 0)
- ;;          (tf:make-quaternion 0 0 0 1))
- ;;   :file (model-path "tanne2.urdf"))
- ;; (simple-knowledge::add-object-to-spawn
- ;;   :name "tree-9"
- ;;   :type 'tree
- ;;   :collision-parts nil
- ;;   :pose (tf:make-pose-stamped
- ;;          "/map"
- ;;          0.0
- ;;          (tf:make-3d-vector 13 -6 0)
- ;;          (tf:make-quaternion 0 0 0 1))
- ;;   :file (model-path "tanne21.urdf"))
- ;; (simple-knowledge::add-object-to-spawn
- ;;   :name "tree-10"
- ;;   :type 'tree
- ;;   :collision-parts nil
- ;;   :pose (tf:make-pose-stamped
- ;;          "/map"
- ;;          0.0
- ;;          (tf:make-3d-vector 10 -8 0)
- ;;          (tf:make-quaternion 0 0 0 1))
- ;;   :file (model-path "tanne12.urdf"))
- ;; (simple-knowledge::add-object-to-spawn
- ;;   :name "tree-12"
- ;;   :type 'tree
- ;;   :collision-parts nil
- ;;   :pose (tf:make-pose-stamped
- ;;          "/map"
- ;;          0.0
- ;;          (tf:make-3d-vector 4 -8 0)
- ;;          (tf:make-quaternion 0 0 0 1))
- ;;   :file (model-path "tanne1.urdf"))
+  (simple-knowledge::add-object-to-spawn
+   :name "tree-6"
+   :type 'tree
+   :collision-parts nil
+   :pose (tf:make-pose-stamped
+          "/map"
+          0.0
+          (tf:make-3d-vector 10 4 0)
+          (tf:make-quaternion 0 0 0 1))
+   :file (model-path "tanne12.urdf"))
+  (simple-knowledge::add-object-to-spawn
+   :name "tree-7"
+   :type 'tree
+   :collision-parts nil
+   :pose (tf:make-pose-stamped
+          "/map"
+          0.0
+          (tf:make-3d-vector 10 -4 0)
+          (tf:make-quaternion 0 0 0 1))
+   :file (model-path "tanne12.urdf"))
+ (simple-knowledge::add-object-to-spawn
+   :name "tree-8"
+   :type 'tree
+   :collision-parts nil
+   :pose (tf:make-pose-stamped
+          "/map"
+          0.0
+          (tf:make-3d-vector 15 2 0)
+          (tf:make-quaternion 0 0 0 1))
+   :file (model-path "tanne2.urdf"))
+ (simple-knowledge::add-object-to-spawn
+   :name "tree-9"
+   :type 'tree
+   :collision-parts nil
+   :pose (tf:make-pose-stamped
+          "/map"
+          0.0
+          (tf:make-3d-vector 13 -6 0)
+          (tf:make-quaternion 0 0 0 1))
+   :file (model-path "tanne21.urdf"))
+ (simple-knowledge::add-object-to-spawn
+   :name "tree-10"
+   :type 'tree
+   :collision-parts nil
+   :pose (tf:make-pose-stamped
+          "/map"
+          0.0
+          (tf:make-3d-vector 10 -8 0)
+          (tf:make-quaternion 0 0 0 1))
+   :file (model-path "tanne12.urdf"))
+ (simple-knowledge::add-object-to-spawn
+   :name "tree-12"
+   :type 'tree
+   :collision-parts nil
+   :pose (tf:make-pose-stamped
+          "/map"
+          0.0
+          (tf:make-3d-vector 4 -8 0)
+          (tf:make-quaternion 0 0 0 1))
+   :file (model-path "tanne1.urdf"))
  (simple-knowledge::add-object-to-spawn
    :name "victim"
    :type 'clothes
@@ -175,6 +177,7 @@
   (let ((pose (pointed-direction)))
     (format t "pose is: ~a~%" pose)
     (add-sphere pose)
+    (format t "was ist das ~%")
     (check-collision)))
         
 (defun check-collision ()
@@ -188,6 +191,7 @@
        (vec-x  (cl-transforms:x vector))
        (vec-z   (cl-transforms:z vector))
        (new-vec-y (+ vec-y -0.5)))
+  (format t "hallo ~%")
   (cond ((eq nil collision-detector)(format t "great job, take this one ~%"))
         (t
          (prolog `(and 
@@ -251,9 +255,10 @@
   ;;  :file (model-path "sphere.urdf"))
   ;; (format t "ja endlich~%")
   ;;  (simple-knowledge:spawn-objects)
+      (format t "the end is here ~a~%" (get-object-pose 'sphere))
   ))
 
-;rosrun tf static_transform_publisher 0 0 0 1.5 0 0 map odom_combined 100
+;rosrun tf static_transform_publisher 0 0 0 1.5 0 0 map world 100
 
 
 (defun model-path (name)
@@ -330,8 +335,7 @@
  (cram-projection:with-projection-environment
      agents-projection-process-modules::agents-bullet-projection-environment
    (let ((the-object (make-designator 'desig-props:object `((desig-props:type victim)))))
-     the-object))))
-        ;; reference pointed)
+     (reference the-object)))))
         ;; (plan-knowledge:achieve
         ;;  `(plan-knowledge:loc ,the-object ,pointed))))))
   ;;   (format t "maa is ~%")
