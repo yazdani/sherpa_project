@@ -13,4 +13,7 @@
    </include>
 <!-- <include file="$(find startup_scenario)/launch/spawn_quadrotor.launch"/> -->
 </group>
+
+<include file="$(find world_model_description)/launch/json.launch"/>
+<include file="$(find world_model_description)/launch/area_with_state_publisher.launch"/>
 </launch>
