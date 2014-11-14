@@ -40,7 +40,7 @@
 
 <joint name="tree_4_joint" type="fixed">
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <parent link="tree_4_link"/>
+      <parent link="area_link"/>
       <child link="tree4_link"/>
     </joint>
     
@@ -58,9 +58,8 @@
 	  <mesh filename="package://world_model_description/meshes/tanne1.dae"/>
         </geometry>
       </collision>
-
 </link>
-   <link name="tree_4_link"/>
+   <!-- <link name="tree_4_link"/> -->
  <gazebo>
 	<static>true</static>
       </gazebo>

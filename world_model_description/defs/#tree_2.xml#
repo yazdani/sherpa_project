@@ -36,11 +36,11 @@
     <color rgba="0.8 0.5 0.0 1.0"/>
   </material>
 
-  <macro name="tree_2">
+  <macro name="tree_2" params="block_pos block_rpy" >
 
 <joint name="tree_2_joint" type="fixed">
-  <origin xyz="0 0 0" rpy="0 0 0"/>
-      <parent link="area_link"/>
+  <origin xyz="${block_pos}" rpy="${block_rpy}"/>
+      <parent link="tree_2_link"/>
       <child link="tree2_link"/>
     </joint>
     
@@ -59,9 +59,11 @@
         </geometry>
       </collision>    
     </link>
-  
+
+   <link name="tree_2_link"/>
  <gazebo>
 	<static>true</static>
       </gazebo>
+
   </macro>
 </robot>

@@ -36,11 +36,11 @@
     <color rgba="0.8 0.5 0.0 1.0"/>
   </material>
 
-  <macro name="tree_1">
+  <macro name="tree_1">>
 
 <joint name="tree_1_joint" type="fixed">
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <parent link="tree_1_link"/>
+       <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="area_link"/>
       <child link="tree1_link"/>
     </joint>
     
@@ -55,12 +55,10 @@
       <collision>
         <origin xyz="6 1 0" rpy="0 0 0"/>
 	<geometry>
-	  <mesh filename="package://world_model_description/meshes/tanne1.dae"/>
+	  <mesh filename="package://world_model_description/meshes/tanne1.stl"/>
         </geometry>
       </collision>
     </link>
-
-    <link name="tree_1_link"/>
  <gazebo>
 	<static>true</static>
       </gazebo>

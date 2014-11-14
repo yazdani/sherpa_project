@@ -40,7 +40,7 @@
 
 <joint name="tree_3_joint" type="fixed">
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <parent link="tree_3_link"/>
+      <parent link="area_link"/>
       <child link="tree3_link"/>
     </joint>
     
@@ -60,7 +60,7 @@
       </collision>
    
 </link>
-   <link name="tree_3_link"/>
+   <!-- <link name="tree_3_link"/> -->
   <gazebo>
 	<static>true</static>
       </gazebo>

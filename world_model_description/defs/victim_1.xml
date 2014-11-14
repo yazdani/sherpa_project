@@ -40,26 +40,26 @@
 
 <joint name="victim_1_joint" type="fixed">
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <parent link="victim_1_link"/>
+      <parent link="area_link"/>
       <child link="victim_link"/>
     </joint>
     
     <link name="victim_link">
       <visual>
-	<origin xyz="10 4 0" rpy="0 0 0"/>
+	<origin xyz="9 0 0" rpy="0 0 0"/>
 	<geometry>
 	  <mesh filename="package://world_model_description/meshes/victim.dae"/>
         </geometry>
 	<material name="Red"/>
       </visual>
       <collision>
-        <origin xyz="10 4 0" rpy="0 0 0"/>
+        <origin xyz="9 0 0" rpy="0 0 0"/>
 	<geometry>
 	  <mesh filename="package://world_model_description/meshes/victim.dae"/>
         </geometry>
       </collision>    
     </link>
-   <link name="victim_1_link"/>
+  
  <gazebo>
 	<static>true</static>
       </gazebo>
