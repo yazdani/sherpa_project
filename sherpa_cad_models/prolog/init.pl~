@@ -16,8 +16,9 @@
 %%
 
 :- register_ros_package(knowrob_common).
-:- register_ros_package(knowrob_map_tools).
-:- register_ros_package(iai_maps).
+:- register_ros_package(knowrob_objects).
+# :- register_ros_package(ias_semantic_map).
+
 :- register_ros_package(sherpa_cad_models).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -25,5 +26,5 @@
 
 :# - owl_parser:owl_parse('/home/yazdani/work/ros/hydro/rosbuild_ws/workspace/sherpa_project/sherpa_cad_models/owl/sherpa_cad_models.owl', false, false, true).
 :- owl_parse('/home/yazdani/work/ros/hydro/rosbuild_ws/workspace/sherpa_project/sherpa_cad_models/owl/sherpa_cad_models.owl').
-:- rdf_db:rdf_register_ns(cad, 'http://knowrob.org/kb/knowrob.owl#', [keep(true)]).
+:- rdf_db:rdf_register_ns(cad, 'http://ias.cs.tum.edu/kb/knowrob_cad_models.owl#', [keep(true)]).
 

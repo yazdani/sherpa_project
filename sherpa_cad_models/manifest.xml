@@ -9,8 +9,8 @@
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/sherpa_cad_models</url>
   <depend package="knowrob_common"/>
-  <depend package="jpl"/>
-  <depend package="rosjava_jni"/>
+  <!-- <depend package="jpl"/> -->
+  <!-- <depend package="rosjava_jni"/> -->
 
 </package>
 
