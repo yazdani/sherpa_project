@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/yazdani/work/ros/hydro/rosbuild_ws/workspace/sherpa_project/startup_scenario/build/devel/setup.sh

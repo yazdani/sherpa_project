@@ -53,7 +53,7 @@
 	       gazebo-perception-process-module
 	       gazebo_msgs-msg
 	       agents-projection-process-modules
-	       )
+	       semantic-map-costmap)
  :components 
   ((:module "src"
     :components

@@ -43,6 +43,7 @@
 <depend package="agents_navigation_process_module"/>
 <depend package ="gazebo_perception_process_module"/>
 <depend package="agents_projection_process_modules"/>
+<depend package="semantic_map_costmap"/>
 </package>
 
 
