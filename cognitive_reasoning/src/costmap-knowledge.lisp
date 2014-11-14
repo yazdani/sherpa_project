@@ -36,3 +36,9 @@
   (<- (costmap-manipulation-padding 0.38))
   (<- (costmap-in-reach-distance 1.0))
   (<- (costmap-reach-minimal-distance 0.2)))
+
+(def-fact-group semantic-map-data (semantic-map-name)
+  (<- (cl-semantic-map-utils::semantic-map-name
+       "http://knowrob/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"))
+  (<- (semantic-map-obj sem-map)
+    (format "sem-map: ~a~%" sem-map)))

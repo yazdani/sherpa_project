@@ -120,6 +120,7 @@
                                    model)))
                        (physics-utils:3d-model mesh))
                      scale)))
+ (format t "HqqqqALLLOOOOO ENVIRONMENT~%")
  ;;ToDO change the hard-cording stuff and string-equal (there exist different types)
     (cond  ((string-equal name 'victim)
             (make-human-specific-object world name
@@ -133,6 +134,18 @@
                                                                                         :color color
                                                                                         :disable-face-culling disable-face-culling))))
             (format t "bitteeee~%"))
+	   ((string-equal name 'sphere)
+	    (make-objectshape-object  world name
+                                        (or types (list mesh))
+                                        (list
+                                         (make-instance 'rigid-body
+                                                        :name name :mass mass :pose (ensure-pose pose)
+                                                        :collision-shape (make-instance 'cl-bullet-vis:convex-hull-mesh-shape
+                                                                                        :points (physics-utils:3d-model-vertices mesh-model)
+                                                                                        :faces (physics-utils:3d-model-faces mesh-model)
+                                                                                        :color color
+                                                                                        :disable-face-culling disable-face-culling)))) (format t "bitte3eee~%"))
+
           (t (make-environment-object world name (or types (list mesh))
                                       (list
                                        (make-instance 'rigid-body
