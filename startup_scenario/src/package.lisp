@@ -51,6 +51,6 @@
   
   ;(-from #:agents-model-description robot)
   (:import-from #:cram-reasoning #:<- #:def-fact-group)
-  ;; (:import-from #:cram-agents-knowledge quadrotor);cram-pr2-knowledge pr2)
+;  (:import-from #:cram-agents-knowledge quadrotor);cram-pr2-knowledge pr2)
   (:export tree victim sphere)
-  (:desig-properties #:go-to #:far-from #:close-to #:sourrounded-by #:right-of #:left-of #:type #:behind #:in-front #:for-robot #:name #:color #:a-gesture #:pointed-pos))
+  (:desig-properties #:go-to #:far-from #:close-to #:sourrounded-by #:right-of #:left-of #:type #:behind #:in-front #:for-robot #:name #:color #:a-gesture #:pointed-pos #:agent))

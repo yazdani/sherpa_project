@@ -304,7 +304,7 @@
 
 ;; (cpl-impl:def-cram-function find-object-in-world (object-type obstacle-name)
 ;;   "Return an object designator."
-;;  (sb-ext:gc :full t)
+;;  (sbr-l--ext:gc :full t)
 ;;   (with-process-modules
 ;;   (cram-language-designator-support:with-designators
 ;;       ((on-obstacle (desig-props:location `(;; (desig-props:to desig-props:see)
@@ -343,13 +343,14 @@
                                         (for ,object-desig)
                                         (pointed-pos ,(get-object-pose 'sphere))))))
        (format t "now trying to achieve location of victim in world~%")
-       (plan-knowledge:achieve
-        `(plan-knowledge:loc ,spatula-designator ,victims-location))))
+       ;; (plan-knowledge:achieve
+       ;;  `(plan-knowledge:loc ,victims-location))
+       ))
       (sb-ext:gc :full t))))
         ;; (plan-knowledge:achieve
         ;;  `(plan-knowledge:loc ,the-object ,pointed))))))
   ;;   (format t "maa is ~%")
-    ;; (setf ma (plan-lib:perceive-object 'plan-lib:a the-object))
+   ;; (setf ma (plan-lib:perceive-object 'plan-lib:a the-object))
     ;; (format t "maa is ~a~%" ma)
     ;; (format t "in the new function find-object-in-world~%")
     ;; (format t "obstacle ~a~%" pointed)
@@ -400,9 +401,30 @@ desig)
                                          (desig-props:name ,obj-name))));;tree0 ;;cognitive-reasoning::victim
        (the-object (desig-props:object `((desig-props:type ,object-type)
                                          (desig-props:at ,in-world)))))
-    (reference in-world)
+    ;; (reference in-world)
     (format t "trying to perceive an object ~a~%" the-object)
   (let ((perceived-object (plan-lib:perceive-object 'cram-plan-library:a the-object)))
       (unless (desig-equal the-object perceived-object)
         (equate the-object perceived-object))
-      the-object)))
+      the-object)
+    ))
+
+(defun all()
+  (start-world-with-robots)
+  (spawn-objects)
+  (format t "now spawning objects~%")
+  (crs:prolog
+   `(assert (btr:joint-state ?w human (("right_shoulder_joint_x" 0.06) ;;0.1
+                                       ("right_shoulder_joint_y" -0.25)  ;;0.0 0.40
+                                       ("right_shoulder_joint_z" 1.4)  ;;0.6 0.500
+                                       ("left_upper_arm_joint_x" 0.1)
+                                       ("left_upper_arm_joint_y" 3.0)
+                                       ("left_upper_arm_joint_z" -0.5)))))
+  (add-sphere (cl-transforms:origin (cl-transforms:make-pose  (cl-transforms:make-3d-vector 6 2 0) (cl-transforms:make-quaternion 0 0 0 1))))
+  (marker))
+
+(defun cheK()
+ (let(( desig (make-designator 'desig-props:object `((desig-props:name victim)
+                                        (desig-props:at ,(get-object-pose 'sphere))))))
+   (cpl-impl:top-level (with-process-modules 
+                         (plan-lib:perceive-object 'cram-plan-library:a desig)))))
