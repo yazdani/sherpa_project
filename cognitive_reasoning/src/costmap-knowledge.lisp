@@ -40,5 +40,4 @@
 (def-fact-group semantic-map-data (semantic-map-name)
   (<- (cl-semantic-map-utils::semantic-map-name
        "http://knowrob/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"))
-  (<- (semantic-map-obj sem-map)
-    (format "sem-map: ~a~%" sem-map)))
+  (<- (semantic-map-obj sem-map)))

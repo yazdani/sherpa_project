@@ -39,23 +39,9 @@
 (def-fact-group cognitive-reasoning-costmap (desig-costmap)
  (<- (desig-costmap ?desig ?costmap)
    (bullet-world ?world)
-   (format "helooo~%")
-   (format "desig is ~a~%" ?desig)
-   (findall ?obj (and
-                  (bullet-world ?world)
-                  (object ?world ?name)
-                  (%object ?world ?name ?obj)
-                  (lisp-type ?obj environment-object)
-                  (get-slot-value ?obj types ?types)
-                  (member ?type ?types)) ?objs)
-   (format "?objs: ~a~%" (force-ll ?objs))   
-    ;; (costmap ?costmap)
-    ;; (costmap-add-function
-    ;;  collisions
-    ;;  (make-costmap-bbox-generator ?objs :invert t :padding -0.2)
-    ;;  ?costmap)
-   (format "helsooo~%")
- (format "desig is ~a~%" ?desig)
+   (format "desig is---------------------------- ~a~%" ?desig)
+   (robot ?robot)
+   (format "robot : ~a~%" ?robot)
   ; (desig-prop ?desig (right-of ?pos-loc))
    (desig-prop ?desig (pointed-pos ?pos-loc))
   (format "?pos-loc is: ~a~%" ?pos-loc)
@@ -121,4 +107,18 @@
 ) 
 
   
- 
+  ;; (findall ?obj (and
+   ;;                (bullet-world ?world)
+   ;;                (object ?world ?name)
+   ;;                (%object ?world ?name ?obj)
+   ;;                (lisp-type ?obj environment-object)
+   ;;                (get-slot-value ?obj types ?types)
+   ;;                (member ?type ?types)) ?objs)
+   ;; (format "?objs: ~a~%" (force-ll ?objs))  
+   
+    ;; (costmap ?costmap)
+    ;; (costmap-add-function
+    ;;  collisions
+    ;;  (make-costmap-bbox-generator ?objs :invert t :padding -0.2)
+    ;;  ?costmap)
+  
