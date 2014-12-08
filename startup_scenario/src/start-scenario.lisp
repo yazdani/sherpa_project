@@ -58,12 +58,15 @@
              `(and
                (clear-bullet-world)
                (bullet-world ?w)
+               (robot ?robot)
                (assert (object ?w static-plane floor ((0 0 0) (0 0 0 1))
-                               :normal (0 0 1) :constant 0 :no-robot-collision t))
+                               :normal (0 0 1) :constant 0 :disable-collisions-with (?robot)))
                (debug-window ?w)
                (assert (object ?w btr::semantic-map sem-map ((0 0 0) (0 0 0 1)) :urdf ,sem-urdf))
-               (assert (object ?w urdf human ((0 0 0) (0 0 1 1)) :urdf ,genius-urdf))
+               ;; (assert (object ?w urdf human ((0 0 0) (0 0 1 1)) :urdf ,genius-urdf))
                (assert (object ?w urdf quadrotor ((-1 -2 2)(0 0 0 1)) :urdf ,quad-urdf))
+               ;; (robot quadrotor)
+               ;; (robot human)
                ;; (assert (object ?w urdf quadrotor ((-1 -2 0.2)(0 0 1 1)) :urdf ,quad-urdf))
  
 	       ;; (assert (object ?w urdf rover ((1 3 0) (0 0 0 1)) :urdf ,rover-urdf))
@@ -206,7 +209,7 @@
   ;; (pointing-direction)
   (location-costmap::location-costmap-vis-init)
   (let* ((transform-x
-           (tf:lookup-transform cram-roslisp-common:*tf* :time 0.0 :source-frame "right_hand_x" :target-frame "map"))
+           (tf:lookup-transform cram-roslisp-common:*tf* :time 0.0 :source-frame "busy_genius/right_hand_x" :target-frame "map"))
          (trans-x (cl-transforms:transform->pose transform-x))
          (trans (cl-transforms:origin trans-x))
          (x-val (+ (cl-transforms:x trans) 6))
@@ -396,11 +399,12 @@ desig)
 
 
 (cpl-impl:def-cram-function find-object-in-world (object-type obj-name)
+  "Returns an object designator"
   (cram-language-designator-support:with-designators
       ((in-world (desig-props:location `((desig-props:on "Tree")
                                          (desig-props:name ,obj-name))));;tree0 ;;cognitive-reasoning::victim
        (the-object (desig-props:object `((desig-props:type ,object-type)
-                                         (desig-props:at ,in-world)))))
+                                         (desig-props:in ,in-world)))))
     ;; (reference in-world)
     (format t "trying to perceive an object ~a~%" the-object)
   (let ((perceived-object (plan-lib:perceive-object 'cram-plan-library:a the-object)))
@@ -428,3 +432,18 @@ desig)
                                         (desig-props:at ,(get-object-pose 'sphere))))))
    (cpl-impl:top-level (with-process-modules 
                          (plan-lib:perceive-object 'cram-plan-library:a desig)))))
+;; (cpl-impl:top-level (plan-lib:perceive-object 'cram-plan-library:a desig))
+
+;; (defun test-costmap ()
+;;   (prolog `(and (costmap-padding ?pad)
+;;               (costmap ?cm)
+;;               (occupancy-grid-costmap::drivable-location-costmap ?cm ?pad)
+;;               (semantic-map-objects ?objects)
+;;               (costmap-add-function semantic-map-costmap::semantic-map-free-space
+;;                                     (semantic-map-costmap::make-semantic-map-costmap
+;;                                      ?objects :invert t :padding ?pad)
+;;                                     ?cm)
+;;               (costmap-add-function restricted-area
+;;                                     (make-restricted-area-cost-function)
+;;                                     ?cm)
+;;               (debug-costmap ?cm))))
