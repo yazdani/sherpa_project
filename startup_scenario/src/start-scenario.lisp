@@ -46,7 +46,7 @@
   (roslisp:ros-info (sherpa-spatial-relations) "START WORLD AND ROBOTS")
   (location-costmap::location-costmap-vis-init)
   (setf *list* nil)
-  (let* ((genius-urdf (cl-urdf:parse-urdf (roslisp:get-param "human/robot_description")))
+  (let* (;; (genius-urdf (cl-urdf:parse-urdf (roslisp:get-param "human/robot_description")))
          (quad-urdf (cl-urdf:parse-urdf (roslisp:get-param "quadrotor/robot_description")))
          (sem-urdf (cl-urdf:parse-urdf (roslisp:get-param "area_description")))
          ;; (rover-urdf (cl-urdf:parse-urdf (roslisp:get-param "rover/robot_description")))
@@ -90,89 +90,89 @@
 		 ;; (assert (object ?w mesh tree-12 ((4 -8 0)(0 0 0 1))
 		 ;;  	 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0.5 0)))
 		 (assert (object ?w mesh victim ((9 0 0)(0 0 0 1))
-				 :mesh cognitive-reasoning::victim :mass 0.2 :color (1 0 0) :scale 0.6))))
-  (simple-knowledge::clear-object-list)
-   (simple-knowledge::add-object-to-spawn
-   :name "tree-5"
-   :type 'tree
-   :collision-parts nil
-   :pose (tf:make-pose-stamped
-          "/map"
-          0.0
-          (tf:make-3d-vector 6 1 0)
-          (tf:make-quaternion 0 0 0 1))
-   :file (model-path "tanne1.urdf"))
-  (simple-knowledge::add-object-to-spawn
-   :name "tree-6"
-   :type 'tree
-   :collision-parts nil
-   :pose (tf:make-pose-stamped
-          "/map"
-          0.0
-          (tf:make-3d-vector 10 4 0)
-          (tf:make-quaternion 0 0 0 1))
-   :file (model-path "tanne12.urdf"))
-  (simple-knowledge::add-object-to-spawn
-   :name "tree-7"
-   :type 'tree
-   :collision-parts nil
-   :pose (tf:make-pose-stamped
-          "/map"
-          0.0
-          (tf:make-3d-vector 10 -4 0)
-          (tf:make-quaternion 0 0 0 1))
-   :file (model-path "tanne12.urdf"))
- (simple-knowledge::add-object-to-spawn
-   :name "tree-8"
-   :type 'tree
-   :collision-parts nil
-   :pose (tf:make-pose-stamped
-          "/map"
-          0.0
-          (tf:make-3d-vector 15 2 0)
-          (tf:make-quaternion 0 0 0 1))
-   :file (model-path "tanne2.urdf"))
- (simple-knowledge::add-object-to-spawn
-   :name "tree-9"
-   :type 'tree
-   :collision-parts nil
-   :pose (tf:make-pose-stamped
-          "/map"
-          0.0
-          (tf:make-3d-vector 13 -6 0)
-          (tf:make-quaternion 0 0 0 1))
-   :file (model-path "tanne21.urdf"))
- (simple-knowledge::add-object-to-spawn
-   :name "tree-10"
-   :type 'tree
-   :collision-parts nil
-   :pose (tf:make-pose-stamped
-          "/map"
-          0.0
-          (tf:make-3d-vector 10 -8 0)
-          (tf:make-quaternion 0 0 0 1))
-   :file (model-path "tanne12.urdf"))
- (simple-knowledge::add-object-to-spawn
-   :name "tree-12"
-   :type 'tree
-   :collision-parts nil
-   :pose (tf:make-pose-stamped
-          "/map"
-          0.0
-          (tf:make-3d-vector 4 -8 0)
-          (tf:make-quaternion 0 0 0 1))
-   :file (model-path "tanne1.urdf"))
- (simple-knowledge::add-object-to-spawn
-   :name "victim"
-   :type 'clothes
-   :collision-parts nil
-   :pose (tf:make-pose-stamped
-          "/map"
-          0.0
-          (tf:make-3d-vector 9 0 0)
-          (tf:make-quaternion 0 0 0 1))
-   :file (model-path "victim.urdf"))
-   (simple-knowledge:spawn-objects)
+				 :mesh btr::victim :mass 0.2 :color (1 0 0) :scale 0.6))))
+ ;;  (simple-knowledge::clear-object-list)
+ ;;   (simple-knowledge::add-object-to-spawn
+ ;;   :name "tree-5"
+ ;;   :type 'tree
+ ;;   :collision-parts nil
+ ;;   :pose (tf:make-pose-stamped
+ ;;          "/map"
+ ;;          0.0
+ ;;          (tf:make-3d-vector 6 1 0)
+ ;;          (tf:make-quaternion 0 0 0 1))
+ ;;   :file (model-path "tanne1.urdf"))
+ ;;  (simple-knowledge::add-object-to-spawn
+ ;;   :name "tree-6"
+ ;;   :type 'tree
+ ;;   :collision-parts nil
+ ;;   :pose (tf:make-pose-stamped
+ ;;          "/map"
+ ;;          0.0
+ ;;          (tf:make-3d-vector 10 4 0)
+ ;;          (tf:make-quaternion 0 0 0 1))
+ ;;   :file (model-path "tanne12.urdf"))
+ ;;  (simple-knowledge::add-object-to-spawn
+ ;;   :name "tree-7"
+ ;;   :type 'tree
+ ;;   :collision-parts nil
+ ;;   :pose (tf:make-pose-stamped
+ ;;          "/map"
+ ;;          0.0
+ ;;          (tf:make-3d-vector 10 -4 0)
+ ;;          (tf:make-quaternion 0 0 0 1))
+ ;;   :file (model-path "tanne12.urdf"))
+ ;; (simple-knowledge::add-object-to-spawn
+ ;;   :name "tree-8"
+ ;;   :type 'tree
+ ;;   :collision-parts nil
+ ;;   :pose (tf:make-pose-stamped
+ ;;          "/map"
+ ;;          0.0
+ ;;          (tf:make-3d-vector 15 2 0)
+ ;;          (tf:make-quaternion 0 0 0 1))
+ ;;   :file (model-path "tanne2.urdf"))
+ ;; (simple-knowledge::add-object-to-spawn
+ ;;   :name "tree-9"
+ ;;   :type 'tree
+ ;;   :collision-parts nil
+ ;;   :pose (tf:make-pose-stamped
+ ;;          "/map"
+ ;;          0.0
+ ;;          (tf:make-3d-vector 13 -6 0)
+ ;;          (tf:make-quaternion 0 0 0 1))
+ ;;   :file (model-path "tanne21.urdf"))
+ ;; (simple-knowledge::add-object-to-spawn
+ ;;   :name "tree-10"
+ ;;   :type 'tree
+ ;;   :collision-parts nil
+ ;;   :pose (tf:make-pose-stamped
+ ;;          "/map"
+ ;;          0.0
+ ;;          (tf:make-3d-vector 10 -8 0)
+ ;;          (tf:make-quaternion 0 0 0 1))
+ ;;   :file (model-path "tanne12.urdf"))
+ ;; (simple-knowledge::add-object-to-spawn
+ ;;   :name "tree-12"
+ ;;   :type 'tree
+ ;;   :collision-parts nil
+ ;;   :pose (tf:make-pose-stamped
+ ;;          "/map"
+ ;;          0.0
+ ;;          (tf:make-3d-vector 4 -8 0)
+ ;;          (tf:make-quaternion 0 0 0 1))
+ ;;   :file (model-path "tanne1.urdf"))
+ ;; (simple-knowledge::add-object-to-spawn
+ ;;   :name "victim"
+ ;;   :type 'clothes
+ ;;   :collision-parts nil
+ ;;   :pose (tf:make-pose-stamped
+ ;;          "/map"
+ ;;          0.0
+ ;;          (tf:make-3d-vector 9 0 0)
+ ;;          (tf:make-quaternion 0 0 0 1))
+ ;;   :file (model-path "victim.urdf"))
+ ;;   (simple-knowledge:spawn-objects)
   )
 
 (defun marker()

@@ -35,7 +35,7 @@
 
   (<- (costmap-padding 0.38))
   (<- (costmap-manipulation-padding 0.38))
-  (<- (costmap-in-reach-distance 1.0))
+  (<- (costmap-in-reach-distance 0.9))
   (<- (costmap-reach-minimal-distance 0.2)))
 
 (def-fact-group semantic-map-data (semantic-map-name)
