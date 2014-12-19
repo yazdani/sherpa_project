@@ -73,15 +73,16 @@
    )
   
  (<- (desig-costmap ?desig ?costmap)
-     (format "prolog: cognitive-reasoning-costmap~%")
+     (format "prolog: cognitive-reasoning-costmap2~%")
      (bullet-world ?world)
    (robot ?robot)
    (costmap ?costmap)
+   (format "prolog: cognitive-reasoning-costmap3~%")
    (costmap-add-height-generator (make-constant-height-function
 				  3.0)
 				 ?costmap)
-   (costmap ?costmap)
    )
+
   (<- (environment-object-type ?world ?name ?type)
      (bullet-world ?world)
      (object ?world ?name)

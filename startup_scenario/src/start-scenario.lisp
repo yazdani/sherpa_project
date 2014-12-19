@@ -75,6 +75,8 @@
 (defun spawn-objects ()
  (roslisp:ros-info (sherpa-spatial-relations) "SPAWN OBJECTS INTO WORLD")
  (prolog `(and (bullet-world ?w)
+               	 (assert (object ?w mesh victim ((9 0 0)(0 0 0 1))
+				 :mesh btr::victim :mass 0.2 :color (1 0 0) :scale 0.6)))))
 		 ;; (assert (object ?w mesh tree-5 ((6 1 0)(0 0 0 1))
 		 ;;  	 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0.5 0)))
 		 ;; (assert (object ?w mesh tree-6 ((10 4 0)(0 0 0 1))
@@ -89,9 +91,8 @@
 		 ;;  	 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0 0)))
 		 ;; (assert (object ?w mesh tree-12 ((4 -8 0)(0 0 0 1))
 		 ;;  	 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0.5 0)))
-		 (assert (object ?w mesh victim ((9 0 0)(0 0 0 1))
-				 :mesh btr::victim :mass 0.2 :color (1 0 0) :scale 0.6))))
- ;;  (simple-knowledge::clear-object-list)
+	
+ ;;  (simple-knowledge::clear-object-list)q
  ;;   (simple-knowledge::add-object-to-spawn
  ;;   :name "tree-5"
  ;;   :type 'tree
@@ -173,7 +174,7 @@
  ;;          (tf:make-quaternion 0 0 0 1))
  ;;   :file (model-path "victim.urdf"))
  ;;   (simple-knowledge:spawn-objects)
-  )
+  
 
 (defun marker()
   ;; (pointing-direction)

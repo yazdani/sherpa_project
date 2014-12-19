@@ -40,5 +40,12 @@
 
 (def-fact-group semantic-map-data (semantic-map-name)
   (<- (cl-semantic-map-utils::semantic-map-name
-       "http://knowrob/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"))
+       "http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"))
   (<- (semantic-map-obj sem-map)))
+
+(disable-location-validation-function 'btr-desig::robot-location-on-floor)
+(disable-location-validation-function 'designators-ros::filter-solution)
+;; (disable-location-validation-function 'btr-desig::validate-designator-solution)
+(disable-location-validation-function 'btr-desig::check-ik-solution)
+;; (disable-location-validation-function 'desig::designator-prolog-desig-solution-validator)
+;; (disable-location-validation-function 'location-costmap::location-costmap-pose-validator)

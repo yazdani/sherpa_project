@@ -93,10 +93,31 @@
 ;;        1.0d0))))
         
 
+;; (defun make-constant-height-function (height)
+;;   (format t "list height123: ~a~%" (list height))
+;;   (lambda (x y)
+;;     (declare (ignore x y))
+;;     (list height)))
+
+
+
 (defun make-constant-height-function (height)
-  (format t "list height: ~a~%" (list height))
-  (lambda (x y)
-    (declare (ignore x y))
-    (list height)))
-
-
+  (format t "list height123: ~a~%" (list height))
+  (let* ((lists (force-ll
+		 (prolog `(and (bullet-world ?w)
+                               (human-object-type ?w ?name ?type)
+			       (pose ?w ?name ?pose)))))
+	 (pose (cdr (assoc '?pose (car lists))))
+	 (z-origin (cl-transforms:z (cl-transforms:origin pose)))
+	 (rob-name (cdadar (force-ll
+			    (prolog `(and (bullet-world ?w)
+					  (robot ?robot)))))))
+    (format t "rob-name is ~a~%" rob-name)
+    (cond ((string-equal rob-name 'quadrotor)
+	   (format t "wir sind im ersten Teil von height und addieren die Zwei~%")
+	   (setf height (+ 2 z-origin)))
+	  (t (format t "sind anscheinend noch bei zwei~%")))
+    (lambda (x y)
+      (declare (ignore x y))
+      (list height))))
+	 
