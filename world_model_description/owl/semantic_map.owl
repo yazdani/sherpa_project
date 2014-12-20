@@ -3,7 +3,7 @@
     <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
-    <!ENTITY knowrob "http://ias.cs.tum.edu/kb/knowrob.owl#"> <!-- "http://knowrob.org/kb/knowrob.owl#" --><!-- "http://ias.cs.tum.edu/kb/knowrob.owl#" > -->
+    <!ENTITY knowrob "http://knowrob.org/kb/knowrob.owl#"><!-- "http://ias.cs.tum.edu/kb/knowrob.owl#" > -->
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!-- <!ENTITY computable "http://ias.cs.tum.edu/kb/computable.owl#" > -->
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
