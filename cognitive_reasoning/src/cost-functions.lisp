@@ -115,7 +115,7 @@
     (format t "rob-name is ~a~%" rob-name)
     (cond ((string-equal rob-name 'quadrotor)
 	   (format t "wir sind im ersten Teil von height und addieren die Zwei~%")
-	   (setf height (+ 2 z-origin)))
+	   (setf height 2)); (+ 2 z-origin)))
 	  (t (format t "sind anscheinend noch bei zwei~%")))
     (lambda (x y)
       (declare (ignore x y))
