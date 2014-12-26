@@ -24,6 +24,6 @@
 % parse OWL files, register name spaces
 
 :# - owl_parser:owl_parse('/home/yazdani/work/ros/hydro/rosbuild_ws/workspace/sherpa_project/sherpa_cad_models/owl/sherpa_cad_models.owl', false, false, true).
-:- owl_parse('/home/yazdani/work/ros/hydro/rosbuild_ws/workspace/sherpa_project/sherpa_cad_models/owl/sherpa_cad_models.owl').
+:- owl_parse('package://sherpa_cad_models/owl/sherpa_cad_models.owl').
 :- rdf_db:rdf_register_ns(cad, 'http://knowrob.org/kb/knowrob.owl#', [keep(true)]).
 
