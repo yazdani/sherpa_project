@@ -114,8 +114,8 @@
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
-
-   <rdf:Description rdf:about="&knowrob;Tree">
+<!-- Environmentspecific Items -->
+   <rdf:Description rdf:about="&knowrob;WTree0">
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
@@ -124,11 +124,66 @@
         </rdfs:subClassOf>
     </rdf:Description>
 
-  <rdf:Description rdf:about="&knowrob;Tree1">
+  <rdf:Description rdf:about="&knowrob;WTree1">
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/environmentspecific-items/tanne2.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+
+ <rdf:Description rdf:about="&knowrob;DTree0">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/environmentspecific-items/dry_tree0.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+
+  <rdf:Description rdf:about="&knowrob;DTree1">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/environmentspecific-items/dry_tree1.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+
+ <rdf:Description rdf:about="&knowrob;Stone0">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/environmentspecific-items/stone0.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+
+  <rdf:Description rdf:about="&knowrob;Stone1">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/environmentspecific-items/stone1.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+
+<!-- Humanspecific Items -->
+ <rdf:Description rdf:about="&knowrob;Boot">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/humanspecific-items/boot.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+
+ <rdf:Description rdf:about="&knowrob;Cap">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/humanspecific-items/cap.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
     </rdf:Description>
