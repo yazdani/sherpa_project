@@ -1,0 +1,57 @@
+{
+    "query": [
+        {
+            "q": "",
+            "text": "----- init -----"
+        },
+        {
+            "q": "register_ros_package(sherpa_cad_models).",
+            "text": "Load register"
+        },
+      	{
+            "q": "",
+            "text": ""
+        },
+        {
+            "q": "",
+            "text": "----- Queries on the semantic map -----"
+        },
+        {
+            "q": "owl_parse('package://world_model_description/owl/semantic_map01.owl').",
+            "text": "Load semantic map"
+        },
+        {
+            "q": "owl_individual_of(A, knowrob:'SemanticEnvironmentMap'), !, add_object_with_children(A).",
+            "text": "Visualize semantic map"
+        },
+        {
+            "q": "owl_individual_of(A, knowrob:'Human').",
+            "text": "Visualize Humanspecific Items"
+        },
+        {
+            "q": "owl_individual_of(A, knowrob:'Human'), highlight_object(A).",
+            "text": "Mark Humanspecific Items"
+        },
+        {
+            "q": "owl_individual_of(A, knowrob:'Victim'), highlight_object(A).",
+            "text": "Mark Victim"
+        },
+
+	{
+            "q": "owl_individual_of(A, knowrob:'Environment').",
+            "text": "Visualize Environmentspecific Items"
+        },
+        {
+            "q": "",
+            "text": ""
+        },
+        {
+            "q": "",
+            "text": "----- Queries on the robot's logged belief state -----"
+        },
+        {
+            "q": "owl_parse('package://cram_agents_knowledge/srdl/quadrotor.owl').",
+            "text": "Load quadrotor robot model"
+        }
+    ]
+}
