@@ -197,4 +197,14 @@
         </rdfs:subClassOf>
     </rdf:Description>
 
+
+ <rdf:Description rdf:about="&knowrob;Gesture">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/humanspecific-items/human_pointing.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+
 </rdf:RDF>

@@ -241,45 +241,45 @@
 
     <!-- &knowrob;WTree -->
 
-    <owl:Class rdf:about="&knowrob;WTree">
+    <owl:Class rdf:about="&knowrob;Environment">
 	<rdfs:subClassOf rdf:resource="&knowrob;SpatialThing-Localized"/>
     </owl:Class>
 
     <owl:Class rdf:about="&knowrob;WTree0">
-	<rdfs:subClassOf rdf:resource="&knowrob;WTree"/>
+	<rdfs:subClassOf rdf:resource="&knowrob;Environment"/>
     </owl:Class>
 
     <owl:Class rdf:about="&knowrob;WTree1">
-	<rdfs:subClassOf rdf:resource="&knowrob;WTree"/>
+	<rdfs:subClassOf rdf:resource="&knowrob;Environment"/>
     </owl:Class>
 
 
     <!-- &knowrob;DTree -->
 
-    <owl:Class rdf:about="&knowrob;DTree">
+    <owl:Class rdf:about="&knowrob;Environment">
 	<rdfs:subClassOf rdf:resource="&knowrob;SpatialThing-Localized"/>
     </owl:Class>
 
     <owl:Class rdf:about="&knowrob;DTree0">
-	<rdfs:subClassOf rdf:resource="&knowrob;DTree"/>
+	<rdfs:subClassOf rdf:resource="&knowrob;Environment"/>
     </owl:Class>
 
     <owl:Class rdf:about="&knowrob;DTree1">
-	<rdfs:subClassOf rdf:resource="&knowrob;DTree"/>
+	<rdfs:subClassOf rdf:resource="&knowrob;Environment"/>
     </owl:Class>
 
     <!-- &knowrob;Stone -->
 
-    <owl:Class rdf:about="&knowrob;Stone">
+    <owl:Class rdf:about="&knowrob;Environment">
 	<rdfs:subClassOf rdf:resource="&knowrob;SpatialThing-Localized"/>
     </owl:Class>
 
     <owl:Class rdf:about="&knowrob;Stone0">
-	<rdfs:subClassOf rdf:resource="&knowrob;Stone"/>
+	<rdfs:subClassOf rdf:resource="&knowrob;Environment"/>
     </owl:Class>
 
     <owl:Class rdf:about="&knowrob;Stone1">
-	<rdfs:subClassOf rdf:resource="&knowrob;Stone"/>
+	<rdfs:subClassOf rdf:resource="&knowrob;Environment"/>
     </owl:Class>
 
 
