@@ -7,6 +7,7 @@
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!-- <!ENTITY computable "http://ias.cs.tum.edu/kb/computable.owl#" > -->
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+   <!ENTITY semantic_map01 "http://knowrob.org/kb/semantic_map01.owl#" >
 ]>
 
 <rdf:RDF xmlns="http://knowrob.org/kb/ias_semantic_map.owl#"
@@ -30,6 +31,10 @@
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
+
+    <!-- http://knowrob.org/kb/knowrob.owl#in-ContGeneric -->
+
+    <owl:ObjectProperty rdf:about="&knowrob;at-ContGeneric"/>
 
     <!-- &knowrob;describedInMap -->
 
@@ -238,50 +243,81 @@
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
-
-    <!-- &knowrob;WTree -->
+   <!-- &knowrob;Properties in Classes -->
+  <owl:Class rdf:about="&knowrob;Tree"/>
+<owl:Class rdf:about="&knowrob;Leaves"/>
+    <!-- &knowrob;Tree -->
 
     <owl:Class rdf:about="&knowrob;Environment">
 	<rdfs:subClassOf rdf:resource="&knowrob;SpatialThing-Localized"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&knowrob;WTree0">
+    <!-- <owl:Class rdf:about="&knowrob;Tree"> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;Environment"/> -->
+    <!-- </owl:Class> -->
+
+    <owl:Class rdf:about="&knowrob;Tree0">
 	<rdfs:subClassOf rdf:resource="&knowrob;Environment"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&knowrob;WTree1">
+    <owl:Class rdf:about="&knowrob;Tree1">
 	<rdfs:subClassOf rdf:resource="&knowrob;Environment"/>
     </owl:Class>
+    
+    <!-- <owl:Class rdf:about="&knowrob;Wood"> -->
+    <!--   	<rdfs:subClassOf rdf:resource="&knowrob;WTree0"/> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;WTree1"/> -->
+    <!-- </owl:Class> -->
 
+    <!-- <owl:Class rdf:about="&knowrob;Inflammable"> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;Wood"/> -->
+    <!-- </owl:Class> -->
 
     <!-- &knowrob;DTree -->
 
-    <owl:Class rdf:about="&knowrob;Environment">
-	<rdfs:subClassOf rdf:resource="&knowrob;SpatialThing-Localized"/>
-    </owl:Class>
+    <!-- <owl:Class rdf:about="&knowrob;Environment"> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;SpatialThing-Localized"/> -->
+    <!-- </owl:Class> -->
 
-    <owl:Class rdf:about="&knowrob;DTree0">
-	<rdfs:subClassOf rdf:resource="&knowrob;Environment"/>
-    </owl:Class>
+    <!-- <owl:Class rdf:about="&knowrob;DTree0"> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;Environment"/> -->
+    <!-- </owl:Class> -->
 
-    <owl:Class rdf:about="&knowrob;DTree1">
-	<rdfs:subClassOf rdf:resource="&knowrob;Environment"/>
-    </owl:Class>
+    <!-- <owl:Class rdf:about="&knowrob;DTree1"> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;Environment"/> -->
+    <!-- </owl:Class> -->
+
+    <!-- <owl:Class rdf:about="&knowrob;Wood"> -->
+    <!--   	<rdfs:subClassOf rdf:resource="&knowrob;DTree0"/> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;DTree1"/> -->
+    <!-- </owl:Class> -->
+
+    <!-- <owl:Class rdf:about="&knowrob;Inflammable"> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;Wood"/> -->
+    <!-- </owl:Class> -->
 
     <!-- &knowrob;Stone -->
 
-    <owl:Class rdf:about="&knowrob;Environment">
-	<rdfs:subClassOf rdf:resource="&knowrob;SpatialThing-Localized"/>
-    </owl:Class>
+    <!-- <owl:Class rdf:about="&knowrob;Environment"> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;SpatialThing-Localized"/> -->
+    <!-- </owl:Class> -->
 
-    <owl:Class rdf:about="&knowrob;Stone0">
+    <!-- <owl:Class rdf:about="&knowrob;Rock"> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;Environment"/> -->
+    <!-- </owl:Class> -->
+
+    <owl:Class rdf:about="&knowrob;Rocks0">
 	<rdfs:subClassOf rdf:resource="&knowrob;Environment"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&knowrob;Stone1">
+    <owl:Class rdf:about="&knowrob;Rocks1">
 	<rdfs:subClassOf rdf:resource="&knowrob;Environment"/>
     </owl:Class>
-
+    
+    <!-- <owl:Class rdf:about="&knowrob;Hard"> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;Stone0"/> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;Stone1"/> -->
+    <!-- </owl:Class> -->
 
     <!-- &knowrob;Human -->
 
@@ -313,6 +349,22 @@
 	<rdfs:subClassOf rdf:resource="&knowrob;Human"/>
     </owl:Class>
     
+    <!--  <owl:Class rdf:about="&knowrob;Clothes"> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;Boot"/> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;Cap"/> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;Ski"/> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;Gloves"/> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;Sole"/> -->
+    <!-- </owl:Class> -->
+
+    <!-- <owl:Class rdf:about="&knowrob;Material"> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;Clothes"/> -->
+    <!-- </owl:Class> -->
+    
+    <!--  <owl:Class rdf:about="&knowrob;Alive"> -->
+    <!-- 	<rdfs:subClassOf rdf:resource="&knowrob;Victim"/> -->
+    <!-- </owl:Class> -->
+
     <!-- &knowrob;RotationMatrix3D -->
 
     <owl:Class rdf:about="&knowrob;RotationMatrix3D"/>
@@ -394,11 +446,18 @@
       <knowrob:vectorZ rdf:datatype="&xsd;double">0.0</knowrob:vectorZ>
     </owl:NamedIndividual>
 
+
+<!-- Beta-Version of Structure-->
+<owl:NamedIndividual rdf:about="&knowrob;Leaves">
+        <rdf:type rdf:resource="&knowrob;Tree"/>
+        <knowrob:at-ContGeneric rdf:resource="&knowrob;Tree0"/>
+    </owl:NamedIndividual>
+
 <!-- Environmentspecific Items -->
 
 <!--0 WTREE0 -->
 <owl:NamedIndividual rdf:about="&knowrob;wtree0">
-  <rdf:type rdf:resource="&knowrob;WTree0"/>
+  <rdf:type rdf:resource="&knowrob;Tree0"/>
   <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
   <knowrob:depthOfObject rdf:datatype="&xsd;double">0.05</knowrob:depthOfObject>
   <knowrob:widthOfObject rdf:datatype="&xsd;double">0.05</knowrob:widthOfObject>
@@ -434,7 +493,7 @@
 
 <!--1 WTREE1 -->
 <owl:NamedIndividual rdf:about="&knowrob;wtree1">
-  <rdf:type rdf:resource="&knowrob;WTree1"/>
+  <rdf:type rdf:resource="&knowrob;Tree1"/>
   <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
   <knowrob:depthOfObject rdf:datatype="&xsd;double">0.05</knowrob:depthOfObject>
   <knowrob:widthOfObject rdf:datatype="&xsd;double">0.05</knowrob:widthOfObject>
@@ -470,7 +529,7 @@
 	
 <!--2 WTREE0 -->
 <owl:NamedIndividual rdf:about="&knowrob;wtree2">
-  <rdf:type rdf:resource="&knowrob;WTree0"/>
+  <rdf:type rdf:resource="&knowrob;Tree0"/>
   <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
   <knowrob:depthOfObject rdf:datatype="&xsd;double">0.05</knowrob:depthOfObject>
   <knowrob:widthOfObject rdf:datatype="&xsd;double">0.05</knowrob:widthOfObject>
@@ -542,7 +601,7 @@
 
 <!--3 WTREE -->
 <owl:NamedIndividual rdf:about="&knowrob;wtree4">
-  <rdf:type rdf:resource="&knowrob;WTree0"/>
+  <rdf:type rdf:resource="&knowrob;Tree0"/>
   <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
   <knowrob:depthOfObject rdf:datatype="&xsd;double">0.05</knowrob:depthOfObject>
   <knowrob:widthOfObject rdf:datatype="&xsd;double">0.05</knowrob:widthOfObject>
@@ -614,7 +673,7 @@
 
 <!--4 WTREE -->
 <owl:NamedIndividual rdf:about="&knowrob;wtree6">
-  <rdf:type rdf:resource="&knowrob;WTree0"/>
+  <rdf:type rdf:resource="&knowrob;Tree0"/>
   <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
   <knowrob:depthOfObject rdf:datatype="&xsd;double">0.05</knowrob:depthOfObject>
   <knowrob:widthOfObject rdf:datatype="&xsd;double">0.05</knowrob:widthOfObject>
@@ -650,7 +709,7 @@
 
 <!--0 Stone0 -->
 <owl:NamedIndividual rdf:about="&knowrob;stone0">
-  <rdf:type rdf:resource="&knowrob;Stone0"/>
+  <rdf:type rdf:resource="&knowrob;Rocks0"/>
   <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
   <knowrob:depthOfObject rdf:datatype="&xsd;double">0.05</knowrob:depthOfObject>
   <knowrob:widthOfObject rdf:datatype="&xsd;double">0.05</knowrob:widthOfObject>
@@ -686,7 +745,7 @@
 
  <!-- 1 STONE1 -->
 <owl:NamedIndividual rdf:about="&knowrob;stone1">
-  <rdf:type rdf:resource="&knowrob;Stone1"/>
+  <rdf:type rdf:resource="&knowrob;Rocks1"/>
   <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
   <knowrob:depthOfObject rdf:datatype="&xsd;double">0.05</knowrob:depthOfObject>
   <knowrob:widthOfObject rdf:datatype="&xsd;double">0.05</knowrob:widthOfObject>
@@ -760,7 +819,7 @@
 
 <!-- 3 STONE0 -->
 <owl:NamedIndividual rdf:about="&knowrob;stone3">
-  <rdf:type rdf:resource="&knowrob;Stone0"/>
+  <rdf:type rdf:resource="&knowrob;Rocks0"/>
   <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
   <knowrob:depthOfObject rdf:datatype="&xsd;double">0.05</knowrob:depthOfObject>
   <knowrob:widthOfObject rdf:datatype="&xsd;double">0.05</knowrob:widthOfObject>
@@ -978,40 +1037,40 @@
 
 
 <!-- DTREE -->
-<owl:NamedIndividual rdf:about="&knowrob;dtree">
-  <rdf:type rdf:resource="&knowrob;DTree1"/>
-  <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
-  <knowrob:depthOfObject rdf:datatype="&xsd;double">0.05</knowrob:depthOfObject>
-  <knowrob:widthOfObject rdf:datatype="&xsd;double">0.05</knowrob:widthOfObject>
-  <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
-</owl:NamedIndividual>
+<!-- <owl:NamedIndividual rdf:about="&knowrob;dtree"> -->
+<!--   <rdf:type rdf:resource="&knowrob;DTree1"/> -->
+<!--   <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject> -->
+<!--   <knowrob:depthOfObject rdf:datatype="&xsd;double">0.05</knowrob:depthOfObject> -->
+<!--   <knowrob:widthOfObject rdf:datatype="&xsd;double">0.05</knowrob:widthOfObject> -->
+<!--   <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/> -->
+<!-- </owl:NamedIndividual> -->
 
-<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_25">
-  <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
-  <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
-  <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_25"/>
-  <knowrob:objectActedOn rdf:resource="&knowrob;dtree"/>
-</owl:NamedIndividual>
+<!-- <owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_25"> -->
+<!--   <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/> -->
+<!--   <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/> -->
+<!--   <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_25"/> -->
+<!--   <knowrob:objectActedOn rdf:resource="&knowrob;dtree"/> -->
+<!-- </owl:NamedIndividual> -->
 
-<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_25">
-  <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
-  <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
-  <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
-  <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
-  <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
-  <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
-  <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
-  <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
-  <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
-  <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
-  <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
-  <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
-  <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
-  <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
-  <knowrob:m03 rdf:datatype="&xsd;double">10.0</knowrob:m03>
-  <knowrob:m13 rdf:datatype="&xsd;double">-8.0</knowrob:m13>
-  <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
-</owl:NamedIndividual>
+<!-- <owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_25"> -->
+<!--   <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/> -->
+<!--   <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00> -->
+<!--   <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11> -->
+<!--   <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22> -->
+<!--   <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33> -->
+<!--   <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01> -->
+<!--   <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02> -->
+<!--   <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20> -->
+<!--   <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10> -->
+<!--   <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12> -->
+<!--   <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21> -->
+<!--   <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30> -->
+<!--   <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31> -->
+<!--   <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32> -->
+<!--   <knowrob:m03 rdf:datatype="&xsd;double">10.0</knowrob:m03> -->
+<!--   <knowrob:m13 rdf:datatype="&xsd;double">-8.0</knowrob:m13> -->
+<!--   <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23> -->
+<!-- </owl:NamedIndividual> -->
 
 
 

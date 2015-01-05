@@ -36,6 +36,22 @@
             "q": "",
             "text": ""
         },
+   	{	
+            "q": "",
+            "text": "----- Queries on human-specific items -----"
+        },
+	{
+            "q": "owl_individual_of(A, knowrob:'Human').",
+            "text": "Human-specific Items"
+        },
+	{
+            "q": "owl_individual_of(A, knowrob:'Human'), owl_individual_of(A, knowrob:'Alive').",
+            "text": "Human-specific and alive!"
+        },
+	{
+            "q": "",
+            "text": ""
+        },
         {
             "q": "",
             "text": "----- Queries on Gesture -----"

@@ -115,7 +115,8 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 <!-- Environmentspecific Items -->
-   <rdf:Description rdf:about="&knowrob;WTree0">
+   <rdf:Description rdf:about="&knowrob;Tree0">
+      <rdfs:subClassOf rdf:resource="&knowrob;Wood"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
@@ -124,7 +125,8 @@
         </rdfs:subClassOf>
     </rdf:Description>
 
-  <rdf:Description rdf:about="&knowrob;WTree1">
+  <rdf:Description rdf:about="&knowrob;Tree1">
+      <rdfs:subClassOf rdf:resource="&knowrob;Wood"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
@@ -133,25 +135,26 @@
         </rdfs:subClassOf>
     </rdf:Description>
 
- <rdf:Description rdf:about="&knowrob;DTree0">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
-                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/environmentspecific-items/dry_tree0.dae</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </rdf:Description>
+ <!-- <rdf:Description rdf:about="&knowrob;Tree0"> -->
+ <!--        <rdfs:subClassOf> -->
+ <!--            <owl:Restriction> -->
+ <!--                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/> -->
+ <!--                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/environmentspecific-items/dry_tree0.dae</owl:hasValue> -->
+ <!--            </owl:Restriction> -->
+ <!--        </rdfs:subClassOf> -->
+ <!--    </rdf:Description> -->
 
-  <rdf:Description rdf:about="&knowrob;DTree1">
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
-                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/environmentspecific-items/dry_tree1.dae</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </rdf:Description>
+ <!--  <rdf:Description rdf:about="&knowrob;DTree1"> -->
+ <!--        <rdfs:subClassOf> -->
+ <!--            <owl:Restriction> -->
+ <!--                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/> -->
+ <!--                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/environmentspecific-items/dry_tree1.dae</owl:hasValue> -->
+ <!--            </owl:Restriction> -->
+ <!--        </rdfs:subClassOf> -->
+ <!--    </rdf:Description> -->
 
- <rdf:Description rdf:about="&knowrob;Stone0">
+ <rdf:Description rdf:about="&knowrob;Rocks0">
+       <rdfs:subClassOf rdf:resource="&knowrob;Stone"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
@@ -160,7 +163,8 @@
         </rdfs:subClassOf>
     </rdf:Description>
 
-  <rdf:Description rdf:about="&knowrob;Stone1">
+  <rdf:Description rdf:about="&knowrob;Rocks1">
+      <rdfs:subClassOf rdf:resource="&knowrob;Stone"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
@@ -171,6 +175,7 @@
 
 <!-- Humanspecific Items -->
  <rdf:Description rdf:about="&knowrob;Boot">
+   <rdfs:subClassOf rdf:resource="&knowrob;Clothes"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
@@ -180,6 +185,7 @@
     </rdf:Description>
 
  <rdf:Description rdf:about="&knowrob;Cap">
+   <rdfs:subClassOf rdf:resource="&knowrob;Clothes"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
@@ -189,6 +195,7 @@
     </rdf:Description>
 
  <rdf:Description rdf:about="&knowrob;Victim">
+   <rdfs:subClassOf rdf:resource="&knowrob;Alive"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
@@ -198,7 +205,8 @@
     </rdf:Description>
 
 
- <rdf:Description rdf:about="&knowrob;Gesture">
+ <rdf:Description rdf:about="&knowrob;Gesture"> 
+  <rdfs:subClassOf rdf:resource="&knowrob;Posture"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
