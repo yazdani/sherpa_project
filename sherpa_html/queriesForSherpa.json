@@ -1,76 +1,90 @@
 {
-    "query": [
-        {
-            "q": "",
-            "text": "----- init -----"
-        },
-        {
-            "q": "register_ros_package(sherpa_cad_models).",
-            "text": "Load register"
-        },
-      	{
-            "q": "",
-            "text": ""
-        },
-        {
-            "q": "",
-            "text": "----- Queries on the semantic map -----"
-        },
-        {
-            "q": "owl_parse('package://world_model_description/owl/semantic_map01.owl').",
-            "text": "Load semantic map"
-        },
-        {
-            "q": "owl_individual_of(A, knowrob:'SemanticEnvironmentMap'), !, add_object_with_children(A).",
-            "text": "Visualize semantic map"
-        },
-        {
-            "q": "owl_individual_of(A, knowrob:'Human'), highlight_object(A).",
-            "text": "Mark Humanspecific Items"
-        },
-       	{
-            "q": "owl_individual_of(A, knowrob:'Environment'), highlight_object(A).",
-            "text": "Mark Environmentspecific Items"
-        },
-	{
-            "q": "",
-            "text": ""
-        },
-   	{	
-            "q": "",
-            "text": "----- Queries on human-specific items -----"
-        },
-	{
-            "q": "owl_individual_of(A, knowrob:'Human').",
-            "text": "Human-specific Items"
-        },
-	{
-            "q": "owl_individual_of(A, knowrob:'Human'), owl_individual_of(A, knowrob:'Alive').",
-            "text": "Human-specific and alive!"
-        },
-	{
-            "q": "",
-            "text": ""
-        },
-        {
-            "q": "",
-            "text": "----- Queries on Gesture -----"
-        },
-	{
-            "q": "owl_parse('package://world_model_description/owl/gesture.owl').",
-            "text": "Load Gesture"
-        },
-        {
-            "q": "",
-            "text": ""
-        },
-        {
-            "q": "",
-            "text": "----- Queries on the robot's logged belief state -----"
-        },
-        {
-            "q": "owl_parse('package://cram_agents_knowledge/srdl/quadrotor.owl').",
-            "text": "Load quadrotor robot model"
-        }
-    ]
+	"query": [
+   	    {		 
+	    	 "q": "",	
+		 "text": "----- init -----"
+ 	    },
+	    {
+		"q": "register_ros_package(sherpa_cad_models).",
+		"text": "Load register"
+	    },
+ 	    {	
+            	 "q": "register_ros_package(knowrob_mongo).",
+           	  "text": "Load register"
+            },
+	     {	    
+             	    "q": "rdf_register_ns(xsens, 'http://knowrob.org/kb/xsens.owl#', [keep(true)]).",
+            	     "text": "Register Namespace"
+             },
+ 	     {	
+             	"q": "owl_parse('package://knowrob_srdl/owl/xsens-human.owl').",
+            	"text": "Load human skeleton"
+             },
+	    {
+		"q": "",
+	    	"text": ""
+	    },
+	    {
+	       "q": "",
+	       "text": "----- Queries on the semantic map -----"
+            },
+	    {
+		"q": "owl_parse('package://world_model_description/owl/semantic_map01.owl').",
+		"text": "Load semantic map"
+	    },
+	    {
+		"q": "owl_individual_of(A, knowrob:'SemanticEnvironmentMap'), !, add_object_with_children(A).",
+		"text": "Visualize semantic map"
+	    },
+	    {
+		"q": "owl_individual_of(A, knowrob:'Human'), highlight_object(A).",
+		"text": "Mark Humanspecific Items"
+	    },
+	    {
+		"q": "owl_individual_of(A, knowrob:'Environment'), highlight_object(A).",
+		"text": "Mark Environmentspecific Items"
+	    },
+	    {
+		"q": "",
+		"text": ""
+	    },
+	    {
+		 "q": "",
+		 "text": "----- Queries on human-specific items -----"
+	    },
+	    {
+		  "q": "owl_individual_of(A, knowrob:'Human').",
+		  "text": "Human-specific Items"
+            },
+	    {
+		"q": "owl_individual_of(A, knowrob:'Human'), owl_individual_of(A, knowrob:'Alive').",
+		"text": "Human-specific and alive!"
+	    },		
+	 
+           
+  	     {		 
+	    	 "q": "",	
+		 "text": ""
+ 	    },
+	      {	    	 
+	    	 "q": "",	
+		 "text": "----- Queries on human pose ----"
+ 	    },
+ 	    {
+            "q": "add_human_pose(xsens:'XSensHuman1','1419931675').",
+            "text": "Load Human pose"
+            },
+           {	    
+		"q": "",
+		"text": ""
+	     },
+	    {
+		"q": "",
+	    	"text": "----- Queries on the robot's logged belief state -----"
+	    },
+	    {
+		"q": "owl_parse('package://cram_agents_knowledge/srdl/quadrotor.owl').",
+		"text": "Load quadrotor robot model"
+	    }
+     ]
 }

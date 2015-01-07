@@ -114,6 +114,18 @@
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
+
+<!-- Loading the environment map -->
+   <rdf:Description rdf:about="&knowrob;SeMap">
+      <rdfs:subClassOf rdf:resource="&knowrob;Map"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/sem-map/galtelli_vom_13.11.14_new.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+
 <!-- Environmentspecific Items -->
    <rdf:Description rdf:about="&knowrob;Tree0">
       <rdfs:subClassOf rdf:resource="&knowrob;Wood"/>
@@ -125,12 +137,33 @@
         </rdfs:subClassOf>
     </rdf:Description>
 
+  <rdf:Description rdf:about="&knowrob;tree">
+      <rdfs:subClassOf rdf:resource="&knowrob;Wood"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/environmentspecific-items/tanne1.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+
+
   <rdf:Description rdf:about="&knowrob;Tree1">
       <rdfs:subClassOf rdf:resource="&knowrob;Wood"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/environmentspecific-items/tanne2.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+
+  <rdf:Description rdf:about="&knowrob;haus">
+      <rdfs:subClassOf rdf:resource="&knowrob;house"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/environmentspecific-items/haus.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
     </rdf:Description>
