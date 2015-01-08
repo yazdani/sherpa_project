@@ -1,0 +1,73 @@
+#!/usr/bin/python
+
+
+import sys
+import rospy
+from semantic_map_to_owl.srv import *
+from semantic_map_to_owl.msg import *
+
+def create_owl_from_location_csv(outfile_name='/home/yazdani/work/ros/hydro/catkin_ws/src/sim_scripts/sematic_map/tree1.owl',infile_name='/home/yazdani/work/ros/hydro/catkin_ws/src/sim_scripts/sematic_map/anfereshta.csv',type='tree'):
+    rospy.wait_for_service('/knowrob_semantic_map_to_owl/generate_owl_map')
+    try:
+	generate_map = rospy.ServiceProxy('/knowrob_semantic_map_to_owl/generate_owl_map', GenerateSemanticMapOWL)
+	map = SemMap()
+	infile = open(infile_name,'r')
+	objs = infile.readlines()
+	for raw_obj in objs:
+	    cnt = raw_obj.split(',')
+	    obj = SemMapObject()       
+            obj.id = int(cnt[2])
+	    obj.type = type
+	    obj.width = 1.0
+	    obj.depth = 1.0
+	    obj.height = 1.0
+            print(obj.id)
+            obj.pose.append(1) # m00
+	    obj.pose.append(0) # m01
+	    obj.pose.append(0) # m02
+	    obj.pose.append(float(cnt[0])) # m03
+	    obj.pose.append(0) # m10
+            obj.pose.append(1) # m11
+	    obj.pose.append(0) # m12
+	    obj.pose.append(float(cnt[1])) # m13
+	    obj.pose.append(0) # m20
+	    obj.pose.append(0) # m21
+	    obj.pose.append(1) # m22
+	    obj.pose.append(float(cnt[3])) # m23
+	    obj.pose.append(0) #m30 
+	    obj.pose.append(0) # m31
+	    obj.pose.append(0) # m32
+	    obj.pose.append(1) # m33
+	    obj.pose.append(0)
+
+	    obj.partOf = 0
+	    map.objects.append(obj)
+            print('s5')
+	map.header.stamp = rospy.Time.now()
+        print('s6')
+	resp = generate_map(map)
+	  
+	infile.close()
+
+	resp =generate_map(map)
+	outfile = open(outfile_name,'w')
+	outfile.write(resp.owlmap)
+	outfile.close()
+	#return resp1.sum
+    except rospy.ServiceException, e:
+	print "Service call failed: %s"%e
+
+def usage():
+    return "%s [x y]"%sys.argv[0]
+
+if __name__ == "__main__":
+    rospy.init_node('sem_map_creator')
+    #if len(sys.argv) == 3:
+#
+#        x = int(sys.argv[1])
+#        y = int(sys.argv[2])
+    #else:
+    #    print usage()
+    #    sys.exit(1)
+    #print "Requesting %s+%s"%(x, y)
+    create_owl_from_location_csv()
