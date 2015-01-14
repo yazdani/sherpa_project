@@ -5,20 +5,12 @@
 		 "text": "----- init -----"
  	    },
 	    {
-		"q": "register_ros_package(sherpa_cad_models).",
+		"q": "register_ros_package(sherpa_cad_models), register_ros_package(knowrob_mongo).",
 		"text": "Load register"
 	    },
- 	    {	
-            	 "q": "register_ros_package(knowrob_mongo).",
-           	  "text": "Load register"
-            },
 	     {	    
-             	    "q": "rdf_register_ns(xsens, 'http://knowrob.org/kb/xsens.owl#', [keep(true)]).",
-            	     "text": "Register Namespace"
-             },
- 	     {	
-             	"q": "owl_parse('package://knowrob_srdl/owl/xsens-human.owl').",
-            	"text": "Load human skeleton"
+             	    "q": "rdf_register_ns(xsens, 'http://knowrob.org/kb/xsens.owl#', [keep(true)]), owl_parse('package://knowrob_srdl/owl/xsens-human.owl'), owl_parse('package://agents_model_description/owl/pointing.owl').",
+            	     "text": "Register Namespace and load human skeletion"
              },
 	    {
 		"q": "",
@@ -45,6 +37,22 @@
 		"text": "Mark Environmentspecific Items"
 	    },
 	    {
+		"q": "owl_individual_of(EVENT,knowrob:'LiftingArm'), owl_has(EVENT, knowrob:'startTime', T0), owl_has(EVENT, knowrob:'endTime', T1).",
+		"text": "When is the human lifting the Arm?"
+	    },
+	     {
+		"q": "owl_individual_of(EVENT,knowrob:'PointingArm'), owl_has(EVENT, knowrob:'startTime', T0), owl_has(EVENT, knowrob:'endTime', T1).",
+		"text": "When is the human pointing the Arm?"
+	    },
+	     {	    
+		"q": "owl_individual_of(EVENT,knowrob:'SinkingArm'), owl_has(EVENT, knowrob:'startTime', T0), owl_has(EVENT, knowrob:'endTime', T1).",
+		"text": "When is the human sinking the Arm?"
+	    },
+	    {	    
+		"q": "add_human_pose(xsens:'XSensHuman1','time_point')",
+		"text": "Please, set the timepoint for visualization"
+	    },
+	     {	    
 		"q": "",
 		"text": ""
 	    },
