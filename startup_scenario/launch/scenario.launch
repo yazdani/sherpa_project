@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="tester_ros2TldlA" pkg="language_interpreter" type="tester_ros2Tldl.py" args="--test" respawn="true" />
+  <node name="ros2TldlA" pkg="language_interpreter" type="ros2Tldl.py" args="--test" respawn="true" />
+  <node name="tldl2RosA" pkg="language_interpreter" type="tldl2Ros.py" args="--test" respawn="true" />
+</launch>
