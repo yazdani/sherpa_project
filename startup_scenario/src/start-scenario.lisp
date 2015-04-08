@@ -28,7 +28,37 @@
 
 (in-package :startup-scenario)
 (defparameter *transform-listener* (make-instance 'cl-tf:transform-listener))
+(defparameter *result-subscriber* nil)
+(defparameter *stored-result* nil)
+(defparameter *act* nil)
+(defclass command-result ()
+  ((content :reader content :initarg :content)
+   (time-received :reader time-received :initarg :time-received)))
 
+(defun init-base ()
+  (format t "inside init-base~%")
+  (setf *result-subscriber*
+        (roslisp:subscribe "/interpreted_command"
+                    "language_interpreter/connect"
+                    #'cb-result)))
+(defun cb-result (msg)
+  (format t "inside cb-result~%")
+  (setf *stored-result*
+        (make-instance 'command-result
+                       :content msg
+                       :time-received (roslisp:ros-time))))
+ (defun command-into-designator ()
+   (let* ((interpreted (LANGUAGE_INTERPRETER-MSG:INTERPRET (content *stored-result*)))
+          (interpret (read-from-string (car (split-sequence:split-sequence #\( interpreted))))
+          (command (read-from-string(LANGUAGE_INTERPRETER-MSG:COMMAND (content *stored-result*))))
+          (gesture (LANGUAGE_INTERPRETER-MSG:VEC (content *stored-result*)))
+          (default (LANGUAGE_INTERPRETER-MSG:DEFAULT (content *stored-result*)))
+          (act-desig (make-designator 'action `((robot_type red)
+                                                (command_type ,command)
+                                                (action_type ,interpret)
+                                                (target ,(make-designator 'location `((loc ,gesture))))))))
+     (setf *act* act-desig))
+   *act*)
 ;; (defparameter *cone-pose* (cl-transforms:make-pose
 ;;                            (cl-transforms:make-3d-vector 6.9 -0.22 3.85)
 ;;                            (cl-transforms:axis-angle->quaternion
@@ -64,7 +94,7 @@
                (debug-window ?w)
                (assert (object ?w btr::semantic-map sem-map ((0 0 0) (0 0 0 1)) :urdf ,sem-urdf))
                ;; (assert (object ?w urdf human ((0 0 0) (0 0 1 1)) :urdf ,genius-urdf))
-               (assert (object ?w urdf quadrotor ((-1 -2 2)(0 0 0 1)) :urdf ,quad-urdf))
+               ;; (assert (object ?w urdf quadrotor ((-1 -2 2)(0 0 0 1)) :urdf ,quad-urdf))
                ;; (robot quadrotor)
                ;; (robot human)
                ;; (assert (object ?w urdf quadrotor ((-1 -2 0.2)(0 0 1 1)) :urdf ,quad-urdf))
@@ -176,48 +206,48 @@
  ;;   (simple-knowledge:spawn-objects)
   
 
-(defun marker()
-  ;; (pointing-direction)
-  (let ((pose (pointed-direction)))
-    (format t "pose is: ~a~%" pose)
-    (add-sphere pose)
-    (format t "was ist das ~%")
-    (check-collision)))
+;; (defun marker()
+;;   ;; (pointing-direction)
+;;   (let ((pose (pointed-direction)))
+;;     (format t "pose is: ~a~%" pose)
+;;     (add-sphere pose)
+;;     (format t "was ist das ~%")
+;;     (check-collision)))
         
-(defun check-collision ()
- ;(add-sphere pose)
-(let* ((pose (get-object-pose 'sphere))
-       (collision-detector (prolog `(and
-                                     (bullet-world ?w)
-                                     (contact ?w sphere ?objs))))
-       (vector (cl-transforms:origin pose))
-       (vec-y (cl-transforms:y vector))
-       (vec-x  (cl-transforms:x vector))
-       (vec-z   (cl-transforms:z vector))
-       (new-vec-y (+ vec-y -0.5)))
-  (format t "hallo ~%")
-  (cond ((eq nil collision-detector)(format t "great job, take this one ~%"))
-        (t
-         (prolog `(and 
-                   (bullet-world ?w)
-                   (assert
-                    (object-pose ?w sphere ((,vec-x ,new-vec-y ,vec-z) (0 0 0 1))))))
-         (format t "hellooooo~%")))
-  (get-object-pose 'sphere)))
+;; (defun check-collision ()
+;;  ;(add-sphere pose)
+;; (let* ((pose (get-object-pose 'sphere))
+;;        (collision-detector (prolog `(and
+;;                                      (bullet-world ?w)
+;;                                      (contact ?w sphere ?objs))))
+;;        (vector (cl-transforms:origin pose))
+;;        (vec-y (cl-transforms:y vector))
+;;        (vec-x  (cl-transforms:x vector))
+;;        (vec-z   (cl-transforms:z vector))
+;;        (new-vec-y (+ vec-y -0.5)))
+;;   (format t "hallo ~%")
+;;   (cond ((eq nil collision-detector)(format t "great job, take this one ~%"))
+;;         (t
+;;          (prolog `(and 
+;;                    (bullet-world ?w)
+;;                    (assert
+;;                     (object-pose ?w sphere ((,vec-x ,new-vec-y ,vec-z) (0 0 0 1))))))
+;;          (format t "hellooooo~%")))
+;;   (get-object-pose 'sphere)))
 
-(defun pointed-direction ()
- ;; started rosrun nodes
-  ;; (pointing-direction)
-  (location-costmap::location-costmap-vis-init)
-  (let* ((transform-x
-           (tf:lookup-transform cram-roslisp-common:*tf* :time 0.0 :source-frame "busy_genius/right_hand_x" :target-frame "map"))
-         (trans-x (cl-transforms:transform->pose transform-x))
-         (trans (cl-transforms:origin trans-x))
-         (x-val (+ (cl-transforms:x trans) 6))
-         (new-vec (cl-transforms:make-3d-vector x-val (cl-transforms:y trans) (cl-transforms:z trans))))
-    (location-costmap::publish-point new-vec)
-    (format t "the end ~%")
-    new-vec))
+;; (defun pointed-direction ()
+;;  ;; started rosrun nodes
+;;   ;; (pointing-direction)
+;;   (location-costmap::location-costmap-vis-init)
+;;   (let* ((transform-x
+;;            (tf:lookup-transform cram-roslisp-common:*tf* :time 0.0 :source-frame "busy_genius/right_hand_x" :target-frame "map"))
+;;          (trans-x (cl-transforms:transform->pose transform-x))
+;;          (trans (cl-transforms:origin trans-x))
+;;          (x-val (+ (cl-transforms:x trans) 6))
+;;          (new-vec (cl-transforms:make-3d-vector x-val (cl-transforms:y trans) (cl-transforms:z trans))))
+;;     (location-costmap::publish-point new-vec)
+;;     (format t "the end ~%")
+;;     new-vec))
  ;;   (let* ((pose-in-base (tf:lookup-transform
 ;; 			 cram-roslisp-common:*tf*
 ;; 			 :time-frame
