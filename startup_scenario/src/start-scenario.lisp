@@ -30,7 +30,8 @@
 (defparameter *transform-listener* (make-instance 'cl-tf:transform-listener))
 (defparameter *result-subscriber* nil)
 (defparameter *stored-result* nil)
-(defparameter *act* nil)
+(defparameter *act-desig* nil)
+
 (defclass command-result ()
   ((content :reader content :initarg :content)
    (time-received :reader time-received :initarg :time-received)))
@@ -47,27 +48,43 @@
         (make-instance 'command-result
                        :content msg
                        :time-received (roslisp:ros-time))))
+
+;;CHECKING IF SELECTION CONTAINS TWO STRINGS
  (defun command-into-designator ()
-   (let* ((interpreted (LANGUAGE_INTERPRETER-MSG:INTERPRET (content *stored-result*)))
-          (interpret (read-from-string (car (split-sequence:split-sequence #\( interpreted))))
-          (command (read-from-string(LANGUAGE_INTERPRETER-MSG:COMMAND (content *stored-result*))))
-          (gesture (LANGUAGE_INTERPRETER-MSG:VEC (content *stored-result*)))
-          (default (LANGUAGE_INTERPRETER-MSG:DEFAULT (content *stored-result*)))
-          (act-desig (make-designator 'action `((robot_type red)
-                                                (command_type ,command)
-                                                (action_type ,interpret)
+   (let* ((value (content *stored-result*))
+          (command (read-from-string (LANGUAGE_INTERPRETER-MSG:COMMAND value)))
+          (interpretation (read-from-string (car (split-sequence:split-sequence #\( (LANGUAGE_INTERPRETER-MSG:INTERPRETATION value)))))
+          (selection (split-sequence:split-sequence #\Space (LANGUAGE_INTERPRETER-MSG:SELECTION value)))
+          (selection2 (read-from-string (concatenate 'string (car selection) "-" (second selection))))
+        ;  (interpret (read-from-string (car (split-sequence:split-sequence #\( interpreted))))
+          ;(command (read-from-string(LANGUAGE_INTERPRETER-MSG:COMMAND value)))
+          (gesture (LANGUAGE_INTERPRETER-MSG:VEC value))
+          (value-x (GEOMETRY_MSGS-MSG:X gesture))
+          (value-y (GEOMETRY_MSGS-MSG:Y gesture))
+          (value-z (GEOMETRY_MSGS-MSG:Z gesture))
+          (default (STD_MSGS-MSG:DATA (LANGUAGE_INTERPRETER-MSG:OFFSET value))))
+     (cond ((equal value-x 0.0d0)
+            (equal value-y 0.0d0)
+            (equal value-z 0.0d0)
+            (setf gesture "DUMMY(ROBOTPOSE)"))
+            (t 
+             (setf gesture (cl-transforms:make-pose (cl-transforms:make-3d-vector value-x value-y value-z)(cl-transforms:make-quaternion 0 0 0 1)))))
+     (setf *act-desig* (make-designator 'action `((command_type ,command)
+                                                (action_type ,interpretation)
+                                                (offset ,default)
+                                                (agent ,selection2)
                                                 (target ,(make-designator 'location `((loc ,gesture))))))))
-     (setf *act* act-desig))
-   *act*)
-;; (defparameter *cone-pose* (cl-transforms:make-pose
-;;                            (cl-transforms:make-3d-vector 6.9 -0.22 3.85)
-;;                            (cl-transforms:axis-angle->quaternion
-;;                             (cl-transforms:make-3d-vector 0 1 0) 
-;;                             -1.85)))
+    
+   *act-desig*)
+
+(defun send-msg ()
+  (let ((pub (advertise "sendMsg" "designator_integration_msgs/Designator")))
+        (publish pub (desig-int::designator->msg (command-into-designator)))))
 
 (defun start-myros ()
   (roslisp:ros-info (sherpa-spatial-relations) "START the ROSNODE")
   (roslisp-utilities:startup-ros :anonymous nil))
+
 (defun end-myros ()
   (roslisp:ros-info (sherpa-spatial-relations) "KILL the ROSNODE")
   (roslisp-utilities:shutdown-ros))
@@ -76,7 +93,7 @@
   (roslisp:ros-info (sherpa-spatial-relations) "START WORLD AND ROBOTS")
   (location-costmap::location-costmap-vis-init)
   (setf *list* nil)
-  (let* (;; (genius-urdf (cl-urdf:parse-urdf (roslisp:get-param "human/robot_description")))
+  (let*(;; (genius-urdf (cl-urdf:parse-urdf (roslisp:get-param "human/robot_description")))
          (quad-urdf (cl-urdf:parse-urdf (roslisp:get-param "quadrotor/robot_description")))
          (sem-urdf (cl-urdf:parse-urdf (roslisp:get-param "area_description")))
          ;; (rover-urdf (cl-urdf:parse-urdf (roslisp:get-param "rover/robot_description")))
