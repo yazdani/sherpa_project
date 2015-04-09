@@ -31,6 +31,7 @@
 (defparameter *result-subscriber* nil)
 (defparameter *stored-result* nil)
 (defparameter *act-desig* nil)
+(defparameter *agent-pose* nil)
 
 (defclass command-result ()
   ((content :reader content :initarg :content)
@@ -42,6 +43,7 @@
         (roslisp:subscribe "/interpreted_command"
                     "language_interpreter/connect"
                     #'cb-result)))
+
 (defun cb-result (msg)
   (format t "inside cb-result~%")
   (setf *stored-result*
@@ -49,6 +51,13 @@
                        :content msg
                        :time-received (roslisp:ros-time))))
 
+(defun tf-pose-agent ()
+(let* ((intern (tf:lookup-transform *transform-listener* :time 0.0 :source-frame "base_footprint" :target-frame "map"))
+       (rob-pose (cl-transforms:transform->pose intern)))
+  (setf *agent-pose* rob-pose))
+*agent-pose*)
+
+       
 ;;CHECKING IF SELECTION CONTAINS TWO STRINGS
  (defun command-into-designator ()
    (let* ((value (content *stored-result*))
@@ -66,7 +75,7 @@
      (cond ((equal value-x 0.0d0)
             (equal value-y 0.0d0)
             (equal value-z 0.0d0)
-            (setf gesture "DUMMY(ROBOTPOSE)"))
+            (setf gesture (tf-pose-agent));"DUMMY(ROBOTPOSE)"))
             (t 
              (setf gesture (cl-transforms:make-pose (cl-transforms:make-3d-vector value-x value-y value-z)(cl-transforms:make-quaternion 0 0 0 1)))))
      (setf *act-desig* (make-designator 'action `((command_type ,command)
