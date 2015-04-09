@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <launch>
 <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
-<group ns="human">
+<!-- <group ns="human"> -->
 <!-- <param name="robot_description" textfile="$(find agents_model_description)/urdf/human.urdf"/>  -->
-<include file="$(find startup_scenario)/launch/human.launch"/>
-</group>
+<!-- <include file="$(find startup_scenario)/launch/human.launch"/> -->
+<!-- </group> -->
 
 <group ns="quadrotor">
  <!--   <arg name="model" default="$(find hector_quadrotor_description)/urdf/quadrotor.gazebo.xacro"/> -->
@@ -17,7 +17,7 @@
 <!-- <include file="$(find startup_scenario)/launch/spawn_quadrotor.launch"/>  -->
 </group>
 
-<include file="$(find world_model_description)/launch/json.launch"/>
-<include file="$(find world_model_description)/launch/area_with_state_publisher.launch"/>
+<!-- <include file="$(find world_model_description)/launch/json.launch"/> -->
+<!-- <include file="$(find world_model_description)/launch/area_with_state_publisher.launch"/> -->
 
 </launch>
