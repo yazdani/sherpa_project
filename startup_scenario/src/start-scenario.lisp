@@ -51,11 +51,11 @@
                        :content msg
                        :time-received (roslisp:ros-time))))
 
-(defun tf-pose-agent ()
-(let* ((intern (tf:lookup-transform *transform-listener* :time 0.0 :source-frame "base_footprint" :target-frame "map"))
-       (rob-pose (cl-transforms:transform->pose intern)))
-  (setf *agent-pose* rob-pose))
-*agent-pose*)
+(defun tf-pose-of-agent ()
+  (let* ((intern (tf:lookup-transform *transform-listener* :time 0.0 :source-frame "base_footprint" :target-frame "map"))
+         (rob-pose (cl-transforms:transform->pose intern)))
+    (setf *agent-pose* rob-pose))
+  *agent-pose*)
 
        
 ;;CHECKING IF SELECTION CONTAINS TWO STRINGS
@@ -64,7 +64,7 @@
           (command (read-from-string (LANGUAGE_INTERPRETER-MSG:COMMAND value)))
           (interpretation (read-from-string (car (split-sequence:split-sequence #\( (LANGUAGE_INTERPRETER-MSG:INTERPRETATION value)))))
           (selection (split-sequence:split-sequence #\Space (LANGUAGE_INTERPRETER-MSG:SELECTION value)))
-          (selection2 (read-from-string (concatenate 'string (car selection) "-" (second selection))))
+          (selection2 (read-from-string (concatenate 'string (car selection) "_" (second selection))))
         ;  (interpret (read-from-string (car (split-sequence:split-sequence #\( interpreted))))
           ;(command (read-from-string(LANGUAGE_INTERPRETER-MSG:COMMAND value)))
           (gesture (LANGUAGE_INTERPRETER-MSG:VEC value))
@@ -75,7 +75,7 @@
      (cond ((equal value-x 0.0d0)
             (equal value-y 0.0d0)
             (equal value-z 0.0d0)
-            (setf gesture (tf-pose-agent));"DUMMY(ROBOTPOSE)"))
+            (setf gesture (tf-pose-agent)));"DUMMY(ROBOTPOSE)"))
             (t 
              (setf gesture (cl-transforms:make-pose (cl-transforms:make-3d-vector value-x value-y value-z)(cl-transforms:make-quaternion 0 0 0 1)))))
      (setf *act-desig* (make-designator 'action `((command_type ,command)
@@ -88,7 +88,7 @@
 
 (defun send-msg ()
   (let ((pub (advertise "sendMsg" "designator_integration_msgs/Designator")))
-        (publish pub (desig-int::designator->msg (command-into-designator)))))
+    (publish pub (desig-int::designator->msg (command-into-designator)))))
 
 (defun start-myros ()
   (roslisp:ros-info (sherpa-spatial-relations) "START the ROSNODE")
@@ -103,8 +103,8 @@
   (location-costmap::location-costmap-vis-init)
   (setf *list* nil)
   (let*(;; (genius-urdf (cl-urdf:parse-urdf (roslisp:get-param "human/robot_description")))
-         (quad-urdf (cl-urdf:parse-urdf (roslisp:get-param "quadrotor/robot_description")))
-         (sem-urdf (cl-urdf:parse-urdf (roslisp:get-param "area_description")))
+      ;   (quad-urdf (cl-urdf:parse-urdf (roslisp:get-param "quadrotor/robot_description")))
+         (sem-urdf (cl-urdf:parse-urdf (roslisp:get-param "robot_description")))
          ;; (rover-urdf (cl-urdf:parse-urdf (roslisp:get-param "rover/robot_description")))
          )
     (setf *list*
@@ -118,7 +118,7 @@
                (assert (object ?w static-plane floor ((0 0 0) (0 0 0 1))
                                :normal (0 0 1) :constant 0 :disable-collisions-with (?robot)))
                (debug-window ?w)
-               (assert (object ?w btr::semantic-map sem-map ((0 0 0) (0 0 0 1)) :urdf ,sem-urdf))
+               (assert (object ?w semantic-map sem-map ((0 0 0) (0 0 0 1)) :urdf ,sem-urdf))
                ;; (assert (object ?w urdf human ((0 0 0) (0 0 1 1)) :urdf ,genius-urdf))
                ;; (assert (object ?w urdf quadrotor ((-1 -2 2)(0 0 0 1)) :urdf ,quad-urdf))
                ;; (robot quadrotor)
