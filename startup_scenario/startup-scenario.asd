@@ -53,7 +53,10 @@
 	       gazebo-perception-process-module
 	       gazebo_msgs-msg
 	       agents-projection-process-modules
-	       semantic-map-costmap)
+	       language_interpreter-msg
+	       semantic-map-costmap
+	       designator-integration-lisp
+	       household_objects_database_msgs-msg)
  :components 
   ((:module "src"
     :components
