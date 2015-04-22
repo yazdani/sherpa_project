@@ -5,11 +5,11 @@
 		 "text": "----- init -----"
  	    },
 	    {
-		"q": "register_ros_package(sherpa_cad_models), register_ros_package(knowrob_mongo).",
+		"q": "register_ros_package(sherpa_cad_models), register_ros_package(knowrob_mongo), register_ros_package(knowrob_cram).",
 		"text": "Load register"
 	    },
 	     {	    
-             	    "q": "rdf_register_ns(xsens, 'http://knowrob.org/kb/xsens.owl#', [keep(true)]), owl_parse('package://knowrob_srdl/owl/xsens-human.owl'), owl_parse('package://agents_model_description/owl/pointing.owl').",
+             	    "q": "rdf_register_ns(xsens, 'http://knowrob.org/kb/xsens.owl#', [keep(true)]), owl_parse('package://knowrob_srdl/owl/xsens-human.owl'), owl_parse('package://agents_model_description/owl/pointing.owl'),  owl_parse('package://agents_model_description/owl/cram_log.owl').",
             	     "text": "Register Namespace and load human skeletion"
              },
 	    {
@@ -29,28 +29,36 @@
 		"text": "Visualize semantic map"
 	    },
 	    {
-		"q": "owl_individual_of(A, knowrob:'Human'), highlight_object(A).",
+		"q": "owl_individual_of(A, knowrob:'Human'), highlight_object_mesh(A).",
 		"text": "Mark Humanspecific Items"
 	    },
 	    {
-		"q": "owl_individual_of(A, knowrob:'Environment'), highlight_object(A).",
+		"q": "owl_individual_of(A, knowrob:'Environment'), highlight_object_mesh(A).",
 		"text": "Mark Environmentspecific Items"
 	    },
 	    {
-		"q": "owl_individual_of(EVENT,knowrob:'LiftingArm'), owl_has(EVENT, knowrob:'startTime', T0), owl_has(EVENT, knowrob:'endTime', T1).",
+		"q": "owl_individual_of(EVENT,knowrob:'LiftingArm'), owl_has(EVENT, knowrob:'startTime', T0), owl_has(EVENT, knowrob:'endTime', T1), add_stickman_visualization(xsens:'XSensHuman1',T0).",
 		"text": "When is the human lifting the Arm?"
 	    },
 	     {
-		"q": "owl_individual_of(EVENT,knowrob:'PointingArm'), owl_has(EVENT, knowrob:'startTime', T0), owl_has(EVENT, knowrob:'endTime', T1).",
+		"q": "owl_individual_of(EVENT,knowrob:'PointingArm'), owl_has(EVENT, knowrob:'startTime', T0), owl_has(EVENT, knowrob:'endTime', T1), add_stickman_visualization(xsens:'XSensHuman1',T0).",
 		"text": "When is the human pointing the Arm?"
 	    },
 	     {	    
-		"q": "owl_individual_of(EVENT,knowrob:'SinkingArm'), owl_has(EVENT, knowrob:'startTime', T0), owl_has(EVENT, knowrob:'endTime', T1).",
+		"q": "owl_individual_of(EVENT,knowrob:'SinkingArm'), owl_has(EVENT, knowrob:'startTime', T0), owl_has(EVENT, knowrob:'endTime', T1), add_stickman_visualization(xsens:'XSensHuman1',T0).",
 		"text": "When is the human sinking the Arm?"
+	    },	
+	      {	    	
+		"q": "task(T), task_goal(T, '(GO-TO ?LOC ?POINTED-AT)'), task_start(T, S), task_end(T, E), add_stickman_visualization(xsens:'XSensHuman1',S) .",
+		"text": "Did the human give a command to the robot?"
 	    },
-	    {	    
-		"q": "add_human_pose(xsens:'XSensHuman1','time_point')",
-		"text": "Please, set the timepoint for visualization"
+	     {	    	
+		"q": "findall([Obj, E],((task_end(T,E), task_type(T,knowrob:'CRAMAction'), rdf_has(T, knowrob:'designator', Obj))), Objs),!, member([Obj, E], Objs).",
+		"text": "How did you interpret this command?"
+	    },
+	     {	    	
+		"q": "owl_individual_of(ACT, knowrob:'GoThere'), owl_has(EVENT, knowrob:'commandExecuted', ACT).",
+		"text": "How often did you interpret the command 'go there'?"
 	    },
 	     {	    
 		"q": "",
