@@ -49,7 +49,7 @@
 		"text": "When is the human sinking the Arm?"
 	    },	
 	      {	    	
-		"q": "task(T), task_goal(T, '(GO-TO ?LOC ?POINTED-AT)'), task_start(T, S), task_end(T, E), add_stickman_visualization(xsens:'XSensHuman1',S) .",
+		"q": "task(T), task_goal(T, '(GO-TO ?LOC ?POINTED-AT)'), task_start(T, S), task_end(T, E), owl_individual_of(CMD, knowrob:'Command'), add_speech_bubble(CMD,[0,0.2,1.7]), add_stickman_visualization(xsens:'XSensHuman1',S) .",
 		"text": "Did the human give a command to the robot?"
 	    },
 	     {	    	

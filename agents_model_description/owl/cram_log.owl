@@ -7,6 +7,7 @@
 <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
 <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <!ENTITY log "http://knowrob.org/kb/cram_log.owl#">
+<!ENTITY data "http://knowrob.org/kb/datalabel.owl#">
 ]>
 
 <rdf:RDF xmlns="http://knowrob.org/kb/cram_log.owl#"
@@ -16,6 +17,7 @@
 	 xmlns:knowrob="http://knowrob.org/kb/knowrob.owl#"
 	 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	 xmlns:data="http://knowrob.org/kb/datalabel.owl#"
 	 xmlns:log="http://knowrob.org/kb/cram_log.owl#">
   
   <owl:Ontology rdf:about="http://knowrob.org/kb/cram_log.owl">
@@ -153,6 +155,10 @@
 
     <owl:NamedIndividual rdf:about="&knowrob;GoThere_dsf784635">
         <rdf:type rdf:resource="&knowrob;GoThere"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&data;Go_There">
+        <rdf:type rdf:resource="&knowrob;Command"/>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&knowrob;GoRight_jImFEUsl">
