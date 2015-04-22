@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE rdf:RDF [
+<!ENTITY owl "http://www.w3.org/2002/07/owl#">
+<!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+<!ENTITY knowrob "http://knowrob.org/kb/knowrob.owl#">
+<!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+<!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<!ENTITY log "http://knowrob.org/kb/cram_log.owl#">
+]>
+
+<rdf:RDF xmlns="http://knowrob.org/kb/cram_log.owl#"
+	 xml:base="http://knowrob.org/kb/cram_log.owl"
+	 xmlns:owl="http://www.w3.org/2002/07/owl#"
+	 xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+	 xmlns:knowrob="http://knowrob.org/kb/knowrob.owl#"
+	 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	 xmlns:log="http://knowrob.org/kb/cram_log.owl#">
+  
+  <owl:Ontology rdf:about="http://knowrob.org/kb/cram_log.owl">
+    <owl:imports rdf:resource="package://knowrob_common/owl/knowrob.owl"/>
+  </owl:Ontology>
+
+  <!-- Property Definitions -->
+  
+  <owl:ObjectProperty rdf:about="&knowrob;taskContext"/>
+  
+  <owl:ObjectProperty rdf:about="&knowrob;goalContext"/>
+  
+  <owl:ObjectProperty rdf:about="&knowrob;taskSuccess"/>
+
+  <owl:ObjectProperty rdf:about="&knowrob;startTime"/>
+  
+  <owl:ObjectProperty rdf:about="&knowrob;endTime"/>
+  
+  <owl:ObjectProperty rdf:about="&knowrob;previousAction"/>
+  
+  <owl:ObjectProperty rdf:about="&knowrob;nextAction"/>
+  
+  <owl:ObjectProperty rdf:about="&knowrob;subAction"/>
+  
+  <owl:ObjectProperty rdf:about="&knowrob;experimentName"/>
+  
+  <owl:ObjectProperty rdf:about="&knowrob;owlExporterVersion"/>
+  
+  <owl:ObjectProperty rdf:about="&knowrob;designator"/>
+  
+  <owl:ObjectProperty rdf:about="&knowrob;successorDesignator"/>
+  
+  <owl:ObjectProperty rdf:about="&knowrob;rosTopic"/>
+  
+  <owl:ObjectProperty rdf:about="&knowrob;nextEvent"/>
+  
+  <owl:ObjectProperty rdf:about="&knowrob;previousEvent"/>
+  
+  <owl:ObjectProperty rdf:about="&knowrob;toLocation"/>
+  
+  <owl:ObjectProperty rdf:about="&knowrob;givenCommand"/>
+  
+  <owl:ObjectProperty rdf:about="&knowrob;bodyPartsUsed"/>
+  
+  <owl:ObjectProperty rdf:about="&knowrob;actionResult"/>
+
+  <owl:ObjectProperty rdf:about="&knowrob;actionRequest"/>
+
+ <!-- http://knowrob.org/kb/knowrob.owl#commandExecuted -->
+
+  <owl:ObjectProperty rdf:about="&knowrob;commandExecuted"/>
+
+
+
+  <!-- Class Definitions -->
+   <owl:Class rdf:about="&knowrob;CRAMCommand"/>
+
+  <owl:Class rdf:about="&knowrob;CRAMAction"/>
+
+  <owl:Class rdf:about="&knowrob;CRAMPerform"/>
+  
+  <owl:Class rdf:about="&knowrob;CRAMDetect"/>
+  
+  <owl:Class rdf:about="&knowrob;TimePoint"/>
+  
+  <owl:Class rdf:about="&knowrob;RobotExperiment"/>
+  
+  <owl:Class rdf:about="&knowrob;HumanWalkingProcess"/>
+  
+  <owl:Class rdf:about="&knowrob;AnnotationInformation"/>
+  
+  <owl:Class rdf:about="&knowrob;RightHand"/>
+  
+  <owl:Class rdf:about="&knowrob;OriginArm"/>
+  
+  <owl:Class rdf:about="&knowrob;LiftingArm"/>
+  
+  <owl:Class rdf:about="&knowrob;PointingIntoDirection"/>
+  
+  <owl:Class rdf:about="&knowrob;SinkingArm"/>
+  
+  <owl:Class rdf:about="&knowrob;WithDesignators"/>
+
+  <owl:Class rdf:about="&knowrob;GoThere"/>
+
+  <!-- Event Individuals -->
+  <owl:NamedIndividual rdf:about="&log;CRAMCommand_2Bq4pJTEkAf0brog">
+    <rdf:type rdf:resource="&knowrob;CRAMAction"/>
+    <knowrob:taskContext rdf:datatype="&xsd;string">GOAL-COMMAND</knowrob:taskContext>
+    <!-- <knowrob:taskSuccess rdf:datatype="&xsd;boolean">true</knowrob:taskSuccess> -->
+    <knowrob:startTime rdf:resource="&log;timepoint_1419931530"/>
+    <knowrob:endTime rdf:resource="&log;timepoint_1419931530.5"/>
+    <knowrob:goalContext rdf:datatype="&xsd;string">(GO-TO ?LOC ?POINTED-AT)</knowrob:goalContext>
+  </owl:NamedIndividual>
+
+
+<!-- This is an index designator -->
+  <owl:NamedIndividual rdf:about="&log;action_Fg7hLqQ9RPhptL">
+   <rdf:type rdf:resource="&knowrob;CRAMDesignator"/>
+   <knowrob:creationTime rdf:resource="&log;timepoint_1429580479"/>
+  </owl:NamedIndividual>
+
+ <owl:NamedIndividual rdf:about="&log;CRAMAction_syHHxIUB">
+    <rdf:type rdf:resource="&knowrob;CRAMAction"/>
+    <knowrob:taskContext rdf:datatype="&xsd;string">FUNCTION-FOR-GETTING-ACTION-DESIGNATOR</knowrob:taskContext>
+    <knowrob:taskSuccess rdf:datatype="&xsd;boolean">true</knowrob:taskSuccess>
+    <knowrob:startTime rdf:resource="&log;timepoint_1429580478"/>
+    <knowrob:endTime rdf:resource="&log;timepoint_14295804780"/>
+  </owl:NamedIndividual>
+
+  <owl:NamedIndividual rdf:about="&log;WithDesignators_L1Av0n9sJ20UliO1">
+        <rdf:type rdf:resource="&knowrob;CRAMAction"/>
+        <knowrob:taskContext rdf:datatype="&xsd;string">WITH-DESIGNATORS</knowrob:taskContext>
+        <knowrob:taskSuccess rdf:datatype="&xsd;boolean">true</knowrob:taskSuccess>
+        <knowrob:startTime rdf:resource="&log;timepoint_1429580479"/>
+        <knowrob:endTime rdf:resource="&log;timepoint_1429580480"/>
+        <knowrob:subAction rdf:resource="&log;CRAMAction_syHHxIUB"/>
+	<knowrob:actionResult rdf:resource="&log;action_Fg7hLqQ9RPhptL"/> 
+        <knowrob:designator rdf:resource="&log;action_Fg7hLqQ9RPhptL"/>
+    </owl:NamedIndividual>
+
+
+ <owl:NamedIndividual rdf:about="&log;CRAMAction_THeFZkpZFW1Q43Pt">
+        <rdf:type rdf:resource="&knowrob;CRAMAction"/>
+        <knowrob:taskContext rdf:datatype="&xsd;string">CRAM-ACTION</knowrob:taskContext>
+        <knowrob:taskSuccess rdf:datatype="&xsd;boolean">true</knowrob:taskSuccess>
+        <knowrob:startTime rdf:resource="&log;timepoint_1429580479"/>
+        <knowrob:endTime rdf:resource="&log;timepoint_1429580479"/>
+        <knowrob:subAction rdf:resource="&log;WithDesignators_L1Av0n9sJ20UliO1"/>
+    </owl:NamedIndividual>
+
+  
+ 
+  <!-- http://knowrob.org/kb/knowrob.owl#CommandExecutor_dsf784635 -->
+
+    <owl:NamedIndividual rdf:about="&knowrob;GoThere_dsf784635">
+        <rdf:type rdf:resource="&knowrob;GoThere"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&knowrob;GoRight_jImFEUsl">
+        <rdf:type rdf:resource="&knowrob;GoRight"/>
+    </owl:NamedIndividual>
+
+
+ <owl:NamedIndividual rdf:about="&knowrob;FlyingToPointedPosition_8Iqr6Voa">
+    <rdf:type rdf:resource="&knowrob;CRAMAction"/>
+    <knowrob:taskContext rdf:datatype="&xsd;string">FUNCTION-FOR-GETTING-ACTION-DESIGNATOR</knowrob:taskContext>
+    <knowrob:taskSuccess rdf:datatype="&xsd;boolean">true</knowrob:taskSuccess>
+    <knowrob:startTime rdf:resource="&log;timepoint_1429580478"/>
+    <knowrob:endTime rdf:resource="&log;timepoint_14295804780"/>
+    <knowrob:commandExecuted rdf:resource="&knowrob;GoThere_dsf784635"/>  
+    <knowrob:nextEvent rdf:resource="&knowrob;MovingToPointedPosition_uGjUbVvy"/>
+    <!-- <knowrob:commandExecuted rdf:resource="&log;CommandExecutor_dsf784635AAA"/> -->
+    <!-- <knowrob:actionResult rdf:resource="&log;designator_RpfKDXa70xsVCV"/> -->
+    <!-- <knowrob:actionRequest rdf:resource="&log;designator_2ykLp4PK9qclRa"/> -->
+  </owl:NamedIndividual>
+
+ <owl:NamedIndividual rdf:about="&log;MovingToPointedPosition_uGjUbVvy">
+    <rdf:type rdf:resource="&knowrob;CRAMAction"/>
+    <knowrob:taskContext rdf:datatype="&xsd;string">CRAM-ACTION</knowrob:taskContext>
+    <knowrob:taskSuccess rdf:datatype="&xsd;boolean">true</knowrob:taskSuccess>
+    <knowrob:startTime rdf:resource="&log;timepoint_1429580478"/>
+    <knowrob:endTime rdf:resource="&log;timepoint_14295804780"/>
+    <knowrob:previousEvent rdf:resource="&knowrob;InterpretingCommand_8Iqr6VoaBBB"/>
+    <knowrob:commandExecuted rdf:resource="&knowrob;GoThere_dsf784635"/>
+    <!-- <knowrob:commandExecuted rdf:resource="&log;CommandExecutor_dsf784635BBB"/> -->
+    <!-- <knowrob:actionResult rdf:resource="&log;designator_RpfKDXa70xsVCV"/> -->
+    <!-- <knowrob:actionRequest rdf:resource="&log;designator_2ykLp4PK9qclRa"/> -->
+  </owl:NamedIndividual>
+
+
+  <owl:NamedIndividual rdf:about="&log;WalkingToPointedPosition_KKxZYXiM">
+    <rdf:type rdf:resource="&knowrob;CRAMAction"/>
+    <knowrob:taskContext rdf:datatype="&xsd;string">POINTING</knowrob:taskContext>
+    <knowrob:taskSuccess rdf:datatype="&xsd;boolean">true</knowrob:taskSuccess>
+    <knowrob:startTime rdf:resource="&log;timepoint_1419931530"/>
+    <knowrob:endTime rdf:resource="&log;timepoint_1419931530.5"/>
+    <!-- <knowrob:nextEvent rdf:resource="&knowrob;FlyingToPointedPosition_8Iqr6Voa"/> -->
+   <knowrob:commandExecuted rdf:resource="&knowrob;GoRight_jImFEUsl"/>
+    <!-- <knowrob:commandExecuted rdf:resource="&knowrob;CommandExecutor_RpfKDXa70xsVCV"/> -->
+  </owl:NamedIndividual>
+   
+  
+  <!-- origin -->
+  <owl:NamedIndividual rdf:about="&log;timepoint_1419931528">
+    <rdf:type rdf:resource="&knowrob;TimePoint"/>
+  </owl:NamedIndividual>
+  
+  <!-- lifting -->
+  <owl:NamedIndividual rdf:about="&log;timepoint_1419931529">
+    <rdf:type rdf:resource="&knowrob;TimePoint"/>
+  </owl:NamedIndividual>
+  
+  
+  <!-- pointing -->
+  <owl:NamedIndividual rdf:about="&log;timepoint_1419931530">
+    <rdf:type rdf:resource="&knowrob;TimePoint"/>
+  </owl:NamedIndividual>
+  
+  <owl:NamedIndividual rdf:about="&log;timepoint_1419931530.5">
+    <rdf:type rdf:resource="&knowrob;TimePoint"/>
+  </owl:NamedIndividual>
+  
+  <!-- sinking -->
+  <owl:NamedIndividual rdf:about="&log;timepoint_1419931531">
+    <rdf:type rdf:resource="&knowrob;TimePoint"/>
+  </owl:NamedIndividual>
+  
+  
+  <owl:NamedIndividual rdf:about="&log;timepoint_1429534873.001">
+    <rdf:type rdf:resource="&knowrob;TimePoint"/>
+  </owl:NamedIndividual>
+  
+  <owl:NamedIndividual rdf:about="&log;timepoint_1429534873.017">
+    <rdf:type rdf:resource="&knowrob;TimePoint"/>
+  </owl:NamedIndividual>
+  
+  <owl:NamedIndividual rdf:about="&log;AnnotationInformation_5f2Is1MebP3jJ8KF">
+    <rdf:type rdf:resource="&knowrob;AnnotationInformation"/>
+  </owl:NamedIndividual>
+  
+</rdf:RDF>
