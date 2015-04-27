@@ -32,78 +32,19 @@
 (defparameter *stored-result* nil)
 (defparameter *act-desig* nil)
 (defparameter *agent-pose* nil)
+(defvar *visualize-list* nil)
+(defvar *switcher* nil)
 
 (defclass command-result ()
   ((content :reader content :initarg :content)
    (time-received :reader time-received :initarg :time-received)))
 
-(defun init-base ()
-  (format t "inside init-base~%")
-  (setf *result-subscriber*
-        (roslisp:subscribe "/interpreted_command"
-                    "language_interpreter/connect"
-                    #'cb-result)))
-
-(defun cb-result (msg)
-  (format t "inside cb-result~%")
-  (setf *stored-result*
-        (make-instance 'command-result
-                       :content msg
-                       :time-received (roslisp:ros-time))))
-
-(defun tf-pose-of-agent ()
-  (let* ((intern (tf:lookup-transform *transform-listener* :time 0.0 :source-frame "base_footprint" :target-frame "map"))
-         (rob-pose (cl-transforms:transform->pose intern)))
-    (setf *agent-pose* rob-pose))
-  *agent-pose*)
-
-       
-;;CHECKING IF SELECTION CONTAINS TWO STRINGS
- (defun command-into-designator ()
-   (let* ((value (content *stored-result*))
-          (command (read-from-string (LANGUAGE_INTERPRETER-MSG:COMMAND value)))
-          (interpretation (read-from-string (car (split-sequence:split-sequence #\( (LANGUAGE_INTERPRETER-MSG:INTERPRETATION value)))))
-          (selection (split-sequence:split-sequence #\Space (LANGUAGE_INTERPRETER-MSG:SELECTION value)))
-          (selection2 (read-from-string (concatenate 'string (car selection) "_" (second selection))))
-        ;  (interpret (read-from-string (car (split-sequence:split-sequence #\( interpreted))))
-          ;(command (read-from-string(LANGUAGE_INTERPRETER-MSG:COMMAND value)))
-          (gesture (LANGUAGE_INTERPRETER-MSG:VEC value))
-          (value-x (GEOMETRY_MSGS-MSG:X gesture))
-          (value-y (GEOMETRY_MSGS-MSG:Y gesture))
-          (value-z (GEOMETRY_MSGS-MSG:Z gesture))
-          (default (STD_MSGS-MSG:DATA (LANGUAGE_INTERPRETER-MSG:OFFSET value))))
-     (cond ((equal value-x 0.0d0)
-            (equal value-y 0.0d0)
-            (equal value-z 0.0d0)
-            (setf gesture (tf-pose-agent)));"DUMMY(ROBOTPOSE)"))
-            (t 
-             (setf gesture (cl-transforms:make-pose (cl-transforms:make-3d-vector value-x value-y value-z)(cl-transforms:make-quaternion 0 0 0 1)))))
-     (setf *act-desig* (make-designator 'action `((command_type ,command)
-                                                (action_type ,interpretation)
-                                                (offset ,default)
-                                                (agent ,selection2)
-                                                (target ,(make-designator 'location `((loc ,gesture))))))))
-    
-   *act-desig*)
-
-(defun send-msg ()
-  (let ((pub (advertise "sendMsg" "designator_integration_msgs/Designator")))
-    (publish pub (desig-int::designator->msg (command-into-designator)))))
-
-(defun start-myros ()
-  (roslisp:ros-info (sherpa-spatial-relations) "START the ROSNODE")
-  (roslisp-utilities:startup-ros :anonymous nil))
-
-(defun end-myros ()
-  (roslisp:ros-info (sherpa-spatial-relations) "KILL the ROSNODE")
-  (roslisp-utilities:shutdown-ros))
-
 (defun start-world-with-robots ()
   (roslisp:ros-info (sherpa-spatial-relations) "START WORLD AND ROBOTS")
   (location-costmap::location-costmap-vis-init)
   (setf *list* nil)
-  (let*(;; (genius-urdf (cl-urdf:parse-urdf (roslisp:get-param "human/robot_description")))
-      ;   (quad-urdf (cl-urdf:parse-urdf (roslisp:get-param "quadrotor/robot_description")))
+  (let*((genius-urdf (cl-urdf:parse-urdf (roslisp:get-param "human/robot_description")))
+        ;; (quad-urdf (cl-urdf:parse-urdf (roslisp:get-param "quadrotor/robot_description")))
          (sem-urdf (cl-urdf:parse-urdf (roslisp:get-param "robot_description")))
          ;; (rover-urdf (cl-urdf:parse-urdf (roslisp:get-param "rover/robot_description")))
          )
@@ -119,214 +60,131 @@
                                :normal (0 0 1) :constant 0 :disable-collisions-with (?robot)))
                (debug-window ?w)
                (assert (object ?w semantic-map sem-map ((0 0 0) (0 0 0 1)) :urdf ,sem-urdf))
-               ;; (assert (object ?w urdf human ((0 0 0) (0 0 1 1)) :urdf ,genius-urdf))
+               (assert (object ?w urdf human ((-75.89979 -75.41413 29.02028)(0 0.0 -2 1)) :urdf ,genius-urdf))
                ;; (assert (object ?w urdf quadrotor ((-1 -2 2)(0 0 0 1)) :urdf ,quad-urdf))
                ;; (robot quadrotor)
-               ;; (robot human)
+               (robot human)
                ;; (assert (object ?w urdf quadrotor ((-1 -2 0.2)(0 0 1 1)) :urdf ,quad-urdf))
  
 	       ;; (assert (object ?w urdf rover ((1 3 0) (0 0 0 1)) :urdf ,rover-urdf))
          )))))))
+
+(defun init-base ()
+  (format t "inside init-base~%")
+  (setf *result-subscriber*
+        (roslisp:subscribe "/interpreted_command"
+                    "language_interpreter/connect"
+                    #'cb-result)))
+
+(defun cb-result (msg)
+  (format t "inside cb-result~%")
+  (setf *stored-result*
+        (make-instance 'command-result
+                       :content msg
+                       :time-received (roslisp:ros-time))))
+
+;;TODO: CHECKING IF SELECTION CONTAINS TWO STRINGS
+ (defun command-into-designator ()
+  (let*((value (content *stored-result*))
+        (command (read-from-string (LANGUAGE_INTERPRETER-MSG:COMMAND value)))
+        (interpretation (read-from-string 
+                              (car 
+                               (split-sequence:split-sequence #\( (LANGUAGE_INTERPRETER-MSG:INTERPRETATION value)))))
+        (selection (split-sequence:split-sequence #\Space (LANGUAGE_INTERPRETER-MSG:SELECTION value)))
+        (selection2 (read-from-string (concatenate 'string (car selection) "_" (second selection))))
+        ;  (interpret (read-from-string (car (split-sequence:split-sequence #\( interpreted))))
+          ;(command (read-from-string(LANGUAGE_INTERPRETER-MSG:COMMAND value)))
+        (gesture00 (LANGUAGE_INTERPRETER-MSG:VEC value))
+        (value-x (GEOMETRY_MSGS-MSG:X gesture00))
+        (value-y (GEOMETRY_MSGS-MSG:Y gesture00))
+        (value-z (GEOMETRY_MSGS-MSG:Z gesture00))
+        (default (LANGUAGE_INTERPRETER-MSG:OFFSET value))
+        (off-x (GEOMETRY_MSGS-MSG:X default))
+        (off-y (GEOMETRY_MSGS-MSG:Y default))
+        (off-z (GEOMETRY_MSGS-MSG:Z default)))
+    (cond ((equal value-x 0.0d0)
+           (equal value-y 0.0d0)
+           (equal value-z 0.0d0)
+           (setf *switcher* 1)
+           (setf gesture "TF-ROBOT-POSE"))
+          (t 
+           (setf gesture (cl-transforms:make-pose (cl-transforms:make-3d-vector value-x value-y value-z)(cl-transforms:make-quaternion 0 0 0 1)))
+           (setf *switcher* 0)))
+    (setf def (cl-transforms:make-3d-vector off-x off-y off-z))
+    (setf *visualize-list* `((offset ,def)(loc ,gesture)))
+    (setf *act-desig* (make-designator 'action `((command_type ,command)
+                                                 (action_type ,interpretation)
+                                                 (offset ,def)
+                                                 (agent ,selection2)
+                                                 (target ,(make-designator 'location `((loc ,gesture))))))))
+    
+   *act-desig*)
+
+(defun get-tf-pose (robot)
+(format t "TODO: get-tf-pose~%"))
+
+(defun visualize-pointing ()
+  (format t "visualizing action designator~%")
+  ;; (let* ((offset-vec (car (assoc 'offset *visualize-list*)))
+  ;;        (loc-pose (cadr (assoc 'loc *visualize-list*)))
+  ;;        (vec (cl-transforms:origin loc-pose))
+  ;;        (ori (cl-transforms:orientation loc-pose))
+  ;;        (sum-x (+ (cl-transforms:x vec) (cl-transforms:x offset-vec)))
+  ;;        (sum-y (+ (cl-transforms:y vec) (cl-transforms:y offset-vec)))
+  ;;        (sum-z (+ (cl-transforms:z vec) (cl-transforms:z offset-vec)))
+  ;;        (new-vec (cl-transforms:make-3d-vector sum-x sum-y sum-z))
+  (prolog `(and (bullet-world ?w)
+                (assert (object ?w mesh sphere0 ((0 0 0)(0 0 0 1));,new-vec ,ori)
+                                :mesh cognitive-reasoning::sphere :mass 0.2 :color (0 0 1) :scale 3.0))))
+  (setf iterator1 0)
+  (setf iterator2 0)
+  (format t "wie oft? ~a~%" iterator1)
+  (loop until (not (equal nil (prolog `(and 
+                             (bullet-world ?w)
+                             (contact ?w ,(read-from-string (format nil "sphere~a" iterator2)) ?sem)))))
+           do
+              (setf iterator1 (+ iterator1 1))
+              (setf iterator2 (+ iterator2 1))
+              (format t "wie oft? ~a~%" iterator1)
+              (add-sphere (read-from-string (format nil "sphere~a" iterator2)) (cl-transforms:make-3d-vector iterator1 0 0))
+              
+              (format t "iterator2 ~a~%" iterator2))
+                                        ;new-vec)
+    (format t "end of iterator~%"))
+
+
+
+(defun send-msg ()
+  (let ((pub (advertise "sendMsg" "designator_integration_msgs/Designator")))
+    (publish pub (desig-int::designator->msg (command-into-designator)))))
+
+
  
 (defun spawn-objects ()
  (roslisp:ros-info (sherpa-spatial-relations) "SPAWN OBJECTS INTO WORLD")
  (prolog `(and (bullet-world ?w)
+               	 (assert (object ?w mesh sphere5 ((-79.89979 -75.41413 29.02028)(0.498 0.0 0.0 -0.867))
+				 :mesh cognitive-reasoning::sphere :mass 0.2 :color (0 0 1) :scale 3.0))))
+ (prolog `(and (bullet-world ?w)
                	 (assert (object ?w mesh victim ((9 0 0)(0 0 0 1))
 				 :mesh btr::victim :mass 0.2 :color (1 0 0) :scale 0.6)))))
-		 ;; (assert (object ?w mesh tree-5 ((6 1 0)(0 0 0 1))
-		 ;;  	 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0.5 0)))
-		 ;; (assert (object ?w mesh tree-6 ((10 4 0)(0 0 0 1))
-		 ;;  	 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0 0)))
-		 ;; (assert (object ?w mesh tree-7 ((10 -4 0)(0 0 0 1))
-		 ;;  	 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0 0)))
-		 ;; (assert (object ?w mesh tree-8 ((15 2 0)(0 0 0 1))
-		 ;;  	 :mesh cognitive-reasoning::tanne2 :mass 0.2 :color (0 0.5 0))) 
-		 ;; (assert (object ?w mesh tree-9 ((13 -6 0)(0 0 0 1))
-		 ;;  	 :mesh cognitive-reasoning::tanne2 :mass 0.2 :color (0 0.5 0))) 
-		 ;; (assert (object ?w mesh tree-10 ((10 -8 0)(0 0 0 1))
-		 ;;  	 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0 0)))
-		 ;; (assert (object ?w mesh tree-12 ((4 -8 0)(0 0 0 1))
-		 ;;  	 :mesh cognitive-reasoning::tanne1 :mass 0.2 :color (0 0.5 0)))
 	
- ;;  (simple-knowledge::clear-object-list)q
- ;;   (simple-knowledge::add-object-to-spawn
- ;;   :name "tree-5"
- ;;   :type 'tree
- ;;   :collision-parts nil
- ;;   :pose (tf:make-pose-stamped
- ;;          "/map"
- ;;          0.0
- ;;          (tf:make-3d-vector 6 1 0)
- ;;          (tf:make-quaternion 0 0 0 1))
- ;;   :file (model-path "tanne1.urdf"))
- ;;  (simple-knowledge::add-object-to-spawn
- ;;   :name "tree-6"
- ;;   :type 'tree
- ;;   :collision-parts nil
- ;;   :pose (tf:make-pose-stamped
- ;;          "/map"
- ;;          0.0
- ;;          (tf:make-3d-vector 10 4 0)
- ;;          (tf:make-quaternion 0 0 0 1))
- ;;   :file (model-path "tanne12.urdf"))
- ;;  (simple-knowledge::add-object-to-spawn
- ;;   :name "tree-7"
- ;;   :type 'tree
- ;;   :collision-parts nil
- ;;   :pose (tf:make-pose-stamped
- ;;          "/map"
- ;;          0.0
- ;;          (tf:make-3d-vector 10 -4 0)
- ;;          (tf:make-quaternion 0 0 0 1))
- ;;   :file (model-path "tanne12.urdf"))
- ;; (simple-knowledge::add-object-to-spawn
- ;;   :name "tree-8"
- ;;   :type 'tree
- ;;   :collision-parts nil
- ;;   :pose (tf:make-pose-stamped
- ;;          "/map"
- ;;          0.0
- ;;          (tf:make-3d-vector 15 2 0)
- ;;          (tf:make-quaternion 0 0 0 1))
- ;;   :file (model-path "tanne2.urdf"))
- ;; (simple-knowledge::add-object-to-spawn
- ;;   :name "tree-9"
- ;;   :type 'tree
- ;;   :collision-parts nil
- ;;   :pose (tf:make-pose-stamped
- ;;          "/map"
- ;;          0.0
- ;;          (tf:make-3d-vector 13 -6 0)
- ;;          (tf:make-quaternion 0 0 0 1))
- ;;   :file (model-path "tanne21.urdf"))
- ;; (simple-knowledge::add-object-to-spawn
- ;;   :name "tree-10"
- ;;   :type 'tree
- ;;   :collision-parts nil
- ;;   :pose (tf:make-pose-stamped
- ;;          "/map"
- ;;          0.0
- ;;          (tf:make-3d-vector 10 -8 0)
- ;;          (tf:make-quaternion 0 0 0 1))
- ;;   :file (model-path "tanne12.urdf"))
- ;; (simple-knowledge::add-object-to-spawn
- ;;   :name "tree-12"
- ;;   :type 'tree
- ;;   :collision-parts nil
- ;;   :pose (tf:make-pose-stamped
- ;;          "/map"
- ;;          0.0
- ;;          (tf:make-3d-vector 4 -8 0)
- ;;          (tf:make-quaternion 0 0 0 1))
- ;;   :file (model-path "tanne1.urdf"))
- ;; (simple-knowledge::add-object-to-spawn
- ;;   :name "victim"
- ;;   :type 'clothes
- ;;   :collision-parts nil
- ;;   :pose (tf:make-pose-stamped
- ;;          "/map"
- ;;          0.0
- ;;          (tf:make-3d-vector 9 0 0)
- ;;          (tf:make-quaternion 0 0 0 1))
- ;;   :file (model-path "victim.urdf"))
- ;;   (simple-knowledge:spawn-objects)
-  
 
-;; (defun marker()
-;;   ;; (pointing-direction)
-;;   (let ((pose (pointed-direction)))
-;;     (format t "pose is: ~a~%" pose)
-;;     (add-sphere pose)
-;;     (format t "was ist das ~%")
-;;     (check-collision)))
-        
-;; (defun check-collision ()
-;;  ;(add-sphere pose)
-;; (let* ((pose (get-object-pose 'sphere))
-;;        (collision-detector (prolog `(and
-;;                                      (bullet-world ?w)
-;;                                      (contact ?w sphere ?objs))))
-;;        (vector (cl-transforms:origin pose))
-;;        (vec-y (cl-transforms:y vector))
-;;        (vec-x  (cl-transforms:x vector))
-;;        (vec-z   (cl-transforms:z vector))
-;;        (new-vec-y (+ vec-y -0.5)))
-;;   (format t "hallo ~%")
-;;   (cond ((eq nil collision-detector)(format t "great job, take this one ~%"))
-;;         (t
-;;          (prolog `(and 
-;;                    (bullet-world ?w)
-;;                    (assert
-;;                     (object-pose ?w sphere ((,vec-x ,new-vec-y ,vec-z) (0 0 0 1))))))
-;;          (format t "hellooooo~%")))
-;;   (get-object-pose 'sphere)))
-
-;; (defun pointed-direction ()
-;;  ;; started rosrun nodes
-;;   ;; (pointing-direction)
-;;   (location-costmap::location-costmap-vis-init)
-;;   (let* ((transform-x
-;;            (tf:lookup-transform cram-roslisp-common:*tf* :time 0.0 :source-frame "busy_genius/right_hand_x" :target-frame "map"))
-;;          (trans-x (cl-transforms:transform->pose transform-x))
-;;          (trans (cl-transforms:origin trans-x))
-;;          (x-val (+ (cl-transforms:x trans) 6))
-;;          (new-vec (cl-transforms:make-3d-vector x-val (cl-transforms:y trans) (cl-transforms:z trans))))
-;;     (location-costmap::publish-point new-vec)
-;;     (format t "the end ~%")
-;;     new-vec))
- ;;   (let* ((pose-in-base (tf:lookup-transform
-;; 			 cram-roslisp-common:*tf*
-;; 			 :time-frame
-;; 			 "base_stabilized"
-;; 			 :target-frame
-;; 			 "map"))
-;;       (cl-transforms:transform->pose pose-in-base)
-;; 	  (goal-dist (cl-transforms:v-norm
-;; ;;                      (cl-transforms:origin pose-in-base)))
-;; (defun add-sphere2 ()
-;; ;; position of the joint
-;;  (prolog `(and (bullet-world ?w)
-;;                (assert (object ?w mesh sphere3 ((6 1 0)(0 0 0 1))
-;;                                   :mesh cognitive-reasoning::sphere :mass 0.2 :color (0 0.5 0))))))
-
-
-(defun add-sphere (pose)
+(defun add-sphere (name origin)
 ;; position of the joint
-  (format t "pose is: ~a~%" pose)
-  (let* (;(vector (cl-transforms:origin pose))
-         (vec-x (cl-transforms:x pose))
-        (vec-y (cl-transforms:y pose))
-        (vec-z (cl-transforms:z pose)))
-    (format t "ich bin nun hier ~%")
-      (prolog `(and (bullet-world ?w)
-                  (assert (object ?w mesh sphere ((,vec-x ,vec-y ,vec-z)(0 0 0 1))
-                                  :mesh cognitive-reasoning::sphere :mass 0.2 :color (0 1 0)))))
-  ;;   (simple-knowledge::clear-object-list)
-  ;;   (simple-knowledge::add-object-to-spawn
-  ;;    :name "sphere"
-  ;;    :type 'collision-detector
-  ;;    :collision-parts nil
-  ;;    :pose 
-  ;;    (tf:make-pose-stamped
-  ;;     "/map"
-  ;;     0.0
-  ;;     (tf:make-3d-vector vec-x vec-y vec-z)
-  ;;         (tf:make-quaternion 0 0 0 1))
-  ;;  :file (model-path "sphere.urdf"))
-  ;; (format t "ja endlich~%")
-  ;;  (simple-knowledge:spawn-objects)
-      (format t "the end is here ~a~%" (get-object-pose 'sphere))
-  ))
+  (let* ((vec-x (cl-transforms:x origin))
+         (vec-y (cl-transforms:y origin))
+         (vec-z (cl-transforms:z origin)))
+    (format t "origin ~a~%" origin)
+    (format t "what is name ~a~%" name)
+    (prolog `(and (bullet-world ?w)
+                  (assert (object ?w mesh ,name ((,vec-x ,vec-y ,vec-z)(0 0 0 1))
+                          :mesh cognitive-reasoning::sphere :mass 0.2 :color (0 1 0) :scale 3.0))))))
+;; (format t "ja endlich~%")
+;;  (simple-knowledge:spawn-objects)
+      
 
 ;rosrun tf static_transform_publisher 0 0 0 1.5 0 0 map world 100
-
-
-(defun model-path (name)
-  (physics-utils:parse-uri
-   (concatenate
-    'string
-    "package://world_model_description/urdf/"
-    name)))
 
 ;;;;;PROJECTION;;;;;
 
@@ -470,19 +328,19 @@ desig)
       the-object)
     ))
 
-(defun all()
-  (start-world-with-robots)
-  (spawn-objects)
-  (format t "now spawning objects~%")
-  (crs:prolog
-   `(assert (btr:joint-state ?w human (("right_shoulder_joint_x" 0.06) ;;0.1
-                                       ("right_shoulder_joint_y" -0.25)  ;;0.0 0.40
-                                       ("right_shoulder_joint_z" 1.4)  ;;0.6 0.500
-                                       ("left_upper_arm_joint_x" 0.1)
-                                       ("left_upper_arm_joint_y" 3.0)
-                                       ("left_upper_arm_joint_z" -0.5)))))
-  (add-sphere (cl-transforms:origin (cl-transforms:make-pose  (cl-transforms:make-3d-vector 6 2 0) (cl-transforms:make-quaternion 0 0 0 1))))
-  (marker))
+;; (defun all()
+;;   (start-world-with-robots)
+;;   (spawn-objects)
+;;   (format t "now spawning objects~%")
+;;   (crs:prolog
+;;    `(assert (btr:joint-state ?w human (("right_shoulder_joint_x" 0.06) ;;0.1
+;;                                        ("right_shoulder_joint_y" -0.25)  ;;0.0 0.40
+;;                                        ("right_shoulder_joint_z" 1.4)  ;;0.6 0.500
+;;                                        ("left_upper_arm_joint_x" 0.1)
+;;                                        ("left_upper_arm_joint_y" 3.0)
+;;                                        ("left_upper_arm_joint_z" -0.5)))))
+;;   (add-sphere (cl-transforms:origin (cl-transforms:make-pose  (cl-transforms:make-3d-vector 6 2 0) (cl-transforms:make-quaternion 0 0 0 1))))
+;;   (marker))
 
 (defun cheK()
  (let(( desig (make-designator 'desig-props:object `((desig-props:name victim)
