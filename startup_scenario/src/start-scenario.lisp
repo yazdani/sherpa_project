@@ -34,6 +34,7 @@
 (defparameter *agent-pose* nil)
 (defvar *visualize-list* nil)
 (defvar *switcher* nil)
+(defvar *offset-checker* nil)
 
 (defclass command-result ()
   ((content :reader content :initarg :content)
@@ -44,7 +45,7 @@
   (location-costmap::location-costmap-vis-init)
   (setf *list* nil)
   (let*((genius-urdf (cl-urdf:parse-urdf (roslisp:get-param "human/robot_description")))
-        ;; (quad-urdf (cl-urdf:parse-urdf (roslisp:get-param "quadrotor/robot_description")))
+        (quad-urdf (cl-urdf:parse-urdf (roslisp:get-param "red_hawk/robot_description")))
          (sem-urdf (cl-urdf:parse-urdf (roslisp:get-param "robot_description")))
          ;; (rover-urdf (cl-urdf:parse-urdf (roslisp:get-param "rover/robot_description")))
          )
@@ -61,8 +62,8 @@
                (debug-window ?w)
                (assert (object ?w semantic-map sem-map ((0 0 0) (0 0 0 1)) :urdf ,sem-urdf))
                (assert (object ?w urdf human ((-75.89979 -75.41413 29.02028)(0 0.0 -2 1)) :urdf ,genius-urdf))
-               ;; (assert (object ?w urdf quadrotor ((-1 -2 2)(0 0 0 1)) :urdf ,quad-urdf))
-               ;; (robot quadrotor)
+               (assert (object ?w urdf quadrotor ((-81.73 -82.87 25.82)(0 0 0 1)) :urdf ,quad-urdf))
+               (robot quadrotor)
                (robot human)
                ;; (assert (object ?w urdf quadrotor ((-1 -2 0.2)(0 0 1 1)) :urdf ,quad-urdf))
  
@@ -85,74 +86,186 @@
 
 ;;TODO: CHECKING IF SELECTION CONTAINS TWO STRINGS
  (defun command-into-designator ()
-  (let*((value (content *stored-result*))
-        (command (read-from-string (LANGUAGE_INTERPRETER-MSG:COMMAND value)))
-        (interpretation (read-from-string 
-                              (car 
-                               (split-sequence:split-sequence #\( (LANGUAGE_INTERPRETER-MSG:INTERPRETATION value)))))
-        (selection (split-sequence:split-sequence #\Space (LANGUAGE_INTERPRETER-MSG:SELECTION value)))
-        (selection2 (read-from-string (concatenate 'string (car selection) "_" (second selection))))
-        ;  (interpret (read-from-string (car (split-sequence:split-sequence #\( interpreted))))
-          ;(command (read-from-string(LANGUAGE_INTERPRETER-MSG:COMMAND value)))
-        (gesture00 (LANGUAGE_INTERPRETER-MSG:VEC value))
-        (value-x (GEOMETRY_MSGS-MSG:X gesture00))
-        (value-y (GEOMETRY_MSGS-MSG:Y gesture00))
-        (value-z (GEOMETRY_MSGS-MSG:Z gesture00))
-        (default (LANGUAGE_INTERPRETER-MSG:OFFSET value))
-        (off-x (GEOMETRY_MSGS-MSG:X default))
-        (off-y (GEOMETRY_MSGS-MSG:Y default))
-        (off-z (GEOMETRY_MSGS-MSG:Z default)))
-    (cond ((equal value-x 0.0d0)
-           (equal value-y 0.0d0)
-           (equal value-z 0.0d0)
-           (setf *switcher* 1)
-           (setf gesture "TF-ROBOT-POSE"))
-          (t 
-           (setf gesture (cl-transforms:make-pose (cl-transforms:make-3d-vector value-x value-y value-z)(cl-transforms:make-quaternion 0 0 0 1)))
-           (setf *switcher* 0)))
-    (setf def (cl-transforms:make-3d-vector off-x off-y off-z))
-    (setf *visualize-list* `((offset ,def)(loc ,gesture)))
-    (setf *act-desig* (make-designator 'action `((command_type ,command)
-                                                 (action_type ,interpretation)
-                                                 (offset ,def)
-                                                 (agent ,selection2)
-                                                 (target ,(make-designator 'location `((loc ,gesture))))))))
-    
-   *act-desig*)
+ ;  (init-base)
+   (cond ((equal nil *stored-result*) (format t "Ain't no publisher~%"))
+         (t
+          (let*((value (content *stored-result*))
+                (command (read-from-string (LANGUAGE_INTERPRETER-MSG:COMMAND value)))
+                (interpretation (read-from-string 
+                                 (car 
+                                  (split-sequence:split-sequence #\( (LANGUAGE_INTERPRETER-MSG:INTERPRETATION value)))))
+                (selection (split-sequence:split-sequence #\Space (LANGUAGE_INTERPRETER-MSG:SELECTION value)))
+                (selection2 (read-from-string (concatenate 'string (car selection) "_" (second selection))))
+                                        ;  (interpret (read-from-string (car (split-sequence:split-sequence #\( interpreted))))
+                                        ;(command (read-from-string(LANGUAGE_INTERPRETER-MSG:COMMAND value)))
+                (gesture00 (LANGUAGE_INTERPRETER-MSG:VEC value))
+                (value-x (GEOMETRY_MSGS-MSG:X gesture00))
+                (value-y (GEOMETRY_MSGS-MSG:Y gesture00))
+                (value-z (GEOMETRY_MSGS-MSG:Z gesture00))
+                (default (LANGUAGE_INTERPRETER-MSG:OFFSET value))
+                (off-x (GEOMETRY_MSGS-MSG:X default))
+                (off-y (GEOMETRY_MSGS-MSG:Y default))
+                (off-z (GEOMETRY_MSGS-MSG:Z default)))
+            (format t "tester~%")
+            (checking-offset off-x off-y off-z)
+            (cond ((equal value-x 0.0d0)
+                   (equal value-y 0.0d0)
+                   (equal value-z 0.0d0)
+                   (setf *switcher* 1)
+                   (setf gesture (cl-transforms:make-pose (cl-transforms:make-3d-vector 
+                                                           (+ (- 81.73) off-x)
+                                                           (+ (- 82.87) off-y)
+                                                           (+ 25.82 off-z))
+                                                          (cl-transforms:make-quaternion 0 0 0 1))))
+                  ;;(setf gesture (tf-pose-of-agent (cl-transforms:make-3d-vector off-x off-y off-z))))
+                  (t 
+                   ;; (setf gesture (cl-transforms:make-pose (cl-transforms:make-3d-vector (+ value-x off-x) (+ value-y off-y) (+ value-z off-z))(cl-transforms:make-quaternion 0 0 0 1)))
+                   (setf *switcher* 0)
+                   (setf gesture (cl-transforms:make-pose (cl-transforms:make-3d-vector 
+                                                           (+ (- 75.89979) (+ value-x off-x)) 
+                                                           (+ (- 75.41413) (+ value-y off-y))
+                                                           (+  29.02028 (+ value-z off-z)))
+                                                          (cl-transforms:make-quaternion 0 0 0 1)))
+                   ;; (setf *switcher* 0)
+                   ))
+            (setf def (cl-transforms:make-3d-vector off-x off-y off-z))
+            (setf *visualize-list* `((offset ,def)(loc ,gesture)))
+            (setf *act-desig* (make-designator 'action `((command_type ,command)
+                                                         (action_type ,interpretation)
+                                                         (offset ,def)
+                                                         (agent ,selection2)
+                                                         (target ,(make-designator 'location `((loc ,gesture))))))))
+          
+          *act-desig*
+          )))
 
-(defun get-tf-pose (robot)
-(format t "TODO: get-tf-pose~%"))
+;; (defun get-tf-pose (robot)
+;; (format t "TODO: get-tf-pose~%"))
+
+(defun checking-offset (x y z)
+  (format t "x y z ~a ~a ~a ~%"x y z)
+  (cond ((not (equal x 0.0d0))(setf *offset-checker* 'x))
+        ((not (equal y 0.0d0))(setf *offset-checker* 'y))
+        (t
+        (setf *offset-checker* 'z))))
+
+
+ (defun tf-pose-of-agent (pose)
+  (let* ((intern (tf:lookup-transform *transform-listener* :time 0.0 :source-frame "base_footprint" :target-frame "map"))
+         (rob-pose (cl-transforms:transform->pose intern))
+         (pose-x (+ (cl-transforms:x pose) (cl-transforms:x (cl-transforms:origin rob-pose))))
+         (pose-y (+ (cl-transforms:y pose) (cl-transforms:y (cl-transforms:origin rob-pose))))
+         (pose-z (+ (cl-transforms:z pose) (cl-transforms:z (cl-transforms:origin rob-pose))))
+         (ori (cl-transforms:orientation rob-pose))
+         (robot-pose (cl-transforms:make-pose (cl-transforms:make-3d-vector pose-x pose-y pose-z) ori)))
+    (setf *agent-pose* robot-pose))
+  *agent-pose*)
 
 (defun visualize-pointing ()
   (format t "visualizing action designator~%")
-  ;; (let* ((offset-vec (car (assoc 'offset *visualize-list*)))
-  ;;        (loc-pose (cadr (assoc 'loc *visualize-list*)))
-  ;;        (vec (cl-transforms:origin loc-pose))
-  ;;        (ori (cl-transforms:orientation loc-pose))
-  ;;        (sum-x (+ (cl-transforms:x vec) (cl-transforms:x offset-vec)))
-  ;;        (sum-y (+ (cl-transforms:y vec) (cl-transforms:y offset-vec)))
-  ;;        (sum-z (+ (cl-transforms:z vec) (cl-transforms:z offset-vec)))
-  ;;        (new-vec (cl-transforms:make-3d-vector sum-x sum-y sum-z))
+  (let* ((offset-vec (cadr (assoc 'offset *visualize-list*)))
+         (loc-pose (cadr (assoc 'loc *visualize-list*)))
+         (vec (cl-transforms:origin loc-pose))
+         (ori (cl-transforms:orientation loc-pose))
+         (sum-x (+ (cl-transforms:x vec) (cl-transforms:x offset-vec)))
+         (sum-y (+ (cl-transforms:y vec) (cl-transforms:y offset-vec)))
+         (sum-z (+ (cl-transforms:z vec) (cl-transforms:z offset-vec))))
+       ;  (new-vec (cl-transforms:make-3d-vector sum-x sum-y sum-z)))
+    (cond ((string-equal *offset-checker* 'z)
+           (visualize-in-z (cl-transforms:z vec)  sum-x sum-y sum-z ori))
+          ((string-equal *offset-checker* 'y)
+           (visualize-in-y (cl-transforms:y vec) sum-x sum-y sum-z ori))
+          (t
+           (visualize-in-x (cl-transforms:x vec)  sum-x sum-y sum-z  ori)))))
+
+(defun visualize-in-x (iks  sum-x sum-y sum-z ori)
+  (format t "visualizing in x direction~%")
   (prolog `(and (bullet-world ?w)
-                (assert (object ?w mesh sphere0 ((0 0 0)(0 0 0 1));,new-vec ,ori)
-                                :mesh cognitive-reasoning::sphere :mass 0.2 :color (0 0 1) :scale 3.0))))
+                (assert (object ?w mesh sphere0 
+                                ((,iks ,sum-y ,sum-z)
+                                 (,(cl-transforms:x ori) 
+                                   ,(cl-transforms:y ori) 
+                                   ,(cl-transforms:z ori) ,(cl-transforms:w ori)))
+                                :mesh cognitive-reasoning::sphere 
+                                :mass 0.2 :color (0 1 0) :scale 3.0))))
   (setf iterator1 0)
   (setf iterator2 0)
   (format t "wie oft? ~a~%" iterator1)
+  (format t "sum-x und iks ~a und ~a~%" sum-x iks)
   (loop until (not (equal nil (prolog `(and 
-                             (bullet-world ?w)
-                             (contact ?w ,(read-from-string (format nil "sphere~a" iterator2)) ?sem)))))
-           do
-              (setf iterator1 (+ iterator1 1))
-              (setf iterator2 (+ iterator2 1))
-              (format t "wie oft? ~a~%" iterator1)
-              (add-sphere (read-from-string (format nil "sphere~a" iterator2)) (cl-transforms:make-3d-vector iterator1 0 0))
-              
-              (format t "iterator2 ~a~%" iterator2))
-                                        ;new-vec)
-    (format t "end of iterator~%"))
+                                        (bullet-world ?w)
+                                        (contact ?w ,
+                                                 (read-from-string 
+                                                  (format nil "sphere~a" iterator2)) ?sem)))))
+        do
+           (setf iterator1 (+ iterator1 1))
+           (setf iterator2 (+ iterator2 1))
+           (format t "wie oft? ~a~%" iterator1)
+           (add-sphere (read-from-string (format nil "sphere~a" iterator2)) 
+                       (cl-transforms:make-pose 
+                        (cl-transforms:make-3d-vector 
+                         (+ iks iterator1) sum-y sum-z) ori))))
 
 
+(defun visualize-in-y (yps sum-x sum-y sum-z ori)
+  (format t "visualizing in y direction~%")
+  (prolog `(and (bullet-world ?w)
+                (assert (object ?w mesh sphere0
+                                ((,sum-x ,yps ,sum-z)
+                                 (,(cl-transforms:x ori) 
+                                   ,(cl-transforms:y ori) 
+                                   ,(cl-transforms:z ori) ,(cl-transforms:w ori)))
+                                :mesh cognitive-reasoning::sphere 
+                                :mass 0.2 :color (0 1 0) :scale 3.0))))
+  (setf iterator1 0)
+  (setf iterator2 0)
+  (setf iter3 yps)
+  (format t "wie oft? ~a~%" iterator1)
+  (format t "sum-y und yps ~a und ~a~%" sum-y yps)
+  (format t "tester: ~a~%"  (not (equal sum-y iter3)))
+  (loop until (equal sum-y iter3)
+        do
+           (format t "was333?~%")
+           (setf iterator1 (+ iterator1 1))
+           (setf iterator2 (+ iterator2 1))
+        ;   (setf iter3 (+ iter3 1))
+           (format t "wie oft333? ~a~%" iterator1)
+           (add-sphere (read-from-string (format nil "sphere~a" iterator2)) 
+                       (cl-transforms:make-pose 
+                        (cl-transforms:make-3d-vector 
+                         sum-x (+ iter3 iterator1) sum-z) ori)))
+  (format t "wa333ws?~%"))
+
+
+(defun visualize-in-z (zed sum-x sum-y sum-z ori)
+  (format t "sum-x sum-y sum-z ~a --- ~a --- ~a-- ~%" sum-x sum-y sum-z)
+  (format t "visualizing in z direction~%")
+  (prolog `(and (bullet-world ?w)
+                (assert (object ?w mesh sphere0 
+                                ((,sum-x ,sum-y ,sum-z)
+                                 (,(cl-transforms:x ori) 
+                                   ,(cl-transforms:y ori) 
+                                   ,(cl-transforms:z ori) ,(cl-transforms:w ori)))
+                                :mesh cognitive-reasoning::sphere 
+                                :mass 0.2 :color (0 1 0) :scale 3.0))))
+  (setf iterator1 0)
+  (setf iterator2 0)
+  (setf iter3 zed)
+  (format t "wie oft? ~a~%" iterator1)
+  (format t "sum-z und zed ~a und ~a~%" sum-z zed)
+  (format t "teser: ~a~%" (not (equal sum-z iter3)))
+  (loop until (equal sum-z iter3)
+        do
+           (format t "was?~%")
+           (setf iterator1 (+ iterator1 1))
+           (setf iterator2 (+ iterator2 1))
+         ;  (setf iter3 (+ iter3 1))
+           (format t "wie oft222? ~a~%" iterator1)
+           (add-sphere (read-from-string (format nil "sphere~a" iterator2)) 
+                       (cl-transforms:make-pose 
+                        (cl-transforms:make-3d-vector 
+                         sum-x sum-y (+ iter3 iterator1)) ori)))
+             (format t "was3?~%"))
 
 (defun send-msg ()
   (let ((pub (advertise "sendMsg" "designator_integration_msgs/Designator")))
@@ -170,15 +283,21 @@
 				 :mesh btr::victim :mass 0.2 :color (1 0 0) :scale 0.6)))))
 	
 
-(defun add-sphere (name origin)
+(defun add-sphere (name pose)
 ;; position of the joint
-  (let* ((vec-x (cl-transforms:x origin))
+  (let* ((origin (cl-transforms:origin pose))
+         (orientation (cl-transforms:orientation pose))
+         (vec-x (cl-transforms:x origin))
          (vec-y (cl-transforms:y origin))
-         (vec-z (cl-transforms:z origin)))
-    (format t "origin ~a~%" origin)
+         (vec-z (cl-transforms:z origin))
+         (ori-x (cl-transforms:x orientation))
+         (ori-y (cl-transforms:y orientation))
+         (ori-z (cl-transforms:z orientation))
+         (ori-w (cl-transforms:w orientation)))
+   (format t "origin ~a~%" origin)
     (format t "what is name ~a~%" name)
     (prolog `(and (bullet-world ?w)
-                  (assert (object ?w mesh ,name ((,vec-x ,vec-y ,vec-z)(0 0 0 1))
+                  (assert (object ?w mesh ,name ((,vec-x ,vec-y ,vec-z)(,ori-x ,ori-y ,ori-z ,ori-w))
                           :mesh cognitive-reasoning::sphere :mass 0.2 :color (0 1 0) :scale 3.0))))))
 ;; (format t "ja endlich~%")
 ;;  (simple-knowledge:spawn-objects)
@@ -247,24 +366,24 @@
 ;;       (let ((desig (find-object-in-world 'human 'tree-5)))
 ;;         desig))))
     
-(defun find-victim()
- (sb-ext:gc :full t)
- ;; (sb-ext:gc :full t)
- (cpl-impl:top-level 
- (cram-projection:with-projection-environment
-     agents-projection-process-modules::agents-bullet-projection-environment
-   (let ((object-desig (find-object-in-world  'cognitive-reasoning::victim "tree0")))
-     (sb-ext:gc :full t)
-     (cram-language-designator-support:with-designators
-         ((victims-location (location `((at "Tree")
-                                        (name "tree0")
-                                        (for ,object-desig)
-                                        (pointed-pos ,(get-object-pose 'sphere))))))
-       (format t "now trying to achieve location of victim in world~%")
-       ;; (plan-knowledge:achieve
-       ;;  `(plan-knowledge:loc ,victims-location))
-       ))
-      (sb-ext:gc :full t))))
+;; (defun find-victim()
+;;  (sb-ext:gc :full t)
+;;  ;; (sb-ext:gc :full t)
+;;  (cpl-impl:top-level 
+;;  (cram-projection:with-projection-environment
+;;      agents-projection-process-modules::agents-bullet-projection-environment
+;;    (let ((object-desig (find-object-in-world  'cognitive-reasoning::victim "tree0")))
+;;      (sb-ext:gc :full t)
+;;      (cram-language-designator-support:with-designators
+;;          ((victims-location (location `((at "Tree")
+;;                                         (name "tree0")
+;;                                         (for ,object-desig)
+;;                                         (pointed-pos ,(get-object-pose 'sphere))))))
+;;        (format t "now trying to achieve location of victim in world~%")
+;;        ;; (plan-knowledge:achieve
+;;        ;;  `(plan-knowledge:loc ,victims-location))
+;;        ))
+;;       (sb-ext:gc :full t))))
         ;; (plan-knowledge:achieve
         ;;  `(plan-knowledge:loc ,the-object ,pointed))))))
   ;;   (format t "maa is ~%")
