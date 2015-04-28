@@ -172,100 +172,182 @@
          (sum-z (+ (cl-transforms:z vec) (cl-transforms:z offset-vec))))
        ;  (new-vec (cl-transforms:make-3d-vector sum-x sum-y sum-z)))
     (cond ((string-equal *offset-checker* 'z)
-           (visualize-in-z (cl-transforms:z vec)  sum-x sum-y sum-z ori))
+           (visualize-in-z loc-pose sum-z)
           ((string-equal *offset-checker* 'y)
-           (visualize-in-y (cl-transforms:y vec) sum-x sum-y sum-z ori))
+           (visualize-in-y loc-pose sum-y)
           (t
-           (visualize-in-x (cl-transforms:x vec)  sum-x sum-y sum-z  ori)))))
+           (visualize-in-x loc-pose sum-x)))))))
 
-(defun visualize-in-x (iks  sum-x sum-y sum-z ori)
+(defun visualize-in-x (vec offset)
   (format t "visualizing in x direction~%")
-  (prolog `(and (bullet-world ?w)
-                (assert (object ?w mesh sphere0 
-                                ((,iks ,sum-y ,sum-z)
-                                 (,(cl-transforms:x ori) 
-                                   ,(cl-transforms:y ori) 
-                                   ,(cl-transforms:z ori) ,(cl-transforms:w ori)))
-                                :mesh cognitive-reasoning::sphere 
-                                :mass 0.2 :color (0 1 0) :scale 3.0))))
-  (setf iterator1 0)
-  (setf iterator2 0)
-  (format t "wie oft? ~a~%" iterator1)
-  (format t "sum-x und iks ~a und ~a~%" sum-x iks)
-  (loop until (not (equal nil (prolog `(and 
-                                        (bullet-world ?w)
-                                        (contact ?w ,
-                                                 (read-from-string 
-                                                  (format nil "sphere~a" iterator2)) ?sem)))))
-        do
-           (setf iterator1 (+ iterator1 1))
-           (setf iterator2 (+ iterator2 1))
-           (format t "wie oft? ~a~%" iterator1)
-           (add-sphere (read-from-string (format nil "sphere~a" iterator2)) 
-                       (cl-transforms:make-pose 
-                        (cl-transforms:make-3d-vector 
-                         (+ iks iterator1) sum-y sum-z) ori))))
+  (let*((adder 0)
+	(caller 0))
+    (prolog `(and (bullet-world ?w)
+		  (assert (object ?w mesh sphere0 
+				  ((,(cl-transforms:x (cl-transforms:origin vec)) 
+				     ,(cl-transforms:y (cl-transforms:origin vec)) 
+				     ,(cl-transforms:z (cl-transforms:origin vec)))
+				   (,(cl-transforms:x (cl-transforms:orientation vec)) 
+				     ,(cl-transforms:y (cl-transforms:orientation vec)) 
+				     ,(cl-transforms:z (cl-transforms:orientation vec))
+				     ,(cl-transforms:w (cl-transforms:orientation vec))))
+				  :mesh cognitive-reasoning::sphere 
+				  :mass 0.2 :color (0 1 0) :scale 3.0))))
+    (cond ((< offset (cl-transforms:x (cl-transforms:orientation vec)))
+	   (loop until (not (equal nil (prolog `(and 
+						 (bullet-world ?w)
+						 (contact ?w ,
+							  (read-from-string 
+							   (format nil "sphere~a" caller)) ?sem)))))
+	      do
+		(setf adder (- adder1 1))
+		(setf caller (+ caller 1))
+		(add-sphere (read-from-string (format nil "sphere~a" caller)) 
+			    (cl-transforms:make-pose 
+			     (cl-transforms:make-3d-vector 
+			      (+ (cl-transforms:x (cl-transforms:origin vec)) adder) 
+			      (cl-transforms:y (cl-transforms:origin vec)) 
+			      (cl-transforms:z (cl-transforms:origin vec)))
+			     (cl-transforms:make-quaternion
+			      (cl-transforms:x (cl-transforms:orientation vec))
+			      (cl-transforms:y (cl-transforms:orientation vec))
+			      (cl-transforms:z (cl-transforms:orientation vec))
+			      (cl-transforms:w (cl-transforms:orientation vec)))))))
+	  ((> offset (cl-transforms:x (cl-transforms:orientation vec)))
+	   (loop until (not (equal nil (prolog `(and 
+						 (bullet-world ?w)
+						 (contact ?w ,
+							  (read-from-string 
+							   (format nil "sphere~a" caller)) ?sem)))))
+	      do
+		(setf adder (+ adder1 1))
+		(setf caller (+ caller 1))
+		(add-sphere (read-from-string (format nil "sphere~a" caller)) 
+			    (cl-transforms:make-pose 
+			     (cl-transforms:make-3d-vector 
+			      (+ (cl-transforms:x (cl-transforms:origin vec)) adder) 
+			      (cl-transforms:y (cl-transforms:origin vec)) 
+			      (cl-transforms:z (cl-transforms:origin vec)))
+			     (cl-transforms:make-quaternion
+			      (cl-transforms:x (cl-transforms:orientation vec))
+			      (cl-transforms:y (cl-transforms:orientation vec))
+			      (cl-transforms:z (cl-transforms:orientation vec))
+			      (cl-transforms:w (cl-transforms:orientation vec))))))))))
 
 
-(defun visualize-in-y (yps sum-x sum-y sum-z ori)
+
+(defun visualize-in-y (vec offset)
   (format t "visualizing in y direction~%")
-  (prolog `(and (bullet-world ?w)
-                (assert (object ?w mesh sphere0
-                                ((,sum-x ,yps ,sum-z)
-                                 (,(cl-transforms:x ori) 
-                                   ,(cl-transforms:y ori) 
-                                   ,(cl-transforms:z ori) ,(cl-transforms:w ori)))
-                                :mesh cognitive-reasoning::sphere 
-                                :mass 0.2 :color (0 1 0) :scale 3.0))))
-  (setf iterator1 0)
-  (setf iterator2 0)
-  (setf iter3 yps)
-  (format t "wie oft? ~a~%" iterator1)
-  (format t "sum-y und yps ~a und ~a~%" sum-y yps)
-  (format t "tester: ~a~%"  (not (equal sum-y iter3)))
-  (loop until (equal sum-y iter3)
-        do
-           (format t "was333?~%")
-           (setf iterator1 (+ iterator1 1))
-           (setf iterator2 (+ iterator2 1))
-        ;   (setf iter3 (+ iter3 1))
-           (format t "wie oft333? ~a~%" iterator1)
-           (add-sphere (read-from-string (format nil "sphere~a" iterator2)) 
-                       (cl-transforms:make-pose 
-                        (cl-transforms:make-3d-vector 
-                         sum-x (+ iter3 iterator1) sum-z) ori)))
-  (format t "wa333ws?~%"))
+  (let*((adder 0)
+	(caller 0))
+    (prolog `(and (bullet-world ?w)
+		  (assert (object ?w mesh sphere0 
+				  ((,(cl-transforms:x (cl-transforms:origin vec)) 
+				     ,(cl-transforms:y (cl-transforms:origin vec)) 
+				     ,(cl-transforms:z (cl-transforms:origin vec)))
+				   (,(cl-transforms:x (cl-transforms:orientation vec)) 
+				     ,(cl-transforms:y (cl-transforms:orientation vec)) 
+				     ,(cl-transforms:z (cl-transforms:orientation vec))
+				     ,(cl-transforms:w (cl-transforms:orientation vec))))
+				  :mesh cognitive-reasoning::sphere 
+				  :mass 0.2 :color (0 1 0) :scale 3.0))))
+    (cond ((< offset (cl-transforms:y (cl-transforms:orientation vec)))
+	   (loop until (not (equal nil (prolog `(and 
+						 (bullet-world ?w)
+						 (contact ?w ,
+							  (read-from-string 
+							   (format nil "sphere~a" caller)) ?sem)))))
+	      do
+		(setf adder (- adder1 1))
+		(setf caller (+ caller 1))
+		(add-sphere (read-from-string (format nil "sphere~a" caller)) 
+			    (cl-transforms:make-pose 
+			     (cl-transforms:make-3d-vector 
+			     (cl-transforms:x (cl-transforms:origin vec))
+			     (+ (cl-transforms:y (cl-transforms:origin vec)) adder) 
+			      (cl-transforms:z (cl-transforms:origin vec)))
+			     (cl-transforms:make-quaternion
+			      (cl-transforms:x (cl-transforms:orientation vec))
+			      (cl-transforms:y (cl-transforms:orientation vec))
+			      (cl-transforms:z (cl-transforms:orientation vec))
+			      (cl-transforms:w (cl-transforms:orientation vec)))))))
+	  ((> offset (cl-transforms:x (cl-transforms:orientation vec)))
+	   (loop until (not (equal nil (prolog `(and 
+						 (bullet-world ?w)
+						 (contact ?w ,
+							  (read-from-string 
+							   (format nil "sphere~a" caller)) ?sem)))))
+	      do
+		(setf adder (+ adder1 1))
+		(setf caller (+ caller 1))
+		(add-sphere (read-from-string (format nil "sphere~a" caller)) 
+			    (cl-transforms:make-pose 
+			     (cl-transforms:make-3d-vector 
+			      (cl-transforms:x (cl-transforms:origin vec)) 
+			      (+ (cl-transforms:y (cl-transforms:origin vec)) adder) 
+			      (cl-transforms:z (cl-transforms:origin vec)))
+			     (cl-transforms:make-quaternion
+			      (cl-transforms:x (cl-transforms:orientation vec))
+			      (cl-transforms:y (cl-transforms:orientation vec))
+			      (cl-transforms:z (cl-transforms:orientation vec))
+			      (cl-transforms:w (cl-transforms:orientation vec))))))))))
 
 
-(defun visualize-in-z (zed sum-x sum-y sum-z ori)
-  (format t "sum-x sum-y sum-z ~a --- ~a --- ~a-- ~%" sum-x sum-y sum-z)
+(defun visualize-in-z (vec offset)
   (format t "visualizing in z direction~%")
-  (prolog `(and (bullet-world ?w)
-                (assert (object ?w mesh sphere0 
-                                ((,sum-x ,sum-y ,sum-z)
-                                 (,(cl-transforms:x ori) 
-                                   ,(cl-transforms:y ori) 
-                                   ,(cl-transforms:z ori) ,(cl-transforms:w ori)))
-                                :mesh cognitive-reasoning::sphere 
-                                :mass 0.2 :color (0 1 0) :scale 3.0))))
-  (setf iterator1 0)
-  (setf iterator2 0)
-  (setf iter3 zed)
-  (format t "wie oft? ~a~%" iterator1)
-  (format t "sum-z und zed ~a und ~a~%" sum-z zed)
-  (format t "teser: ~a~%" (not (equal sum-z iter3)))
-  (loop until (equal sum-z iter3)
-        do
-           (format t "was?~%")
-           (setf iterator1 (+ iterator1 1))
-           (setf iterator2 (+ iterator2 1))
-         ;  (setf iter3 (+ iter3 1))
-           (format t "wie oft222? ~a~%" iterator1)
-           (add-sphere (read-from-string (format nil "sphere~a" iterator2)) 
-                       (cl-transforms:make-pose 
-                        (cl-transforms:make-3d-vector 
-                         sum-x sum-y (+ iter3 iterator1)) ori)))
-             (format t "was3?~%"))
+  (let*((adder 0)
+	(caller 0))
+    (prolog `(and (bullet-world ?w)
+		  (assert (object ?w mesh sphere0 
+				  ((,(cl-transforms:x (cl-transforms:origin vec)) 
+				     ,(cl-transforms:y (cl-transforms:origin vec)) 
+				     ,(cl-transforms:z (cl-transforms:origin vec)))
+				   (,(cl-transforms:x (cl-transforms:orientation vec)) 
+				     ,(cl-transforms:y (cl-transforms:orientation vec)) 
+				     ,(cl-transforms:z (cl-transforms:orientation vec))
+				     ,(cl-transforms:w (cl-transforms:orientation vec))))
+				  :mesh cognitive-reasoning::sphere 
+				  :mass 0.2 :color (0 1 0) :scale 3.0))))
+    (cond ((< offset (cl-transforms:z (cl-transforms:orientation vec)))
+	   (loop until (not (equal nil (prolog `(and 
+						 (bullet-world ?w)
+						 (contact ?w ,
+							  (read-from-string 
+							   (format nil "sphere~a" caller)) ?sem)))))
+	      do
+		(setf adder (- adder1 1))
+		(setf caller (+ caller 1))
+		(add-sphere (read-from-string (format nil "sphere~a" caller)) 
+			    (cl-transforms:make-pose 
+			     (cl-transforms:make-3d-vector 
+			     (cl-transforms:x (cl-transforms:origin vec))
+			     (cl-transforms:y (cl-transforms:origin vec))  
+			     (+ (cl-transforms:z (cl-transforms:origin vec)) adder))
+			     (cl-transforms:make-quaternion
+			      (cl-transforms:x (cl-transforms:orientation vec))
+			      (cl-transforms:y (cl-transforms:orientation vec))
+			      (cl-transforms:z (cl-transforms:orientation vec))
+			      (cl-transforms:w (cl-transforms:orientation vec)))))))
+	  ((> offset (cl-transforms:x (cl-transforms:orientation vec)))
+	   (loop until (not (equal nil (prolog `(and 
+						 (bullet-world ?w)
+						 (contact ?w ,
+							  (read-from-string 
+							   (format nil "sphere~a" caller)) ?sem)))))
+	      do
+		(setf adder (+ adder1 1))
+		(setf caller (+ caller 1))
+		(add-sphere (read-from-string (format nil "sphere~a" caller)) 
+			    (cl-transforms:make-pose 
+			     (cl-transforms:make-3d-vector 
+			      (cl-transforms:x (cl-transforms:origin vec)) 
+			      (cl-transforms:y (cl-transforms:origin vec)) 
+			      (+ (cl-transforms:z (cl-transforms:origin vec)) adder))
+			     (cl-transforms:make-quaternion
+			      (cl-transforms:x (cl-transforms:orientation vec))
+			      (cl-transforms:y (cl-transforms:orientation vec))
+			      (cl-transforms:z (cl-transforms:orientation vec))
+			      (cl-transforms:w (cl-transforms:orientation vec))))))))))
 
 (defun send-msg ()
   (let ((pub (advertise "sendMsg" "designator_integration_msgs/Designator")))
