@@ -298,3 +298,163 @@
                       (object-pose ?w ,obj-name 
                                    ((,vec-x ,vec-y ,vec-z)(,quat-x ,quat-y ,quat-z ,quat-w))))))
            (format t "here2~%")))))
+
+(defun visualize-in-x (offset)
+  (format t "visualizing in x direction~%")
+  (let*((adder 0)
+        (caller 0))
+    (prolog `(and (bullet-world ?w)
+                  (assert (object ?w mesh sphere0 
+                                  ((,(cl-transforms:x  *origin-pose*) 
+                                     ,(cl-transforms:y *origin-pose*)
+                                     ,(cl-transforms:z *origin-pose*))
+                                   (,(cl-transforms:x (cl-transforms:x (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*))))) 
+                                     ,(cl-transforms:y (cl-transforms:y (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*))))) 
+                                     ,(cl-transforms:z (cl-transforms:z (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                                     ,(cl-transforms:w (cl-transforms:w (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))))
+                                  :mesh cognitive-reasoning::sphere 
+                                  :mass 0.2 :color (0 1 0) :scale 3.0))))
+    (cond ((< offset (cl-transforms:x *origin-pose*))
+           (loop until (not (equal nil (prolog `(and 
+                                                 (bullet-world ?w)
+                                                 (contact ?w ,
+                                                          (read-from-string 
+                                                           (format nil "sphere~a" caller)) ?sem)))))
+                 do
+                    (setf adder (- adder 1))
+                    (setf caller (+ caller 1))
+                    (add-sphere (read-from-string (format nil "sphere~a" caller)) 
+                                (cl-transforms:make-pose 
+                                 (cl-transforms:make-3d-vector 
+                                  (+ (cl-transforms:x *origin-pose*) adder) 
+                                  (cl-transforms:y *origin-pose*) 
+                                  (cl-transforms:z *origin-pose*))
+                                 (cl-transforms:make-quaternion
+                                  (cl-transforms:x (cl-transforms:x (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                                  (cl-transforms:y (cl-transforms:y (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                                  (cl-transforms:z (cl-transforms:z (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                                  (cl-transforms:w (cl-transforms:w (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*))))))))))
+          ((> offset (cl-transforms:x *origin-pose*))
+           (loop until (not (equal nil (prolog `(and 
+                                                 (bullet-world ?w)
+                                                 (contact ?w ,
+                                                          (read-from-string 
+                                                           (format nil "sphere~a" caller)) ?sem)))))
+                 do
+                    (setf adder (+ adder 1))
+                    (setf caller (+ caller 1))
+                    (add-sphere (read-from-string (format nil "sphere~a" caller)) 
+                                (cl-transforms:make-pose 
+                                 (cl-transforms:make-3d-vector 
+                                  (+ (cl-transforms:x *origin-pose*) adder) 
+                                  (cl-transforms:y *origin-pose*) 
+                                  (cl-transforms:z *origin-pose*))
+                                 (cl-transforms:make-quaternion
+                                  (cl-transforms:x (cl-transforms:x (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                                  (cl-transforms:y (cl-transforms:y (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                                  (cl-transforms:z (cl-transforms:z (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                                  (cl-transforms:w (cl-transforms:w (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))))))))))
+
+
+
+(defun visualize-in-y (offset)
+  (let*((adder 0)
+        (caller 0)
+        (iterator (cl-transforms:y *origin-pose*)))
+    (prolog `(and 
+              (bullet-world ?w)
+              (assert (object ?w mesh sphere0 
+                              ((,(cl-transforms:x  *origin-pose*) 
+                                 ,(cl-transforms:y *origin-pose*)
+                                 ,(cl-transforms:z *origin-pose*))
+                               (,(cl-transforms:x (cl-transforms:x (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*))))) 
+                                 ,(cl-transforms:y (cl-transforms:y (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*))))) 
+                                 ,(cl-transforms:z (cl-transforms:z (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                                 ,(cl-transforms:w (cl-transforms:w (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))))
+                              :mesh cognitive-reasoning::sphere 
+                              :mass 0.2 :color (0 1 0) :scale 3.0))))
+    (if (> (cl-transforms:y (cadr (assoc 'offset *visualize-list*))) 0)
+        (loop until (<= offset iterator)
+              do
+                 (setf adder (+ adder 1))
+                 (setf caller (+ caller 1))
+                 (setf iterator (+ iterator 1))
+                 (add-sphere (read-from-string (format nil "sphere~a" caller)) 
+                             (cl-transforms:make-pose 
+                              (cl-transforms:make-3d-vector 
+                               (cl-transforms:x *origin-pose*) 
+                               (+ (cl-transforms:y *origin-pose*) adder)
+                               (cl-transforms:z *origin-pose*))
+                              (cl-transforms:make-quaternion
+                               (cl-transforms:x (cl-transforms:x (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                               (cl-transforms:y (cl-transforms:y (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                               (cl-transforms:z (cl-transforms:z (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                               (cl-transforms:w (cl-transforms:w (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*))))))))))
+    (if (< (cl-transforms:y (cadr (assoc 'offset *visualize-list*))) 0 )
+        (loop until (>= offset iterator) 
+              do
+                 (setf adder (- adder 1))
+                 (setf caller (+ caller 1))
+                 (setf iterator (- iterator 1))
+                 (add-sphere (read-from-string (format nil "sphere~a" caller)) 
+                             (cl-transforms:make-pose 
+                              (cl-transforms:make-3d-vector 
+                               (cl-transforms:x *origin-pose*) 
+                               (+ (cl-transforms:y *origin-pose*) adder)
+                               (cl-transforms:z *origin-pose*))
+                              (cl-transforms:make-quaternion
+                               (cl-transforms:x (cl-transforms:x (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                               (cl-transforms:y (cl-transforms:y (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                               (cl-transforms:z (cl-transforms:z (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                               (cl-transforms:w (cl-transforms:w (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*))))))))))))
+
+
+(defun visualize-in-z (offset)
+  (let*((adder 0)
+        (caller 0)
+        (iterator (cl-transforms:z *origin-pose*)))
+    (prolog `(and (bullet-world ?w)
+                  (assert (object ?w mesh sphere0 
+                                  ((,(cl-transforms:x  *origin-pose*) 
+                                     ,(cl-transforms:y *origin-pose*)
+                                     ,(cl-transforms:z *origin-pose*))
+                                   (,(cl-transforms:x (cl-transforms:x (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*))))) 
+                                     ,(cl-transforms:y (cl-transforms:y (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*))))) 
+                                     ,(cl-transforms:z (cl-transforms:z (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))q
+                                     ,(cl-transforms:w (cl-transforms:w (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))))
+                                  :mesh cognitive-reasoning::sphere 
+                                  :mass 0.2 :color (0 1 0) :scale 3.0))))
+    (if (> (cl-transforms:z (cadr (assoc 'offset *visualize-list*))) 0)
+        (loop until  (<= offset iterator)  
+              do
+                 (setf adder (+ adder 1))
+                 (setf caller (+ caller 1))
+                 (setf iterator (+ iterator 1))
+                 (add-sphere (read-from-string (format nil "sphere~a" caller)) 
+                         (cl-transforms:make-pose 
+                          (cl-transforms:make-3d-vector 
+                           (cl-transforms:x *origin-pose*)
+                           (cl-transforms:y *origin-pose*)  
+                           (+ (cl-transforms:z *origin-pose*) adder))
+                       (cl-transforms:make-quaternion
+                           (cl-transforms:x (cl-transforms:x (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                           (cl-transforms:y (cl-transforms:y (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                           (cl-transforms:z (cl-transforms:z (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                           (cl-transforms:w (cl-transforms:w (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*))))))))))
+    (if (< (cl-transforms:z (cadr (assoc 'offset *visualize-list*))) 0 )
+        (loop until (>= offset iterator)
+          do
+             (setf adder (- adder 1))
+             (setf caller (+ caller 1))
+             (setf iterator (- iterator 1))
+             (add-sphere (read-from-string (format nil "sphere~a" caller)) 
+                         (cl-transforms:make-pose 
+                          (cl-transforms:make-3d-vector 
+                           (cl-transforms:x *origin-pose*) 
+                           (cl-transforms:y  *origin-pose*) 
+                           (+ (cl-transforms:z  *origin-pose*) adder))
+                          (cl-transforms:make-quaternion
+                           (cl-transforms:x (cl-transforms:x (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                           (cl-transforms:y (cl-transforms:y (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                           (cl-transforms:z (cl-transforms:z (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))
+                           (cl-transforms:w (cl-transforms:w (cl-transforms:orientation (cadr (assoc 'loc *visualize-list*)))))))))))) 
