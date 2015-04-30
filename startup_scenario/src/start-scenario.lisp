@@ -86,7 +86,6 @@
 
 ;;TODO: CHECKING IF SELECTION CONTAINS TWO STRINGS
  (defun command-into-designator ()
- ;  (init-base)
    (cond ((equal nil *stored-result*) (format t "Ain't no publisher~%"))
          (t
           (let*((value (content *stored-result*))
@@ -106,43 +105,39 @@
                 (off-x (GEOMETRY_MSGS-MSG:X default))
                 (off-y (GEOMETRY_MSGS-MSG:Y default))
                 (off-z (GEOMETRY_MSGS-MSG:Z default)))
-            (setf *origin-pose* (cl-transforms:make-3d-vector value-x value-y value-z))
+            (setf *origin-pose* (cl-transforms:origin (get-object-pose 'human)));cl-transforms:make-3d-vector (- 75.89979) (- 75.41413)  29.02028))
+            (format t "ori ~a~%" *origin-pose*)
             (format t "tester~%")
             (checking-offset off-x off-y off-z)
+            (format t "meheh~%")
             (cond ((equal value-x 0.0d0)
                    (equal value-y 0.0d0)
                    (equal value-z 0.0d0)
                    (setf gesture (cl-transforms:make-pose (cl-transforms:make-3d-vector 
-                                                        ;   (+ (- 81.73)
-                                                           off-x
-                                                          ; (+ (- 82.87) 
-                                                           off-y
-                                                           ; (+ 25.82 
-                                                           off-z)
-                                                          (cl-transforms:make-quaternion 0 0 0 1))))
-                  ;;(setf gesture (tf-pose-of-agent (cl-transforms:make-3d-vector off-x off-y off-z))))
-                  (t 
-                   ;; (setf gesture (cl-transforms:make-pose (cl-transforms:make-3d-vector (+ value-x off-x) (+ value-y off-y) (+ value-z off-z))(cl-transforms:make-quaternion 0 0 0 1)))
-                   (setf gesture (cl-transforms:make-pose (cl-transforms:make-3d-vector 
-                                                          ; (+ (- 75.89979)
-                                                              (+ value-x off-x) 
-                                                          ; (+ (- 75.41413) 
-                                                              (+ value-y off-y)
-                                                          ;  (+  29.02028 
-                                                               (+ value-z off-z))
+                                                           (+ (- 81.73) off-x)
+                                                           (+ (- 82.87) off-y)
+                                                           (+ 25.82 off-z))
                                                           (cl-transforms:make-quaternion 0 0 0 1)))
-                   ;; (setf *switcher* 0)
-                   ))
-            (setf def (cl-transforms:make-3d-vector off-x off-y off-z))
-            (setf *visualize-list* `((offset ,def)(loc ,gesture)))
-            (setf *act-desig* (make-designator 'action `((command_type ,command)
-                                                         (action_type ,interpretation)
-                                                         (offset ,def)
-                                                         (agent ,selection2)
-                                                         (target ,(make-designator 'location `((loc ,gesture))))))))
-          
-          *act-desig*
-          )))
+                   (setf *origin-pose* (cl-transforms:origin (get-object-pose 'quadrotor))))
+                   ;;(setf gesture (tf-pose-of-agent (cl-transforms:make-3d-vector off-x off-y off-z))))
+                   (t 
+                    ;; (setf gesture (cl-transforms:make-pose (cl-transforms:make-3d-vector (+ value-x off-x) (+ value-y off-y) (+ value-z off-z))(cl-transforms:make-quaternion 0 0 0 1)))
+                    (setf gesture (cl-transforms:make-pose (cl-transforms:make-3d-vector 
+                                                            (+ (- 75.89979)
+                                                               (+ value-x off-x) )
+                                                            (+ (- 75.41413) 
+                                                               (+ value-y off-y))
+                                                            (+  29.02028 
+                                                                (+ value-z off-z)))
+                                                           (cl-transforms:make-quaternion 0 0 0 1)))
+                    (setf def (cl-transforms:make-3d-vector off-x off-y off-z))
+                    (setf *visualize-list* `((offset ,def)(loc ,gesture)))
+                    (setf *act-desig* (make-designator 'action `((command_type ,command)
+                                                                 (action_type ,interpretation)
+                                                                 (offset ,def)
+                                                                 (agent ,selection2)
+                                                                 (target ,(make-designator 'location `((loc ,gesture))))))))))
+*act-desig*)))
 
 ;; (defun get-tf-pose (robot)
 ;; (format t "TODO: get-tf-pose~%"))
@@ -204,24 +199,7 @@
 				 :mesh btr::victim :mass 0.2 :color (1 0 0) :scale 0.6)))))
 	
 
-(defun add-sphere (name pose)
-;; position of the joint
-  (let* ((origin (cl-transforms:origin pose))
-         (orientation (cl-transforms:orientation pose))
-         (vec-x (cl-transforms:x origin))
-         (vec-y (cl-transforms:y origin))
-         (vec-z (cl-transforms:z origin))
-         (ori-x (cl-transforms:x orientation))
-         (ori-y (cl-transforms:y orientation))
-         (ori-z (cl-transforms:z orientation))
-         (ori-w (cl-transforms:w orientation)))
-   (format t "origin ~a~%" origin)
-    (format t "what is name ~a~%" name)
-    (prolog `(and (bullet-world ?w)
-                  (assert (object ?w mesh ,name ((,vec-x ,vec-y ,vec-z)(,ori-x ,ori-y ,ori-z ,ori-w))
-                          :mesh cognitive-reasoning::sphere :mass 0.2 :color (0 1 0) :scale 3.0))))))
-;; (format t "ja endlich~%")
-;;  (simple-knowledge:spawn-objects)
+
       
 
 ;rosrun tf static_transform_publisher 0 0 0 1.5 0 0 map world 100
@@ -332,11 +310,11 @@
         (desig (make-designator 'desig-props:location `((pointed-pos ,transform)))))
    (reference desig)))
 
-(defun create-some-maps2 ()
-  (setf desig (make-designator 'desig-props:location `((pointed-pos ,(get-object-pose 'sphere))
-                                                           (desig-props:to desig-props:see)
-                                                           (desig-props:object victim))))
-desig)
+;; (defun create-some-maps2 ()
+;;   (setf desig (make-designator 'desig-props:location `((pointed-pos ,(get-object-pose 'sphere))
+;;                                                            (desig-props:to desig-props:see)
+;;                                                            (desig-props:object victim))))
+;; desig)
 
 (defun checking ()
   (let ((pose (reference (create-some-maps2))))
@@ -402,3 +380,8 @@ desig)
 ;;                                     (make-restricted-area-cost-function)
 ;;                                     ?cm)
 ;;               (debug-costmap ?cm))))
+
+(defun sphere-in-collision ()
+  (prolog `(and (bullet-world ?w)
+                                 (assert (object ?w mesh sphere0 ((,(- 91.0) ,(- 66.0) 29.0) (0 0 0 1))
+                                                 :mesh cognitive-reasoning::sphere :mass 0.2 :color (0 1 0) :scale 2.0)))))
