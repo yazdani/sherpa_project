@@ -37,9 +37,10 @@
 ;;                              (Tent1 "package://world_model_description/meshes/Tent1.stl" nil)
 ;;                              (Tent2 "package://world_model_description/meshes/Tent2.stl" nil)
 ;;                              (hat "package://world_model_description/meshes/hat.stl" nil)
-;;                              ;; (victim "package://world_model_description/meshes/victim.stl" nil)
+                              (victim "package://world_model_description/meshes/victim.stl" nil)
 ;;                              (mountain "package://world_model_description/meshes/mountain_gen.stl" nil)
 ;;                              (plane "package://world_model_description/meshes/map.stl" nil)
+			     (quadrotor "package://agents_model_description/meshes/quadrotor/quadrotor.stl" nil)
                              (sphere "package://world_model_description/meshes/sphere.stl" nil)))
 ;;                              (cone "package://world_model_description/meshes/cone.stl" nil)))
 

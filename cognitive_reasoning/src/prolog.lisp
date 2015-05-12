@@ -37,96 +37,236 @@
 (defmethod costmap-generator-name->score ((name range-generator)) 2)
 
 (def-fact-group cognitive-reasoning-costmap (desig-costmap)
- (<- (desig-costmap ?desig ?costmap)
-     (format "prolog: cognitive-reasoning-costmap~%")
-   (bullet-world ?world)
-   (robot ?robot)
-   ;; (costmap ?costmap)
-   ;; (costmap-add-height-generator (make-constant-height-function
-   ;; 				  3.0)
-   ;; 				 ?costmap)
-   (costmap ?costmap)
-   ;; (desig-prop ?desig (right-of ?pos-loc))
-   (desig-prop ?desig (pointed-pos ?pos-loc))
-   ;; (desig-prop ?desig (close-to ?obj-loc)
-   (robot ?robot)
-   ;; (robot agents-model-description::quad)
-   ;; (agents-knowledge::robot ?robot)
-   (costmap ?costmap)
-   ;; (costmap-add-function collisions
-   ;;                       (make-costmap-bbox-gen ?objs :invert t :padding -0.2)
-   ;;                       ?costmap)
-   (costmap-add-function reasoning-generator
-                         (make-cognitive-reasoning-cost-function ?pos-loc :Y  < 0.0)
-                         ?costmap)
-   (costmap ?costmap)
-   (instance-of range-generator ?range-generator-id-1)
-   (costmap-add-function ?range-generator-id-1
-			 (make-range-cost-function ?pos-loc 3.5)
-			 ?costmap)
-   ;;  (costmap ?costmap)
-   ;; (instance-of gaussian-generator ?gaussian-generator-id)
-   ;; (format "in visibility3~%")
-   ;; (costmap-add-function ?gaussian-generator-id
-   ;;                       (make-location-cost-function ?pos-loc  1.0)
-   ;;                       ?costmap)
-   )
-  
- (<- (desig-costmap ?desig ?costmap)
-     (format "prolog: cognitive-reasoning-costmap2~%")
-     (bullet-world ?world)
-   (robot ?robot)
-   (costmap ?costmap)
-   (format "prolog: cognitive-reasoning-costmap3~%")
-   (costmap-add-height-generator (make-constant-height-function
-				  3.0)
-				 ?costmap)
-   )
-
-  (<- (environment-object-type ?world ?name ?type)
-     (bullet-world ?world)
-     (object ?world ?name)
-     (%object ?world ?name ?object-instance)
-     (lisp-type ?object-instance environment-object)
-     (get-slot-value ?object-instance types ?types)
-     (member ?type ?types))
- 
- (<- (human-specific-object-type ?world ?name ?type)
-     (bullet-world ?world)
-     (object ?world ?name)
-     (%object ?world ?name ?object-instance)
-     (lisp-type ?object-instance human-specific-object)
-     (get-slot-value ?object-instance types ?types)
-     (member ?type ?types))
-  
-  (<- (robots-checker ?world)
+  (<- (desig-costmap ?desig ?costmap)
     (bullet-world ?world)
-    (format "end checker of rob~%")
-    (robot ?rob)
-    (object ?world ?obj)
-    (-> (== human ?rob)
-        (format "hello human~%")
-        (-> (== ?rob pr2) 
-        (format "hello quad~%")
-        (-> (== ?rob quadrotor)
-            (format "ya~%")
-            (format "h 2~%"))))
-    (format "end checker of rob ~a~%" ?rob))
-) 
+    (robot ?robot)
+    (desig-prop ?desig (right-of ?pos-loc))
+    (desig-prop ?desig (look-for ?_))
+    (costmap ?costmap)
+    (format "kuejm~%")
+    (costmap-add-function reasoning-generator
+                          (make-cognitive-reasoning-cost-function ?pos-loc :Y  < 0.0)
+                          ?costmap)
+    (costmap ?costmap)
+    (instance-of range-generator ?range-generator-id-1)
+    (format "jjsj~%")
+    (costmap-add-function ?range-generator-id-1
+                          (make-range-cost-function ?pos-loc 3.5)
+                          ?costmap)
+   )
+    
+
+  (<- (desig-costmap ?desig ?costmap)
+    (format "jj~%")
+    (bullet-world ?world)
+    (robot ?robot)
+     (format "jjdfd~%")
+    (desig-prop ?desig (pointed-pos ?pos-name))
+    (desig-prop ?desig (right-of ?pos-loc))
+     (format "jjisos ~a~%" ?pos-name)
+    (desig-location-prop ?pos-name ?pos)
+     (format "jäsüsj ~a~%" ?pos)
+    (desig-prop ?desig (for ?obj-name))
+    (format "jjww~%")
+    (findall ?obj (and
+                   (bullet-world ?world)
+                   (object ?world ?name)
+                   (%object ?world ?name ?obj)
+                   (lisp-type ?obj environment-object)
+                   (get-slot-value ?obj types ?types)
+                   (member ?type ?types)) ?objs)
+      (costmap ?costmap)
+     (costmap-add-function reasoning-generator
+                          (make-cognitive-reasoning-cost-function ?pos-loc :Y  < 0.0)
+                          ?costmap)
+  
+    (costmap ?costmap)
+     (costmap-add-function collisions
+                          (make-costmap-bbox-gen ?objs :invert t :padding 0.1)
+                          ?costmap)
+    (costmap ?costmap)
+    (desig-location-prop ?obj-name ?ref-obj-pose)
+    (format "jjddfffffffd~%")
+    ;; (costmap-add-function reasoning-generator
+    ;;                       (make-cognitive-reasoning-cost-function ?pos :Y  < 0.0)
+    ;;                       ?costmap)
+    ;; (costmap ?costmap)
+    ;; (costmap-add-function reasoning-generator
+    ;;                       (make-cognitive-reasoning-cost-function ?pos :Y  > 0.0)
+    ;;                       ?costmap)
+    ;; (costmap ?costmap)
+    (format "jjddfddddfd~%")
+    (instance-of range-generator ?range-generator-id-1)
+      (format "jjddddddddd~%")
+    (costmap-add-function ?range-generator-id-1
+                          (make-range-cost-function ?ref-obj-pose 2.5)
+                          ?costmap)
+    (costmap ?costmap)
+    ;; (instance-of range-generator ?range-generator-id-2)
+    ;; (costmap-add-function
+    ;;  ?range-generator-id-2
+    ;;  (make-range-cost-function ?ref-obj-pose 1.5d0 :invert t )
+    ;;  ?costmap)
+    ;; (costmap ?costmap)
+   (instance-of range-generator ?range-generator-id-1)
+      (costmap-add-function
+       ?range-generator-id-1
+       (make-range-cost-function ?ref-obj-pose 1)
+       ?costmap)
+    (costmap ?costmap)
+    (format "jjdddf~%")
+    (instance-of gaussian-generator ?gaussian-generator-id)
+    (costmap-add-function ?gaussian-generator-id
+                          (make-location-cost-function ?ref-obj-pose  1.0)
+                          ?costmap))
 
   
-  ;; (findall ?obj (and
-   ;;                (bullet-world ?world)
-   ;;                (object ?world ?name)
-   ;;                (%object ?world ?name ?obj)
-   ;;                (lisp-type ?obj environment-object)
-   ;;                (get-slot-value ?obj types ?types)
-   ;;                (member ?type ?types)) ?objs)
-   ;; (format "?objs: ~a~%" (force-ll ?objs))  
+  (<- (desig-costmap ?desig ?costmap)
+    (bullet-world ?world)
+    (robot ?robot)
+    (desig-prop ?desig (near ?ref-obj-name))
+    (desig-prop ?desig (for ?for-obj-name))
+    (desig-location-prop ?ref-obj-name ?ref-obj-pose)
+    (format "~a~%" ?ref-obj-pose)
+    (complete-object-size ?w ?ref-obj-name ?ref-obj-size)
+    (complete-object-size ?w ?for-obj-name ?for-obj-size)
+    (costmap ?costmap)
+    (near-costmap ?desig ?ref-obj-pose ?ref-obj-size 0.1d0 ?for-obj-size 0.1d0 ?costmap))
+
+  (<- (near-costmap ?desig ?ref-obj-pose ?ref-obj-size ?ref-padding ?for-obj-size ?for-padding ?costmap)
+      (costmap ?costmap)
+      (instance-of gaussian-generator ?gaussian-generator-id)
+      (costmap-add-function
+       ?gaussian-generator-id
+       (make-location-cost-function ?ref-obj-pose 1.0d0)
+       ?costmap)
+      (lisp-fun calculate-near-costmap ?ref-obj-size ?for-obj-size
+		?ref-padding ?for-padding ?min-radius)
+      (lisp-fun calculate-costmap-width ?ref-obj-size ?for-obj-size 1.0d0
+		?cm-width)
+      (lisp-fun + ?min-radius ?cm-width ?max-radius)
+    (format "?max-radius : ~a~%" ?max-radius)
+      (instance-of range-generator ?range-generator-id-1)
+      (costmap-add-function
+       ?range-generator-id-1
+       (make-range-cost-function ?ref-obj-pose ?max-radius)
+       ?costmap)
+    (format "min-radous ~a~%" ?min-radius)
+       (instance-of range-generator ?range-generator-id-2)
+      (costmap-add-function
+       ?range-generator-id-2
+       (make-range-cost-function ?ref-obj-pose ?min-radius :invert t)
+       ?costmap)
+    )
+
+    
    
-    ;; (costmap ?costmap)
-    ;; (costmap-add-function
-    ;;  collisions
-    ;;  (make-costmap-bbox-generator ?objs :invert t :padding -0.2)
-    ;;  ?costmap)
+ 
+
+  (<- (complete-object-size ?w ?obj-name ?obj-size)
+    (format "complete3~%")
+    (%object ?w ?obj-name ?obj)
+    (format "complete1~%")
+    (%complete-obj-size ?w ?obj ?obj-size))
   
+  (<- (%complete-obj-size ?w ?obj ?size)
+    (format "complete2 ~a ~a~%" ?obj ?size)
+  (lisp-fun get-aabb ?obj ?size))
+  
+  
+  (<- (environment-object-type ?world ?name ?type)
+    (bullet-world ?world)
+    (object ?world ?name)
+    (%object ?world ?name ?object-instance)
+    (lisp-type ?object-instance environment-object)
+    (get-slot-value ?object-instance types ?types)
+    (member ?type ?types))
+
+  ;; (<- (desig-costmap ?desig ?costmap)
+  ;;   (bullet-world ?world)
+  ;;   (robot ?robot)
+  ;;   (desig-prop ?desig (behind ?ref-obj-name))
+  ;;   (desig-prop ?desig (look-for ?for-obj-name))
+  ;;   (desig-location-prop ?ref-obj-name ?ref-obj-pose)
+  ;;   (format "~a~%" ?ref-obj-pose)
+  ;;   (complete-object-size ?w ?ref-obj-name ?ref-obj-size)
+  ;;   (complete-object-size ?w ?for-obj-name ?for-obj-size)
+  ;;   (costmap ?costmap)
+  ;;   (near-costmap ?desig ?ref-obj-pose ?ref-obj-size 0.1d0 ?for-obj-size 0.1d0 ?costmap))
+	      
+)
+
+(def-fact-group location-desig-utils ()
+
+  (<- (object-instance-name ?name ?name)
+      (format "object-instance-name ~a~%" ?name)
+      (format "      (lisp-type ?name symbol) ~a~%" (lisp-type ?name symbol))
+      (lisp-type ?name symbol))
+)
+ ;; (<- (desig-costmap ?desig ?costmap)
+  ;;   (bullet-world ?world)
+  ;;   (robot ?robot)
+  ;;   (desig-prop ?desig (pointed-pos ?pos))
+  ;;   (desig-prop ?desig (for ?obj))
+  ;;   (btr:object ?w ?ref-obj-name)
+  ;;   (desig-location-prop ?ref-obj-name ?ref-obj-pose)
+  ;;   (complete-object-size ?w ?ref-obj-name ?ref-obj-size)
+  ;;   (padding-size ?w ?ref-obj-name ?ref-padding)
+  ;;   (btr:object ?w ?for-obj-name)
+  ;;   (complete-object-size ?w ?for-obj-name ?for-obj-size)
+  ;;   (padding-size ?w ?for-obj-name ?for-padding)
+  ;;   (-> (desig-prop ?desig (near ?ref-obj-name)
+  ;;                   (pointed-costmap ?desig ?ref-obj-pose ?ref-obj-size ?ref-padding ?for-obj-size ?for-padding ?costmap))))
+  
+  ;; (<- (pointed-costmap ?desig ?ref-obj-pose ?ref-obj-size ?ref-padding ?for-obj-size ?for-padding ?costmap)
+  ;;   (costmap  ?costmap)
+  ;;   (instance-of gaussian-generator ?gaussian-generator-id)
+  ;;   (costmap-add-function
+  ;;    ?gaussian-generator-id
+  ;;    (make-location-cost-function ?ref-obj-pose 1.0d0)
+  ;;    ?costmap)
+  ;; (lisp-fun calculate-near-costmap-min-radius ?ref-obj-size ?for-obj-size
+  ;;             ?ref-padding ?for-padding ?min-radius)
+  ;;   (costmap-width-in-obj-size-percentage-near ?cm-width-perc)
+  ;;   (lisp-fun calculate-costmap-width ?ref-obj-size ?for-obj-size ?cm-width-perc
+  ;;             ?cm-width)
+  ;;   ;;
+  ;;   (lisp-fun + ?min-radius ?cm-width ?max-radius)
+  ;;   (instance-of range-generator ?range-generator-id-1)
+  ;;   (costmap-add-function
+  ;;    ?range-generator-id-1
+  ;;    (make-range-cost-function ?ref-obj-pose ?max-radius)
+  ;;    ?costmap)
+  ;;   ;;
+  ;;   (instance-of range-generator ?range-generator-id-2)
+  ;;   (costmap-add-function
+  ;;    ?range-generator-id-2
+  ;;    (make-range-cost-function ?ref-obj-pose ?min-radius :invert t)
+  ;;    ?costmap))
+
+  ;;   ;; (findall ?obj (and
+  ;;   ;;                (bullet-world ?world)
+  ;;   ;;                (object ?world ?name)
+  ;;   ;;                (%object ?world ?name ?obj)
+  ;;   ;;                (lisp-type ?obj environment-object)
+  ;;   ;;                (get-slot-value ?obj types ?types)
+  ;;   ;;                (member ?type ?types)) ?objs)
+  ;;   ;; (costmap-add-function collisions
+  ;;   ;;                       (make-costmap-bbox-gen ?objs :invert t :padding 0.1)
+  ;;   ;;                       ?costmap)
+  ;;   (costmap ?costmap)
+  ;;   (costmap-add-function reasoning-generator
+  ;;                         (make-cognitive-reasoning-cost-function ?pos :Y  < 0.0)
+  ;;                         ?costmap)
+  ;;   (costmap ?costmap)
+  ;;   (instance-of range-generator ?range-generator-id-1)
+  ;;   (costmap-add-function ?range-generator-id-1
+  ;;                         (make-range-cost-function ?pos 2.5)
+  ;;                         ?costmap)
+  ;;   (costmap ?costmap)
+  ;;   (instance-of gaussian-generator ?gaussian-generator-id)
+  ;;   (costmap-add-function ?gaussian-generator-id
+  ;;                         (make-location-cost-function ?pos  1.0)
+  ;;                         ?costmap))
+   
+ 

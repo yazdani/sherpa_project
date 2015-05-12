@@ -115,6 +115,37 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+<!-- AGENTS -->
+   <rdf:Description rdf:about="&knowrob;quad0">
+      <rdfs:subClassOf rdf:resource="&knowrob;Agents"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/agents/quadrotor_base1.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+
+   <rdf:Description rdf:about="&knowrob;quad1">
+      <rdfs:subClassOf rdf:resource="&knowrob;Agents"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/agents/quadrotor_base2.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+
+   <rdf:Description rdf:about="&knowrob;rover">
+      <rdfs:subClassOf rdf:resource="&knowrob;Agents"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://sherpa_cad_models/models/agents/Body_Full.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+
 <!-- Loading the environment map -->
    <rdf:Description rdf:about="&knowrob;SeMap">
       <rdfs:subClassOf rdf:resource="&knowrob;Map"/>

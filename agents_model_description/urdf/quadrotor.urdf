@@ -44,7 +44,7 @@
       <geometry>
         <mesh filename="package://hector_quadrotor_description/meshes/quadrotor/quadrotor_base.dae"/>
       </geometry>
-<material name="DarkGreen"/>
+<material name="Blue"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -70,7 +70,7 @@
         <!--<box size="0.01 0.01 0.01" /> -->
         <mesh filename="package://hector_sensors_description/meshes/sonar_sensor/max_sonar_ez4.dae"/>
       </geometry>
-    <material name="Red"/>
+    <material name="Blue"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>

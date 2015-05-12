@@ -115,7 +115,7 @@
 
 
 <!-- This is an index designator -->
-  <owl:NamedIndividual rdf:about="&log;action_Fg7hLqQ9RPhptL">
+  <owl:NamedIndividual rdf:about="&log;action_iGrpUqh8YF3Bvq">
    <rdf:type rdf:resource="&knowrob;CRAMDesignator"/>
    <knowrob:creationTime rdf:resource="&log;timepoint_1429580479"/>
   </owl:NamedIndividual>
@@ -135,8 +135,8 @@
         <knowrob:startTime rdf:resource="&log;timepoint_1429580479"/>
         <knowrob:endTime rdf:resource="&log;timepoint_1429580480"/>
         <knowrob:subAction rdf:resource="&log;CRAMAction_syHHxIUB"/>
-	<knowrob:actionResult rdf:resource="&log;action_Fg7hLqQ9RPhptL"/> 
-        <knowrob:designator rdf:resource="&log;action_Fg7hLqQ9RPhptL"/>
+	<knowrob:actionResult rdf:resource="&log;action_iGrpUqh8YF3Bvq"/> 
+        <knowrob:designator rdf:resource="&log;action_iGrpUqh8YF3Bvq"/>
     </owl:NamedIndividual>
 
 

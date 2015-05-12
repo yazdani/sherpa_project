@@ -74,6 +74,14 @@
                 (return (if invert 0.0d0 1.0d0)))
               )))))) )
 
+;; used for near and far-from desig-props
+(defun calculate-costmap-width (ref-obj-size for-obj-size costmap-width-percentage)
+  (* (+ ref-obj-size for-obj-size) 0.5d0 costmap-width-percentage))
+
+(defun calculate-near-costmap (obj1-size obj2-size
+                                          obj1-padding obj2-padding)
+  (+ (/ obj1-size 2.0d0) obj1-padding obj2-padding (/ obj2-size 2.0d0)))
+
 ;; (defun make-costmap-bbox-gen-object (object)
 ;;   (let* ((bounding-box (btr::aabb object))
 ;;          (dimensions-x/2 (/ (cl-transforms:x (bt:bounding-box-dimensions bounding-box))
@@ -94,7 +102,8 @@
         
 
 ;; (defun make-constant-height-function (height)
-;;   (format t "list height123: ~a~%" (list height))
+;;   (format t "lissast height123: ~a~%" (list height))
+;;   (setf height 2.0)
 ;;   (lambda (x y)
 ;;     (declare (ignore x y))
 ;;     (list height)))
@@ -102,22 +111,29 @@
 
 
 (defun make-constant-height-function (height)
-  (format t "list height123: ~a~%" (list height))
+  (format t "list height123---: ~a~%" (list height))
   (let* ((lists (force-ll
 		 (prolog `(and (bullet-world ?w)
-                               (human-object-type ?w ?name ?type)
-			       (pose ?w ?name ?pose)))))
-	 (pose (cdr (assoc '?pose (car lists))))
-	 (z-origin (cl-transforms:z (cl-transforms:origin pose)))
-	 (rob-name (cdadar (force-ll
+                   (cognitive-reasoning::environment-object-type ?w ?name ?type)
+                   (pose ?w ?name ?pose)))))
+         (pose (cdr (assoc '?pose (car lists))))
+         (z-origin (cl-transforms:z (cl-transforms:origin pose)))
+         (rob-name (cdadar (force-ll
 			    (prolog `(and (bullet-world ?w)
-					  (robot ?robot)))))))
+                        (robot ?robot)))))))
+    (format t "poise ~a and ~a~%" pose z-origin)
     (format t "rob-name is ~a~%" rob-name)
-    (cond ((string-equal rob-name 'quadrotor)
-	   (format t "wir sind im ersten Teil von height und addieren die Zwei~%")
-	   (setf height 2)); (+ 2 z-origin)))
-	  (t (format t "sind anscheinend noch bei zwei~%")))
+    (cond ((string-equal rob-name 'red-hawk)
+           (format t "wir sind im ersten Teil von height und addieren die Zwei~%")
+           (setf height   (+ 2 z-origin)))
+          (t (format t "sind anscheinend noch bei zwei~%")))
     (lambda (x y)
       (declare (ignore x y))
       (list height))))
+
+(defun get-aabb (object)
+  (let ((dims (bt:bounding-box-dimensions (aabb object))))
+    (format t "what is dims ~a~%" dims)
+    (min (cl-transforms:x dims) (cl-transforms:y dims))))
+
 	 

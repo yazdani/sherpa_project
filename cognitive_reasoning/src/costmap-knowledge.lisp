@@ -27,11 +27,14 @@
 ;;; POSSIBILITY OF SUCH DAMAGE.
 
 (in-package :cognitive-reasoning)
-
 (def-fact-group costmap-metadata ()
   (<- (costmap-size 30 30))
   (<- (costmap-origin -15 -15))
   (<- (costmap-resolution 0.025))
+
+  ;; (<- (costmap-size 10 10))
+  ;; (<- (costmap-origin -145 -160))
+  ;; (<- (costmap-resolution 2))
 
   (<- (costmap-padding 0.38))
   (<- (costmap-manipulation-padding 0.38))

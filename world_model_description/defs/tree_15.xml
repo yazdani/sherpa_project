@@ -36,26 +36,26 @@
     <color rgba="0.8 0.5 0.0 1.0"/>
   </material>
 
-  <macro name="tree_5">
+  <macro name="tree_15">
 
-<joint name="tree_5_joint" type="fixed">
+<joint name="tree_15_joint" type="fixed">
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <parent link="area_link"/>
-      <child link="tree5_link"/>
+      <child link="tree15_link"/>
     </joint>
     
-    <link name="tree5_link">
+    <link name="tree15_link">
       <visual>
-	<origin xyz="-4 1 0" rpy="0 0 0"/>
+	<origin xyz="11 -11 0" rpy="0 0 0"/>
 	<geometry>
-	  <mesh filename="package://world_model_description/meshes/tanne2.dae"/>
+	  <mesh filename="package://world_model_description/meshes/tanne1.dae"/>
         </geometry>
 	<material name="Green"/>
       </visual>
       <collision>
-        <origin xyz="-4 1 0" rpy="0 0 0"/>
+        <origin xyz="11 -11 0" rpy="0 0 0"/>
 	<geometry>
-	  <mesh filename="package://world_model_description/meshes/tanne2.dae"/>
+	  <mesh filename="package://world_model_description/meshes/tanne1.dae"/>
         </geometry>
       </collision>
  </link>

@@ -46,14 +46,15 @@
     
     <link name="tree1_link">
       <visual>
-	<origin xyz="6 1 0" rpy="0 0 0"/>
+	<origin xyz="-7.5 9 0" rpy="0 0 0"/>
+	<!-- <origin xyz="6 1 0" rpy="0 0 0"/> -->
 	<geometry>
 	  <mesh filename="package://world_model_description/meshes/tanne1.dae"/>
         </geometry>
 	<material name="Green"/>
       </visual>
       <collision>
-        <origin xyz="6 1 0" rpy="0 0 0"/>
+        <origin xyz="-7.5 9 0" rpy="0 0 0"/>
 	<geometry>
 	  <mesh filename="package://world_model_description/meshes/tanne1.stl"/>
         </geometry>
