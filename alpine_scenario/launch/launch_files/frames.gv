@@ -1,7 +1,0 @@
-digraph G {
-"/base_link" -> "/sonar_link"[label="Broadcaster: /quad1/robot_state_publisher\nAverage rate: 100.201 Hz\nMost recent transform: 1375169832.752 sec old \nBuffer length: 4.980 sec\n"];
-edge [style=invis];
- subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
-"Recorded at time: 1375169951.170"[ shape=plaintext ] ;
- }->"/base_link";
-}

@@ -1,19 +1,10 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(cognitive_reasoning)
+project(sherpa_project)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS
-  actionlib
-  agents_model_description
-  bullet_reasoning
-  bullet_reasoning_designators
-  cl_bullet
-  cl_bullet_vis
-  cram_designators
-  cram_json_prolog
-)
+find_package(catkin REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -86,8 +77,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES cognitive_reasoning
-#  CATKIN_DEPENDS actionlib agents_model_description bullet_reasoning bullet_reasoning_designators cl_bullet cl_bullet_vis cram_designators cram_json_prolog
+#  LIBRARIES sherpa_project
+#  CATKIN_DEPENDS other_catkin_pkg
 #  DEPENDS system_lib
 )
 
@@ -98,24 +89,21 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 # include_directories(include)
-include_directories(
-  ${catkin_INCLUDE_DIRS}
-)
 
 ## Declare a cpp library
-# add_library(cognitive_reasoning
-#   src/${PROJECT_NAME}/cognitive_reasoning.cpp
+# add_library(sherpa_project
+#   src/${PROJECT_NAME}/sherpa_project.cpp
 # )
 
 ## Declare a cpp executable
-# add_executable(cognitive_reasoning_node src/cognitive_reasoning_node.cpp)
+# add_executable(sherpa_project_node src/sherpa_project_node.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-# add_dependencies(cognitive_reasoning_node cognitive_reasoning_generate_messages_cpp)
+# add_dependencies(sherpa_project_node sherpa_project_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(cognitive_reasoning_node
+# target_link_libraries(sherpa_project_node
 #   ${catkin_LIBRARIES}
 # )
 
@@ -134,7 +122,7 @@ include_directories(
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS cognitive_reasoning cognitive_reasoning_node
+# install(TARGETS sherpa_project sherpa_project_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -159,7 +147,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_cognitive_reasoning.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_sherpa_project.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
