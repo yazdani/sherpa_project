@@ -7,7 +7,7 @@ project(startup_scenario)
 find_package(catkin REQUIRED COMPONENTS
   actionlib
   agents_navigation_process_module
-  agents_projection_process_module
+  #agents_projection_process_module
   bullet_reasoning
   bullet_reasoning_designators
   cl_bullet
@@ -17,15 +17,15 @@ find_package(catkin REQUIRED COMPONENTS
   cognitive_reasoning
   control_msgs
   control_msgs
-  cram_agents_knowledge
+  #cram_agents_knowledge
   cram_designators
   cram_environment_representation
-  cram_gazebo_utilities
+ # cram_gazebo_utilities
   cram_json_prolog
   cram_language
   designator_integration_lisp
   gazebo_msgs
-  gazebo_perception_process_module
+  #gazebo_perception_process_module
   geometry_msgs
   hector_quadrotor_msgs
   language_interpreter
@@ -35,7 +35,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   semantic_map_costmap
   sensor_msgs
-  simple_knowledge
+  # simple_knowledge
   trajectory_msgs
 )
 
