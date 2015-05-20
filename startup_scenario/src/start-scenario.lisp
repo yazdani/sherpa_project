@@ -70,84 +70,10 @@
 	       ;; (assert (object ?w urdf rover ((1 3 0) (0 0 0 1)) :urdf ,rover-urdf))
          )))))))
 
-(defun init-base ()
-  (format t "inside init-base~%")
-  (setf *result-subscriber*
-        (roslisp:subscribe "/interpreted_command"
-                    "language_interpreter/connect"
-                    #'cb-result)))
 
-(defun cb-result (msg)
-  (format t "inside cb-result~%")
-  (setf *stored-result*
-        (make-instance 'command-result
-                       :content msg
-                       :time-received (roslisp:ros-time))))
 
-;;TODO: CHECKING IF SELECTION CONTAINS TWO STRINGS
- (defun command-into-designator ()
-   (cond ((equal nil *stored-result*) (format t "Ain't no publisher~%"))
-         (t
-          (let*((value (content *stored-result*))
-                (command (read-from-string (LANGUAGE_INTERPRETER-MSG:COMMAND value)))
-                (interpretation (read-from-string 
-                                 (car 
-                                  (split-sequence:split-sequence #\( (LANGUAGE_INTERPRETER-MSG:INTERPRETATION value)))))
-                (selection (split-sequence:split-sequence #\Space (LANGUAGE_INTERPRETER-MSG:SELECTION value)))
-                (selection2 (read-from-string (concatenate 'string (car selection) "_" (second selection))))
-                                        ;  (interpret (read-from-string (car (split-sequence:split-sequence #\( interpreted))))
-                                        ;(command (read-from-string(LANGUAGE_INTERPRETER-MSG:COMMAND value)))
-                (gesture00 (LANGUAGE_INTERPRETER-MSG:VEC value))
-                (value-x (GEOMETRY_MSGS-MSG:X gesture00))
-                (value-y (GEOMETRY_MSGS-MSG:Y gesture00))
-                (value-z (GEOMETRY_MSGS-MSG:Z gesture00))
-                (default (LANGUAGE_INTERPRETER-MSG:OFFSET value))
-                (off-x (GEOMETRY_MSGS-MSG:X default))
-                (off-y (GEOMETRY_MSGS-MSG:Y default))
-                (off-z (GEOMETRY_MSGS-MSG:Z default)))
-            (setf *origin-pose* (cl-transforms:origin (get-object-pose 'human)));cl-transforms:make-3d-vector (- 75.89979) (- 75.41413)  29.02028))
-            (format t "ori ~a~%" *origin-pose*)
-            (format t "tester~%")
-            (checking-offset off-x off-y off-z)
-            (format t "meheh~%")
-            (cond ((equal value-x 0.0d0)
-                   (equal value-y 0.0d0)
-                   (equal value-z 0.0d0)
-                   (setf gesture (cl-transforms:make-pose (cl-transforms:make-3d-vector 
-                                                           (+ (- 81.73) off-x)
-                                                           (+ (- 82.87) off-y)
-                                                           (+ 25.82 off-z))
-                                                          (cl-transforms:make-quaternion 0 0 0 1)))
-                   (setf *origin-pose* (cl-transforms:origin (get-object-pose 'quadrotor))))
-                   ;;(setf gesture (tf-pose-of-agent (cl-transforms:make-3d-vector off-x off-y off-z))))
-                   (t 
-                    ;; (setf gesture (cl-transforms:make-pose (cl-transforms:make-3d-vector (+ value-x off-x) (+ value-y off-y) (+ value-z off-z))(cl-transforms:make-quaternion 0 0 0 1)))
-                    (setf gesture (cl-transforms:make-pose (cl-transforms:make-3d-vector 
-                                                            (+ (- 75.89979)
-                                                               (+ value-x off-x) )
-                                                            (+ (- 75.41413) 
-                                                               (+ value-y off-y))
-                                                            (+  29.02028 
-                                                                (+ value-z off-z)))
-                                                           (cl-transforms:make-quaternion 0 0 0 1)))
-                    (setf def (cl-transforms:make-3d-vector off-x off-y off-z))
-                    (setf *visualize-list* `((offset ,def)(loc ,gesture)))
-                    (setf *act-desig* (make-designator 'action `((command_type ,command)
-                                                                 (action_type ,interpretation)
-                                                                 (offset ,def)
-                                                                 (agent ,selection2)
-                                                                 (target ,(make-designator 'location `((loc ,gesture))))))))))
-*act-desig*)))
 
-;; (defun get-tf-pose (robot)
-;; (format t "TODO: get-tf-pose~%"))
 
-(defun checking-offset (x y z)
-  (format t "x y z ~a ~a ~a ~%"x y z)
-  (cond ((not (equal x 0.0d0))(setf *offset-checker* 'x))
-        ((not (equal y 0.0d0))(setf *offset-checker* 'y))
-        (t
-        (setf *offset-checker* 'z))))
 
 
  (defun tf-pose-of-agent (pose)
@@ -183,9 +109,7 @@
 
                        
 
-(defun send-msg ()
-  (let ((pub (advertise "sendMsg" "designator_integration_msgs/Designator")))
-    (publish pub (desig-int::designator->msg (command-into-designator)))))
+
 
 
  

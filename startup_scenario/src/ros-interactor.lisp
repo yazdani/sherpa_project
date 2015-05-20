@@ -26,43 +26,37 @@
 ;;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 ;;; POSSIBILITY OF SUCH DAMAGE.
 
-(defsystem startup-scenario
-  :author "Fereshta Yazdani <yazdani@cs.uni-bremen.de>"
-  :license "BSD"
-  :description "STARTUP-SCENARIO"
-   :depends-on (cram-language
-               location-costmap
-               roslisp
-	       cram-agents-knowledge
-	       simple-knowledge
-	       ;; agents-model-description
-	       ;; pr2-manipulation-knowledge
-	       simple-knowledge
-	       cram-environment-representation
-	       ;; projection-process-modules
-	       cram-gazebo-utilities
-	       bullet-reasoning-designators
-               control_msgs-msg
-               geometry_msgs-msg
-               trajectory_msgs-msg
-	       cognitive-reasoning
-	       cram-environment-representation
-	       actionlib
-               hector_quadrotor_msgs-msg
-	       agents-navigation-process-module
-	       gazebo-perception-process-module
-	       gazebo_msgs-msg
-	       agents-projection-process-modules
-	       language_interpreter-msg
-	       semantic-map-costmap
-	       designator-integration-lisp
-	       household_objects_database_msgs-msg)
- :components 
-  ((:module "src"
-    :components
-    ((:file "package")
-     (:file "start-scenario" :depends-on ("package" "calculation" "auxiliaries" "ros-interactor"))
-     (:file "auxiliaries" :depends-on ("package"))
-     (:file "calculation" :depends-on ("package"))
-     (:file "ros-interactor" :depends-on ("package"))
-     ))))
+(in-package :startup-scenario)
+
+
+;;
+;; declaration of class
+;;
+(defclass command-result ()
+  ((content :reader content :initarg :content)
+   (time-received :reader time-received :initarg :time-received)))
+
+;;
+;; Listen to topic /interpreted_command
+;;
+(defun init-base ()
+  (setf *result-subscriber*
+        (roslisp:subscribe "/interpreted_command"
+                    "language_interpreter/connect"
+                    #'cb-result)))
+
+;;
+;; Saving the outcome of 'msg' into *stored-result*
+;;
+(defun cb-result (msg)
+  (setf *stored-result*
+        (make-instance 'command-result
+                       :content msg
+                       :time-received (roslisp:ros-time))))
+
+;;
+;; Sending complete designator_msg to topic sendMsg
+;;
+(defun send-msg ()
+  (let ((pub (advertise "sendMsg" "designator_integration_msgs/Designator")))
+    (publish pub (desig-int::designator->msg (command-into-designator)))))
