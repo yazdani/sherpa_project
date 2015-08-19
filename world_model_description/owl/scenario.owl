@@ -1,0 +1,2128 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE rdf:RDF [
+  <!ENTITY all "http://sweet.jpl.nasa.gov/2.3/sweetAll.owl">
+  <!ENTITY owl "http://www.w3.org/2002/07/owl#">
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+  <!ENTITY knowrob "http://knowrob.org/kb/knowrob.owl#">
+   <!ENTITY plant "http://sweet.jpl.nasa.gov/2.3/matrPlant.owl#">
+ <!ENTITY struc "http://sweet.jpl.nasa.gov/2.3/matrFacility.owl#">
+]>
+
+<rdf:RDF xml:base="&all;"
+	 xmlns:plant="&plant;"
+         xmlns:all="&all;"
+         xmlns:owl="&owl;"
+         xmlns:rdf="&rdf;"
+         xmlns:rdfs="&rdfs;"
+	 xmlns:xsd = "&xsd;"
+	 xmlns:knowrob="&knowrob;"
+	 xmlns:struc="&struc;"
+>
+
+<!-- Import Ontologies -->
+  <owl:Ontology rdf:about="" owl:versionInfo="2.3">
+    <rdfs:label>SWEET Ontology</rdfs:label>
+    <owl:imports rdf:resource="package://knowrob_common/owl/knowrob.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/human.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/humanAgriculture.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/humanCommerce.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/humanDecision.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/humanEnvirControl.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/humanEnvirConservation.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/humanEnvirStandards.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/humanEnvirAssessment.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/humanJurisdiction.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/humanKnowledgeDomain.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/humanResearch.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/humanTechReadiness.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/humanTransportation.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matr.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrAerosol.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrAnimal.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrBiomass.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrOrganicCompound.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrEnergy.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrEquipment.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrFacility.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrElement.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrElementalMolecule.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrIndustrial.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrInstrument.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrIon.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrIsotope.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrMicrobiota.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrMineral.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrNaturalResource.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrParticle.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrPlant.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrRock.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrRockIgneous.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrSediment.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/matrWater.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phen.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenAtmo.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenAtmoCloud.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenAtmoFog.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenAtmoFront.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenAtmoLightning.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenAtmoPrecipitation.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenAtmoPressure.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenAtmoTransport.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenAtmoWind.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenAtmoWindMesoscale.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenBiol.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenEcology.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenEnvirImpact.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenEnergy.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenCryo.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenCycle.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenCycleMaterial.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenElecMag.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenFluidDynamics.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenFluidInstability.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenFluidTransport.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenGeol.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenGeolFault.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenGeolGeomorphology.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenGeolSeismicity.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenGeolTectonic.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenGeolVolcano.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenHelio.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenHydro.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenMixing.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenOcean.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenOceanDynamics.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenOceanCoastal.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenPlanetClimate.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenReaction.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenSolid.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenStar.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenSystem.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenSystemComplexity.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenWave.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/phenWaveNoise.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/proc.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/procChemical.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/procPhysical.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/procStateChange.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/procWave.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/prop.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propBinary.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propCapacity.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propCategorical.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propCharge.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propChemical.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propConductivity.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propCount.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propDifference.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propDiffusivity.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propDimensionlessRatio.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propEnergy.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propFraction.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propIndex.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propMass.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propMassFlux.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propOrdinal.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propPressure.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propQuantity.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propSpace.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propSpaceDirection.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propSpaceDistance.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propSpaceHeight.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propSpaceLocation.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propSpaceMultidimensional.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propSpaceThickness.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propFunction.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propTemperature.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propTemperatureGradient.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propTime.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propTimeFrequency.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propSpeed.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/propRotation.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realm.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmAstroBody.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmAstroHelio.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmAstroStar.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmAtmo.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmAtmoWeather.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmAtmoBoundaryLayer.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmBiolBiome.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmClimateZone.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmCryo.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmEarthReference.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmGeol.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmGeolBasin.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmGeolConstituent.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmGeolContinental.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmGeolOrogen.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmHydro.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmHydroBody.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmLandAeolian.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmLandCoastal.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmLandFluvial.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmLandGlacial.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmLandform.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmLandOrographic.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmLandProtected.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmLandTectonic.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmLandVolcanic.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmOcean.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmOceanFeature.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmOceanFloor.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmRegion.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/realmSoil.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/rela.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/relaChemical.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/relaClimate.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/relaHuman.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/relaMath.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/relaPhysical.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/relaProvenance.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/relaSci.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/relaSpace.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/relaTime.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/repr.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprDataFormat.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprDataModel.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprDataProduct.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprDataService.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprDataServiceAnalysis.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprDataServiceReduction.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprDataServiceGeospatial.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprDataServiceValidation.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprMath.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprMathFunctionOrthogonal.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprMathGraph.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprMathOperation.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprMathSolution.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprMathStatistics.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprSciComponent.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprSciFunction.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprSciLaw.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprSciMethodology.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprSciModel.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprSciProvenance.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprSciUnits.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprSpace.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprSpaceCoordinate.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprSpaceDirection.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprSpaceGeometry.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprSpaceGeometry3D.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprSpaceReferenceSystem.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprTime.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprTimeDay.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/reprTimeSeason.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/state.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateBiological.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateChemical.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateDataProcessing.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateEnergyFlux.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateFluid.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateOrdinal.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/statePhysical.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateRealm.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateRole.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateRoleImpact.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateRoleBiological.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateRoleChemical.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateRoleGeographic.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateRoleRepresentative.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateRoleTrust.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateSolid.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateSpace.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateSpaceScale.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateSpaceConfiguration.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateSpectralLine.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateStorm.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateSystem.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateThermodynamic.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateTime.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateTimeCycle.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateTimeFrequency.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateTimeGeologic.owl"/>
+    <owl:imports rdf:resource="http://sweet.jpl.nasa.gov/2.3/stateVisibility.owl"/>
+  </owl:Ontology>
+
+    <!--
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <!-- &knowrob;describedInMap -->
+
+    <owl:ObjectProperty rdf:about="&knowrob;describedInMap"/>
+
+
+    <!-- &knowrobeventOccursAt -->
+
+    <owl:ObjectProperty rdf:about="&knowrob;eventOccursAt"/>
+
+
+    <!-- &knowrob;objectActedOn -->
+
+    <owl:ObjectProperty rdf:about="&knowrob;objectActedOn"/>
+
+
+    <!-- &knowrob;properPhysicalParts -->
+
+    <owl:ObjectProperty rdf:about="&knowrob;properPhysicalParts"/>
+
+
+    <!-- &knowrob;startTime -->
+
+    <owl:ObjectProperty rdf:about="&knowrob;startTime"/>
+
+
+    <!-- &knowrob;prismaticallyConnectedTo -->
+
+    <owl:ObjectProperty rdf:about="&knowrob;prismaticallyConnectedTo"/>
+
+
+    <!-- &knowrob;hingedTo -->
+
+    <owl:ObjectProperty rdf:about="&knowrob;hingedTo"/>
+
+
+    <!-- &knowrob;connectedTo-Rigidly -->
+
+    <owl:ObjectProperty rdf:about="&knowrob;connectedTo-Rigidly"/>
+
+
+    <!--
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+
+
+    <!-- &knowrob;depthOfObject -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;depthOfObject"/>
+
+
+
+    <!-- &knowrob;heightOfObject -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;heightOfObject"/>
+
+
+
+    <!-- &knowrob;m00 -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;m00"/>
+
+
+
+    <!-- &knowrob;m01 -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;m01"/>
+
+
+
+    <!-- &knowrob;m02 -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;m02"/>
+
+
+
+    <!-- &knowrob;m03 -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;m03"/>
+
+
+
+    <!-- &knowrob;m10 -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;m10"/>
+
+
+
+    <!-- &knowrob;m11 -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;m11"/>
+
+
+
+    <!-- &knowrob;m12 -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;m12"/>
+
+
+
+    <!-- &knowrob;m13 -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;m13"/>
+
+
+
+    <!-- &knowrob;m20 -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;m20"/>
+
+
+
+    <!-- &knowrob;m21 -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;m21"/>
+
+
+
+    <!-- &knowrob;m22 -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;m22"/>
+
+
+
+    <!-- &knowrob;m23 -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;m23"/>
+
+
+
+    <!-- &knowrob;m30 -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;m30"/>
+
+
+
+    <!-- &knowrob;m31 -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;m31"/>
+
+
+
+    <!-- &knowrob;m32 -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;m32"/>
+
+
+
+    <!-- &knowrob;m33 -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;m33"/>
+
+
+
+    <!-- &knowrob;widthOfObject -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;widthOfObject"/>
+
+
+
+    <!-- &knowrob;maxJointValue -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;maxJointValue"/>
+
+
+
+    <!-- &knowrob;minJointValue -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;minJointValue"/>
+
+
+
+    <!-- &knowrob;turnRadius -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;turnRadius"/>
+
+
+
+    <!-- &knowrob;vectorX -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;vectorX"/>
+
+
+
+    <!-- &knowrob;vectorY -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;vectorY"/>
+
+
+
+    <!-- &knowrob;vectorZ -->
+
+    <owl:DatatypeProperty rdf:about="&knowrob;vectorZ"/>
+
+
+    <!--
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+   <!-- Definition of some classes in the range of Facility (matrFacility)-->
+ <owl:Class rdf:about="&knowrob;AccomodationFacility">
+     <rdfs:subClassOf rdf:resource="&struc;Facility"/>
+   </owl:Class>
+
+   <owl:Class rdf:about="&knowrob;Hotel">
+     <rdfs:subClassOf rdf:resource="&knowrob;AccomodationFacility"/>
+   </owl:Class>
+
+   <owl:Class rdf:about="&knowrob;CateringFacility">
+     <rdfs:subClassOf rdf:resource="&struc;Facility"/>
+   </owl:Class>
+
+   <owl:Class rdf:about="&knowrob;Restaurant">
+     <rdfs:subClassOf rdf:resource="&knowrob;CateringFacility"/>
+   </owl:Class>
+
+   <owl:Class rdf:about="&knowrob;Restaurant">
+     <rdfs:subClassOf rdf:resource="&knowrob;AccomodationFacility"/>
+   </owl:Class>
+  
+    <!-- &knowrob;Tree -->
+
+    <owl:Class rdf:about="&knowrob;tree">
+	<rdfs:subClassOf rdf:resource="&plant;Tree"/>
+    </owl:Class>
+
+
+    <!-- &knowrob;RotationMatrix3D -->
+
+    <owl:Class rdf:about="&knowrob;RotationMatrix3D"/>
+
+
+    <!-- &knowrob;SemanticEnvironmentMap -->
+
+    <owl:Class rdf:about="&knowrob;SemanticEnvironmentMap"/>
+
+
+    <!-- &knowrob;SemanticMapPerception -->
+
+    <owl:Class rdf:about="&knowrob;SemanticMapPerception"/>
+
+
+    <!-- &knowrob;TimePoint -->
+
+    <owl:Class rdf:about="&knowrob;TimePoint"/>
+
+
+    <!-- &knowrob;PrismaticJoint -->
+
+    <owl:Class rdf:about="&knowrob;PrismaticJoint"/>
+
+
+    <!-- &knowrob;HingedJoint -->
+
+    <owl:Class rdf:about="&knowrob;HingedJoint"/>
+
+
+    <!-- &knowrob;Vector -->
+
+    <owl:Class rdf:about="&knowrob;Vector"/>
+
+    <!--
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+
+
+    <!-- http://knowrob/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM581j -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j">
+        <rdf:type rdf:resource="&knowrob;SemanticEnvironmentMap"/>
+    </owl:NamedIndividual>
+
+
+    <!-- http://knowrob/kb/ias_semantic_map.owl#timepoint_1399894481 -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481">
+        <rdf:type rdf:resource="&knowrob;TimePoint"/>
+    </owl:NamedIndividual>
+
+
+
+    <owl:NamedIndividual rdf:about="&knowrob;VectorX">
+      <rdf:type rdf:resource="&knowrob;Vector"/>
+      <knowrob:vectorX rdf:datatype="&xsd;double">1.0</knowrob:vectorX>
+      <knowrob:vectorY rdf:datatype="&xsd;double">0.0</knowrob:vectorY>
+      <knowrob:vectorZ rdf:datatype="&xsd;double">0.0</knowrob:vectorZ>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&knowrob;VectorXneg">
+      <rdf:type rdf:resource="&knowrob;Vector"/>
+      <knowrob:vectorX rdf:datatype="&xsd;double">-1.0</knowrob:vectorX>
+      <knowrob:vectorY rdf:datatype="&xsd;double">0.0</knowrob:vectorY>
+      <knowrob:vectorZ rdf:datatype="&xsd;double">0.0</knowrob:vectorZ>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&knowrob;VectorTable"> <!-- -61.11 Deg-->
+      <rdf:type rdf:resource="&knowrob;Vector"/>
+      <knowrob:vectorX rdf:datatype="&xsd;double">0.48313</knowrob:vectorX>
+      <knowrob:vectorY rdf:datatype="&xsd;double">-0.875549</knowrob:vectorY>
+      <knowrob:vectorZ rdf:datatype="&xsd;double">0.0</knowrob:vectorZ>
+    </owl:NamedIndividual>
+
+
+    
+	
+<!-- First Box-->
+		<owl:NamedIndividual rdf:about="&knowrob;Restaurant01">
+		 <rdf:type rdf:resource="&knowrob;Restaurant"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_01">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_01"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Restaurant01"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_01">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">8.543160</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-6.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+
+<!-- second Box-->
+	<owl:NamedIndividual rdf:about="&knowrob;Restaurant02">
+		 <rdf:type rdf:resource="&knowrob;Restaurant"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_02">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_02"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Restaurant02"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_02">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">5.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">6.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!-- Third Box-->
+	<owl:NamedIndividual rdf:about="&knowrob;Restaurant03">
+		 <rdf:type rdf:resource="&knowrob;Restaurant"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_03">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_03"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Restaurant03"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_03">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-9.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-6.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!-- Fourth Box-->
+	<owl:NamedIndividual rdf:about="&knowrob;Hotel04">
+		 <rdf:type rdf:resource="&knowrob;Hotel"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_04">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_04"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Hotel04"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_04">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-7.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">8.511550</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+
+<!-- Fifth Box-->
+	<owl:NamedIndividual rdf:about="&knowrob;Hotel05">
+		 <rdf:type rdf:resource="&knowrob;Hotel"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_05">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_05"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Hotel05"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_05">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">7.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">8.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+
+<!--First tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree001">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_001">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_001"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree001"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_001">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">9.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-1.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--second tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree002">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_002">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_002"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree002"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_002">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">8.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-2.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--third tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree003">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_003">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_7"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree003"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_003">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">8.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-0.999999</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--fourth tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree004">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_004">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_004"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;victim"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_004">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">7.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-1.417480</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--fifth tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree005">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_005">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_7"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree005"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_005">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">9.000001</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-2.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--6th trees -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree006">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_006">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_006"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree006"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_006">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">7.092294</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-2.890985</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--7th tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree007">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_007">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_007"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree007"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_007">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">6.446076</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-3.654265</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--8th tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree008">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_008">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_008"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree008"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_008">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">5.502890</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">3.465510</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--9th tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree009">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_009">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_009"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree009"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_009">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">4.439100</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">3.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--10st tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree010">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_010">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_010"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree010"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_010">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">3.564840</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">3.560150</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--11st tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree011">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_011">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_011"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree011"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_011">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">3.415660</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">5.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--12nd tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree012">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_012">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_012"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree012"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_012">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">3.488420</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">7.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--13rd tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree013">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_013">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_013"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree013"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_013">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">4.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">8.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--14th tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree014">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_014">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_014"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree014"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_014">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-5.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-4.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--15th tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree015">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_015">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_015"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree015"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_015">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-4.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-4.485010</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--16th tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree016">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_016">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_016"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree016"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_016">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-3.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-5.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--17th tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree017">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_017">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_017"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree017"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_017">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-5.419160</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">0.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--18th tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree018">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_018">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_018"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;victim"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_018">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-4.518140</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">0.545894</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--19th tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree019">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_019">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_019"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree019"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_019">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-3.585590</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">1.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--20th tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree020">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_020">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_020"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree020"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_020">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-1.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-8.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+
+<!--21st tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree021">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_021">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_021"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree021"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_021">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">0.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-7.445760</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--22nd tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree022">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_022">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_022"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree022"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_022">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">1.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-7.553560</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--23rd tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree023">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_023">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_023"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree023"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_023">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">1.444370</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-8.473890</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--24th trees -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree024">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_024">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_024"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree024"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_024">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">1.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-9.463260</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--25th trees -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree025">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_025">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_025"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree025"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_025">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-4.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">7.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--26th trees -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree026">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_026">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_026"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree026"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_026">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-4.538350</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">6.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--27th trees -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree027">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_027">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_027"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree027"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_027">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-5.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">7.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--28th trees -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree028">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_028">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_028"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree028"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_028">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-7.469210</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">5.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--29th trees -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree029">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_029">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_029"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree029"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_029">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">0.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-3.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--30th trees -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree030">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_030">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_030"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree030"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_030">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">1.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-1.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--31st trees -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree031">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_031">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_031"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree031"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_031">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">7.595960</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">6.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--32nd tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree032">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_032">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_032"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree032"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_032">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-1.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">0.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--33rd tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree033">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_033">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_033"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree033"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_033">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-8.527010</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-4.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--34th tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree034">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_034">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_034"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree034"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_034">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-8.536450</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">6.536140</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--35th tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree035">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_035">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_035"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree035"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_035">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-6.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">6.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--36th tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree036">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_036">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_036"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree036"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_036">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">-7.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-1.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--37th tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree037">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_037">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_037"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree037"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_037">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">1.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">2.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.499992</knowrob:m23>
+	</owl:NamedIndividual>
+<!--38th tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree038">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_038">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_038"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree038"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_038">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">0.517553</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">0.0</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+<!--39th tree -->
+	<owl:NamedIndividual rdf:about="&knowrob;Tree039">
+		 <rdf:type rdf:resource="&knowrob;tree"/>
+		 <knowrob:heightOfObject rdf:datatype="&xsd;double">1.0</knowrob:heightOfObject>
+		 <knowrob:depthOfObject rdf:datatype="&xsd;double">1.0</knowrob:depthOfObject>
+		 <knowrob:widthOfObject rdf:datatype="&xsd;double">1.0</knowrob:widthOfObject>
+		 <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#SemanticEnvironmentMap_PM582j"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;SemanticMapPerception_039">
+		 <rdf:type rdf:resource="&knowrob;SemanticMapPerception"/>
+		 <knowrob:startTime rdf:resource="http://knowrob.org/kb/ias_semantic_map.owl#timepoint_1399894481"/>
+		 <knowrob:eventOccursAt rdf:resource="&knowrob;RotationMatrix3D_039"/>
+		 <knowrob:objectActedOn rdf:resource="&knowrob;Tree039"/>
+	</owl:NamedIndividual>
+
+	<owl:NamedIndividual rdf:about="&knowrob;RotationMatrix3D_039">
+		 <rdf:type rdf:resource="&knowrob;RotationMatrix3D"/>
+		 <knowrob:m00 rdf:datatype="&xsd;double">1.0</knowrob:m00>
+		 <knowrob:m11 rdf:datatype="&xsd;double">1.0</knowrob:m11>
+		 <knowrob:m22 rdf:datatype="&xsd;double">1.0</knowrob:m22>
+		 <knowrob:m33 rdf:datatype="&xsd;double">1.0</knowrob:m33>
+		 <knowrob:m01 rdf:datatype="&xsd;double">0.0</knowrob:m01>
+		 <knowrob:m02 rdf:datatype="&xsd;double">0.0</knowrob:m02>
+		 <knowrob:m20 rdf:datatype="&xsd;double">0.0</knowrob:m20>
+		 <knowrob:m10 rdf:datatype="&xsd;double">0.0</knowrob:m10>
+		 <knowrob:m12 rdf:datatype="&xsd;double">0.0</knowrob:m12>
+		 <knowrob:m21 rdf:datatype="&xsd;double">0.0</knowrob:m21>
+		 <knowrob:m30 rdf:datatype="&xsd;double">0.0</knowrob:m30>
+		 <knowrob:m31 rdf:datatype="&xsd;double">0.0</knowrob:m31>
+		 <knowrob:m32 rdf:datatype="&xsd;double">0.0</knowrob:m32>
+		 <knowrob:m03 rdf:datatype="&xsd;double">1.0</knowrob:m03>
+		 <knowrob:m13 rdf:datatype="&xsd;double">-2.441910</knowrob:m13>
+		 <knowrob:m23 rdf:datatype="&xsd;double">0.0</knowrob:m23>
+	</owl:NamedIndividual>
+
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.1.0.1592) http://owlapi.sourceforge.net -->     
