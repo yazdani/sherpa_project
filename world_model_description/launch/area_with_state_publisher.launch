@@ -1,9 +1,75 @@
 <launch>
 <param name="area_description"
-       command="$(find xacro)/xacro.py '$(find world_model_description)/defs/area.urdf.xml'"/>  
- <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster" 
-    args="-3.45 -4.35 0 -3.141 0 0 /map /area_link 200">
+       command="$(find xacro)/xacro.py '$(find world_model_description)/defs/map/map.urdf.xml'"/>
+  
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster0" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map /map_link 200">
   </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster1" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree1_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster2" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree2_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster3" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree3_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster4" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree4_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster5" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree5_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster6" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree6_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster7" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree7_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster8" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree8_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster9" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree9_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster10" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree10_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster11" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree11_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster12" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree12_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster13" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree13_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster14" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree14_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster15" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree15_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster16" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree16_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster17" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree17_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster18" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree18_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster19" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree19_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster20" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree20_link 200">
+  </node>
+ <node pkg="tf" type="static_transform_publisher" name="area_link_broadcaster21" 
+    args="-3.45 -4.35 0 -3.141 0 0 /map_link /tree21_link 200">
+  </node>
+
+
 <!--
   <node pkg="robot_state_chain_publisher" type="state_chain_publisher"
     name="area_state_publisher" output="screen">
