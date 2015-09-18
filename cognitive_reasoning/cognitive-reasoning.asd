@@ -32,7 +32,7 @@
   :description "SHERPA SPATIAL RELATIONS"
   
   :depends-on (cram-language
-               location-costmap
+               cram-location-costmap
                roslisp
                ;; cram-pr2-knowledge
                ;; pr2-manipulation-knowledge
@@ -47,7 +47,7 @@
                ;; cram-gazebo-utilities
                ;;              simple-knowledge
 	       ;; cram-agents-knowledge
-               bullet-reasoning-designators
+               cram-bullet-reasoning-designators
                control_msgs-msg
                geometry_msgs-msg
                trajectory_msgs-msg

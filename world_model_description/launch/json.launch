@@ -1,5 +1,5 @@
 <launch>
-  <param name="initial_package" type="string" value="knowrob_map_tools" />
+  <param name="initial_package" type="string" value="knowrob_map_data" />
   <param name="initial_goal" type="string" value="owl_parse('package://world_model_description/owl/semantic_map.owl')" />
 
 <node name="json_prolog" pkg="json_prolog" type="json_prolog_node" cwd="node" output="screen" />

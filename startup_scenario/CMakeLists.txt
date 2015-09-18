@@ -8,8 +8,8 @@ find_package(catkin REQUIRED COMPONENTS
   actionlib
   agents_navigation_process_module
   #agents_projection_process_module
-  bullet_reasoning
-  bullet_reasoning_designators
+  cram_bullet_reasoning
+  cram_bullet_reasoning_designators
   cl_bullet
   cl_bullet_vis
   cl_tf
@@ -27,8 +27,6 @@ find_package(catkin REQUIRED COMPONENTS
   gazebo_msgs
   #gazebo_perception_process_module
   geometry_msgs
-  hector_quadrotor_msgs
-  language_interpreter
   object_location_designators
   pcl_conversions
   pcl_ros

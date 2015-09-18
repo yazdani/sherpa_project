@@ -1,4 +1,11 @@
 <launch>
+
+<param name="robot_description01"
+       textfile="$(find cram_quadrotor_knowledge)/urdf/quadrotor_with_asus_with_hokuyo_utm30lx-01.urdf"/>
+  
+<param name="robot_description02"
+       textfile="$(find cram_quadrotor_knowledge)/urdf/quadrotor_with_asus_with_hokuyo_utm30lx-02.urdf"/>
+
 <param name="area_description"
        command="$(find xacro)/xacro.py '$(find world_model_description)/defs/map/map.urdf.xml'"/>
   

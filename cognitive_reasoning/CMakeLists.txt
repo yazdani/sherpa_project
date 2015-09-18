@@ -5,10 +5,10 @@ project(cognitive_reasoning)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  actionlib
-  agents_model_description
-  bullet_reasoning
-  bullet_reasoning_designators
+  #actionlib
+  #agents_model_description
+  cram_bullet_reasoning
+  cram_bullet_reasoning_designators
   cl_bullet
   cl_bullet_vis
   cram_designators

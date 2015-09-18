@@ -62,7 +62,7 @@
   <build_depend>gazebo_msgs</build_depend>
   <!-- <build_depend>gazebo_perception_process_module</build_depend> -->
   <build_depend>geometry_msgs</build_depend>
-  <build_depend>hector_quadrotor_msgs</build_depend>
+  
   <build_depend>language_interpreter</build_depend>
   <build_depend>object_location_designators</build_depend>
   <build_depend>pcl_conversions</build_depend>
@@ -93,7 +93,7 @@
   <run_depend>gazebo_msgs</run_depend>
   <!-- <run_depend>gazebo_perception_process_module</run_depend> -->
   <run_depend>geometry_msgs</run_depend>
-  <run_depend>hector_quadrotor_msgs</run_depend>
+
   <run_depend>language_interpreter</run_depend>
   <run_depend>object_location_designators</run_depend>
   <run_depend>pcl_conversions</run_depend>
