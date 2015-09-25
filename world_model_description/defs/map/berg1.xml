@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+       xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <macro name="tree_9">
+
+<joint name="tree_9_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <parent link="map_link"/>
+      <child link="tree9_link"/>
+    </joint>
+    
+    <link name="tree9_link">
+      <visual>
+	<origin xyz="10 10 0" rpy="0 0 0"/>
+	<geometry>
+	  <mesh filename="package://world_model_description/meshes/berg1.dae"/>
+        </geometry>
+	<material name="Green"/>
+      </visual>
+      <collision>
+        <origin xyz="10 10 0" rpy="0 0 0"/>
+	<geometry>
+	  <mesh filename="package://world_model_description/meshes/berg1.dae"/>
+        </geometry>
+      </collision>
+</link>
+  
+ <gazebo>
+	<static>true</static>
+      </gazebo>
+  </macro>
+</robot>

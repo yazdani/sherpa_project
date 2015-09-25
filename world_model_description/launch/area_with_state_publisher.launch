@@ -3,6 +3,9 @@
 <param name="robot_description01"
        textfile="$(find cram_quadrotor_knowledge)/urdf/quadrotor_with_asus_with_hokuyo_utm30lx-01.urdf"/>
   
+<param name="human_description"
+       textfile="$(find world_model_description)/urdf/human.urdf"/>
+
 <param name="robot_description02"
        textfile="$(find cram_quadrotor_knowledge)/urdf/quadrotor_with_asus_with_hokuyo_utm30lx-02.urdf"/>
 

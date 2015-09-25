@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+  <robot name="victim">
+ <material name="Black">
+    <color rgba="0 0 0 1"/>
+  </material>
+<link name="base_link">
+  <visual>
+    <!-- <origin xyz="-4 -3 0"/> -->
+    <geometry>
+      <mesh filename="package://world_model_description/meshes/operator.dae"/>
+    </geometry>
+    <material name="Black"/>
+  </visual> 
+  
+  <collision>
+    <geometry>
+      <mesh filename="package://world_model_description/meshes/operator.dae"/>
+    </geometry>
+    <material name="Black"/>
+  </collision>
+  
+<!-- <collision>-->
+      <!--<origin xyz="-4 -3 0"/> -->     
+<!--       <geometry>
+       <box size="1 1 2"/>
+       </geometry>
+ </collision>
+<collision>
+        <origin xyz="0 0 2.5"/>      
+       <geometry>    
+        <sphere radius="2"/>
+       </geometry>
+</collision>-->
+ <inertial>
+   <mass value="1" />
+   <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+ </inertial>
+</link>
+
+<gazebo>
+  <static>true</static>
+</gazebo>
+
+  </robot>
